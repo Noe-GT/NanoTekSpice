@@ -14,9 +14,13 @@ SRC	=	src/Main.cpp					\
 		src/AndGate.cpp					\
 		src/OrGate.cpp
 
+TEST_SRC =	tests/TestBasicGates.c
+
 OBJ	=	$(SRC:src/%.cpp=bin/%.o)
 
 CPPFLAGS	=	-std=c++20 -Wall -Wextra -Werror -g3
+
+CRITERION	=	--coverage -lcriterion
 
 EXEC	=	nanotekspice
 
@@ -25,15 +29,22 @@ all:	$(EXEC)
 $(EXEC):	$(OBJ)
 	$(CC) -o $(EXEC) -I include $(OBJ)
 
+tests_run:	all
+	$(CC) -o unit_tests $(TEST_SRC) $(CRITERION)
+	./unit_tests
+
 bin/%.o:	src/%.cpp
 	@mkdir -p bin
 	$(CC) -c $< -o $@ $(CPPFLAGS)
 
 clean:
 	rm -rf bin
+	rm -f *gcno
+	rm -f *gcda
 
 fclean:	clean
 	rm -f $(EXEC)
+	rm -f unit_tests
 
 re:	fclean all
 
