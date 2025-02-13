@@ -1,33 +1,51 @@
 ##
 ## EPITECH PROJECT, 2025
-## Makefile
+## NanoTekSpice
 ## File description:
-## Makefile for cpp
+## Makefile
 ##
 
 CC	=	g++
 
-SRC	=	src/Main.cpp \
+SRC	=	src/Main.cpp					\
+		src/Exception.cpp				\
+		src/Connection.cpp				\
+		src/AComponent.cpp				\
+		src/AndGate.cpp					\
+		src/OrGate.cpp
 
-OBJ	=	$(SRC:%.cpp=%.o)
+TEST_SRC =	tests/TestBasicGates.c
 
-CFLAGS	=	-std=c++20 -Wall -Wextra -Werror -g
+OBJ	=	$(SRC:src/%.cpp=bin/%.o)
+
+CPPFLAGS	=	-std=c++20 -Wall -Wextra -Werror -g3
+
+CRITERION	=	--coverage -lcriterion
 
 EXEC	=	nanotekspice
 
-all:	 $(EXEC)
+all:	$(EXEC)
 
 $(EXEC):	$(OBJ)
-	$(CC) -o $(EXEC) $(OBJ) $(CFLAGS)
+	$(CC) -o $(EXEC) -I include $(OBJ)
+
+tests_run:	all
+	$(CC) -o unit_tests $(TEST_SRC) $(CRITERION)
+	./unit_tests
+
+bin/%.o:	src/%.cpp
+	@mkdir -p bin
+	$(CC) -c $< -o $@ $(CPPFLAGS)
 
 clean:
-	rm -f $(OBJ)
+	rm -rf bin
+	rm -f *gcno
+	rm -f *gcda
 
 fclean:	clean
 	rm -f $(EXEC)
+	rm -f unit_tests
 
 re:	fclean all
 
-# cmake ?
-
-.PHONY:	all compile_lib clean fclean re
+.PHONY:	all clean fclean re
