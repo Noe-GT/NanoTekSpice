@@ -32,7 +32,7 @@ bool nts::AComponent::isPinUsed(std::size_t pin) const
     Connection *connection;
 
     for (std::size_t i = 0; i < this->_connections.size(); i++) {
-        connection = this->_connections.at(i);
+        connection = this->_connections[i];
         if (connection->getPin() == pin)
             return true;
     }
@@ -82,7 +82,7 @@ bool nts::AComponent::isConnected(std::size_t pin,
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
     for (size_t i = 0; i < this->_connections.size(); i++) {
-        tmp = this->_connections.at(i);
+        tmp = this->_connections[i];
         if (tmp->getPin() == pin && &tmp->getComponent() == &other &&
         tmp->getOtherPin() == otherPin)
             return true;
@@ -97,7 +97,7 @@ bool nts::AComponent::isConnected(std::size_t pin) const
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
     for (std::size_t i = 0; i < this->_connections.size(); i++) {
-        tmp = this->_connections.at(i);
+        tmp = this->_connections[i];
         if (tmp->getPin() == pin)
             return true;
     }
@@ -106,13 +106,12 @@ bool nts::AComponent::isConnected(std::size_t pin) const
 
 nts::Connection *nts::AComponent::getConnection(std::size_t pin) const
 {
-    std::vector<Connection *> list;
     Connection *ans;
 
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
-    for (size_t i = 0; i < list.size(); i++) {
-        ans = list.at(i);
+    for (size_t i = 0; i < this->_connections.size(); i++) {
+        ans = this->_connections[i];
         if (ans->getPin() == pin)
             return ans;
     }
