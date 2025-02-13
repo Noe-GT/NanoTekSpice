@@ -8,25 +8,9 @@
 #ifndef ACOMPONENT_HPP_
 #define ACOMPONENT_HPP_
 #include "IComponent.hpp"
+#include "Connection.hpp"
 
 namespace nts {
-    class Connection {
-        public:
-            Connection(std::size_t pin, nts::IComponent &other,
-            std::size_t otherPin, nts::Tristate val=Undefined);
-            ~Connection();
-            std::size_t getPin() const;
-            nts::IComponent &getComponent() const;
-            std::size_t getOtherPin() const;
-            nts::Tristate getVal() const;
-
-        private:
-            std::size_t _pin;
-            nts::IComponent &_other;
-            std::size_t _otherPin;
-            nts::Tristate _val;
-    };
-
     class AComponent : public IComponent {
         public:
             AComponent();

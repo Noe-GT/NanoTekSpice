@@ -9,6 +9,7 @@ CC	=	g++
 
 SRC	=	src/Main.cpp					\
 		src/Exception.cpp				\
+		src/Connection.cpp				\
 		src/AComponent.cpp				\
 
 OBJ	=	$(SRC:src/%.cpp=bin/%.o)

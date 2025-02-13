@@ -7,16 +7,6 @@
 
 #include "../include/AComponent.hpp"
 
-nts::Connection::Connection(std::size_t pin, nts::IComponent &other,
-    std::size_t otherPin, nts::Tristate val): _pin(pin), _other(other),
-    _otherPin(otherPin), _val(val)
-{
-}
-
-nts::Connection::~Connection()
-{
-}
-
 nts::AComponent::AComponent(): _nbInputs(0), _nbOutputs(0)
 {
 }
@@ -139,24 +129,4 @@ nts::Tristate nts::AComponent::getLink(std::size_t pin) const
     if (!connection)
         throw Exception("Connection does not exist");
     return connection->getComponent().compute(connection->getOtherPin());
-}
-
-std::size_t nts::Connection::getPin() const
-{
-    return this->_pin;
-}
-
-nts::IComponent &nts::Connection::getComponent() const
-{
-    return this->_other;
-}
-
-std::size_t nts::Connection::getOtherPin() const
-{
-    return this->_otherPin;
-}
-
-nts::Tristate nts::Connection::getVal() const
-{
-    return this->_val;
 }
