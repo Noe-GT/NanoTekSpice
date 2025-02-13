@@ -11,6 +11,8 @@ SRC	=	src/Main.cpp					\
 		src/Exception.cpp				\
 		src/Connection.cpp				\
 		src/AComponent.cpp				\
+		src/AndGate.cpp					\
+		src/OrGate.cpp
 
 OBJ	=	$(SRC:src/%.cpp=bin/%.o)
 

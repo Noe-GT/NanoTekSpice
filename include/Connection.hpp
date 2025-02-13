@@ -19,6 +19,7 @@ namespace nts {
             nts::IComponent &getComponent() const;
             std::size_t getOtherPin() const;
             nts::Tristate getVal() const;
+            void setVal(nts::Tristate val);
 
         private:
             std::size_t _pin;

@@ -36,3 +36,8 @@ nts::Tristate nts::Connection::getVal() const
 {
     return this->_val;
 }
+
+void nts::Connection::setVal(nts::Tristate val)
+{
+    this->_val = val;
+}
