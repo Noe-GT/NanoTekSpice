@@ -1,3 +1,5 @@
 .vscode
+bin/
 *.o
+nanotekspice
 a.out
