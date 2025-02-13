@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** bootstrap
+** NanoTekSpice
 ** File description:
 ** Exception
 */

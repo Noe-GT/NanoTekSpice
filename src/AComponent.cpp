@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2025
-** bootstrap
+** NanoTekSpice
 ** File description:
-** IComponent
+** AComponent
 */
 
-#include "IComponent.hpp"
+#include "../include/AComponent.hpp"
 
 nts::Connection::Connection(std::size_t pin, nts::IComponent &other,
     std::size_t otherPin, nts::Tristate val): _pin(pin), _other(other),
@@ -39,23 +39,30 @@ nts::AComponent::~AComponent()
 
 void nts::AComponent::simulate(std::size_t tick)
 {
+    (void)tick;
 }
 
 void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other,
     std::size_t otherPin)
 {
-    // vérifier si la liaison n'existe pas déjà avec la méthode isAldreadyConnected()
-    // tester setLink()
     Connection *newConnection;
+    Connection *tmp;
 
     if (pin <= 0 || pin > this->_nbInputs + this->_nbOutputs)
         throw Exception("Invalid pin number");
+    for (size_t i = 0; i < this->_inputs.size(); i++) {
+        tmp = this->_inputs.at(i);
+        if (tmp->getPin() == pin)
+            throw Exception("Pin already used");
+    }
+    if (this->isAlreadyConnected(pin, other, otherPin))
+        return;
     newConnection = new Connection(pin, other, otherPin);
     if (pin <= this->_nbInputs)
         this->_inputs.push_back(newConnection);
     else
         this->_outputs.push_back(newConnection);
-    
+    other.setLink(otherPin, *this, pin);
 }
 
 bool nts::AComponent::isAlreadyConnected(std::size_t pin,
@@ -63,19 +70,50 @@ bool nts::AComponent::isAlreadyConnected(std::size_t pin,
 {
     Connection *tmp;
 
-    for (int i = 0; i < this->_inputs.size(); i++) {
+    for (size_t i = 0; i < this->_inputs.size(); i++) {
         tmp = this->_inputs.at(i);
         if (tmp->getPin() == pin && &tmp->getComponent() == &other &&
         tmp->getOtherPin() == otherPin)
             return true;
     }
-    for (int i = 0; i < this->_outputs.size(); i++) {
+    for (size_t i = 0; i < this->_outputs.size(); i++) {
         tmp = this->_outputs.at(i);
         if (tmp->getPin() == pin && &tmp->getComponent() == &other &&
         tmp->getOtherPin() == otherPin)
             return true;
     }
     return false;
+}
+
+nts::Connection *nts::AComponent::getConnection(std::size_t pin) const
+{
+    std::vector<Connection *> list;
+    Connection *ans = nullptr;
+
+    if (pin <= 0 || pin > this->_nbInputs + this->_nbOutputs)
+        throw Exception("Invalid pin number");
+    if (pin <= this->_nbInputs)
+        list = this->_inputs;
+    else
+        list = this->_outputs;
+    for (size_t i = 0; i < list.size(); i++) {
+        ans = list.at(i);
+        if (ans->getPin() == pin)
+            return ans;
+    }
+    return nullptr;
+}
+
+nts::Tristate nts::AComponent::getLink(std::size_t pin) const
+{
+    Connection *connection;
+
+    if (pin <= 0 || pin > this->_nbInputs + this->_nbOutputs)
+        throw Exception("Invalid pin number");
+    connection = this->getConnection(pin);
+    if (!connection)
+        throw Exception("Connection does not exist");
+    return connection->getComponent().compute(connection->getOtherPin());
 }
 
 std::size_t nts::Connection::getPin() const
