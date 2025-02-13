@@ -5,6 +5,8 @@
 ** Main
 */
 
+#include "IComponent.hpp"
+
 int main(void)
 {
     return 0;

@@ -13,7 +13,7 @@ OBJ	=	$(SRC:%.cpp=%.o)
 
 CFLAGS	=	-std=c++20 -Wall -Wextra -Werror -g
 
-EXEC	=	a.out
+EXEC	=	nanotekspice
 
 all:	 $(EXEC)
 
@@ -27,5 +27,7 @@ fclean:	clean
 	rm -f $(EXEC)
 
 re:	fclean all
+
+# cmake ?
 
 .PHONY:	all compile_lib clean fclean re
