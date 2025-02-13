@@ -7,7 +7,7 @@
 
 #include "../include/AComponent.hpp"
 
-nts::AComponent::AComponent(): _nbInputs(0), _nbOutputs(0)
+nts::AComponent::AComponent(): _name("None"), _nbInputs(0), _nbOutputs(0)
 {
 }
 

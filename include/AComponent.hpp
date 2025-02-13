@@ -29,6 +29,7 @@ namespace nts {
             nts::Tristate getLink(std::size_t pin) const;
 
         protected:
+            std::string _name;
             std::vector<Connection *> _connections;
             const std::size_t _nbInputs;
             const std::size_t _nbOutputs;
