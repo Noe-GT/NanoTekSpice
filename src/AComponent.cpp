@@ -124,6 +124,8 @@ nts::Tristate nts::AComponent::getLink(std::size_t pin) const
 
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
+    if (!this->isInputPin(pin))
+        throw Exception("Pin must be an input pin");
     connection = this->getConnection(pin);
     if (!connection)
         throw Exception("Connection does not exist");
