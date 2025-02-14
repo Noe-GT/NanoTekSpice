@@ -7,13 +7,18 @@
 
 #include "../include/Pin.hpp"
 
-nts::Pin::Pin(std::size_t id, nts::IComponent &component): _id(id),
-    _component(component), _val(Undefined)
+nts::Pin::Pin(PinType pinType, std::size_t id, nts::IComponent &component):
+    _pinType(pinType), _id(id), _component(component), _val(Undefined)
 {
 }
 
 nts::Pin::~Pin()
 {
+}
+
+nts::PinType nts::Pin::getPinType() const
+{
+    return this->_pinType;
 }
 
 std::size_t nts::Pin::getId() const
@@ -26,8 +31,7 @@ nts::IComponent &nts::Pin::getComponent() const
     return this->_component;
 }
 
-std::map<nts::IComponent &, std::vector<size_t>> nts::Pin::getConnections()
-    const
+std::vector<nts::Connection> nts::Pin::getConnections() const
 {
     return this->_connections;
 }

@@ -8,25 +8,30 @@
 #ifndef PIN_HPP_
 #define PIN_HPP_
 #include "IComponent.hpp"
-#include <map>
-#include <vector>
+#include "Connection.hpp"
 
 namespace nts {
+    enum PinType {
+        INPUT,
+        OUTPUT
+    };
+
     class Pin {
         public:
-            Pin(std::size_t id, nts::IComponent &component);
+            Pin(PinType pinType, std::size_t id, nts::IComponent &component);
             ~Pin();
+            PinType getPinType() const;
             std::size_t getId() const;
             nts::IComponent &getComponent() const;
-            std::map<IComponent &, std::vector<size_t>> getConnections()
-            const;
+            std::vector<Connection> getConnections() const;
             nts::Tristate getVal() const;
             void setVal(nts::Tristate val);
 
         private:
+            PinType _pinType;
             std::size_t _id;
             nts::IComponent &_component;
-            std::map<IComponent &, std::vector<size_t>> _connections;
+            std::vector<Connection> _connections;
             nts::Tristate _val;
     };
 }

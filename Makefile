@@ -11,6 +11,7 @@ SRC	=	src/Main.cpp					\
 		src/Exception.cpp				\
 		src/AComponent.cpp				\
 		src/Pin.cpp						\
+		src/Connection.cpp						\
 		# src/AndGate.cpp					\
 		# src/OrGate.cpp
 

@@ -28,7 +28,7 @@ namespace nts {
 
         protected:
             std::string _name;
-            std::vector<Pin &> _pins;
+            std::vector<Pin> _pins;
             const std::size_t _nbInputs;
             const std::size_t _nbOutputs;
     };
