@@ -7,36 +7,18 @@
 
 #include "../include/AComponent.hpp"
 
-nts::AComponent::AComponent(): _name("None"), _nbInputs(0), _nbOutputs(0)
+nts::AComponent::AComponent(size_t nbInputs, size_t nbOutputs): _name("None"),
+    _nbInputs(nbInputs), _nbOutputs(nbOutputs)
 {
 }
 
 nts::AComponent::~AComponent()
 {
-    nts::Connection *connection;
-
-    while (!this->_connections.empty()) {
-        connection = this->_connections.back();
-        this->_connections.pop_back();
-        delete connection;
-    }
 }
 
 void nts::AComponent::simulate(std::size_t tick)
 {
     (void)tick;
-}
-
-bool nts::AComponent::isPinUsed(std::size_t pin) const
-{
-    Connection *connection;
-
-    for (std::size_t i = 0; i < this->_connections.size(); i++) {
-        connection = this->_connections[i];
-        if (connection->getPin() == pin)
-            return true;
-    }
-    return false;
 }
 
 bool nts::AComponent::isPinInRange(std::size_t pin) const
@@ -61,7 +43,7 @@ bool nts::AComponent::isOutputPin(std::size_t pin) const
 void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other,
     std::size_t otherPin)
 {
-    Connection *newConnection;
+    std::vector<size_t> otherConnections;
 
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
@@ -69,63 +51,39 @@ void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other,
         throw Exception("Pin already used");
     if (this->isConnected(pin, other, otherPin))
         return;
-    newConnection = new Connection(pin, other, otherPin);
-    this->_connections.push_back(newConnection);
+    otherConnections.push_back(otherPin);
+    this->_pins[pin - 1].getConnections()[other] = otherConnections;
     other.setLink(otherPin, *this, pin);
 }
 
 bool nts::AComponent::isConnected(std::size_t pin,
     nts::IComponent &other, std::size_t otherPin) const
 {
-    Connection *tmp;
+    std::vector<size_t> connectionsList;
+    std::map<nts::IComponent &, std::vector<size_t>>::iterator iterator;
 
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
-    for (size_t i = 0; i < this->_connections.size(); i++) {
-        tmp = this->_connections[i];
-        if (tmp->getPin() == pin && &tmp->getComponent() == &other &&
-        tmp->getOtherPin() == otherPin)
+    iterator = this->_pins[pin - 1].getConnections().find(other);
+    if (iterator == this->_pins[pin - 1].getConnections().end())
+        return false;
+    connectionsList = this->_pins[pin - 1].getConnections()[other];
+    for (size_t i = 0; i < connectionsList.size(); i++)
+        if (connectionsList[i] == otherPin)
             return true;
-    }
     return false;
 }
 
 bool nts::AComponent::isConnected(std::size_t pin) const
 {
-    Connection *tmp;
-
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
-    for (std::size_t i = 0; i < this->_connections.size(); i++) {
-        tmp = this->_connections[i];
-        if (tmp->getPin() == pin)
-            return true;
-    }
-    return false;
-}
-
-nts::Connection *nts::AComponent::getConnection(std::size_t pin) const
-{
-    Connection *ans;
-
-    if (!this->isPinInRange(pin))
-        throw Exception("Invalid pin number");
-    for (size_t i = 0; i < this->_connections.size(); i++) {
-        ans = this->_connections[i];
-        if (ans->getPin() == pin)
-            return ans;
-    }
-    return nullptr;
+    return this->_pins[pin - 1].getConnections().empty();
 }
 
 nts::Tristate nts::AComponent::getLink(std::size_t pin) const
 {
-    Connection *connection;
-
-    if (!this->isPinInRange(pin))
-        throw Exception("Invalid pin number");
-    connection = this->getConnection(pin);
-    if (!connection)
-        throw Exception("Connection does not exist");
-    return connection->getComponent().compute(connection->getOtherPin());
+    // appelle compute sur les composants liés aux pins d'input
+    (void)pin;
+    return Undefined;
 }
