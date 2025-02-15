@@ -16,6 +16,7 @@ namespace nts {
             AComponent(size_t nbInputs, size_t nbOutputs);
             ~AComponent();
             virtual void simulate(std::size_t tick) override;
+            virtual nts::Tristate compute(std::size_t pin) override;
             void setLink(std::size_t pin, nts::IComponent &other,
             std::size_t otherPin) final;
             bool isConnected(std::size_t pin, nts::IComponent &other,

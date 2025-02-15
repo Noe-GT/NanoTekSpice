@@ -91,3 +91,8 @@ nts::Tristate nts::AComponent::getLink(std::size_t pin) const
     (void)pin;
     return Undefined;
 }
+
+nts::Tristate nts::AComponent::compute(std::size_t pin)
+{
+    return nts::Tristate::False;
+}

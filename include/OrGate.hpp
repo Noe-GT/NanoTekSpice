@@ -9,16 +9,18 @@
 #define ORGATE_HPP_
 #include "AComponent.hpp"
 
-namespace nts {
+//  in_1  -1-+---|
+        //   | or |-3- out
+//  in_2  -2-+---/
+
+namespace component {
     class OrGate : public nts::AComponent
     {
         public:
             OrGate();
             ~OrGate();
             void simulate(std::size_t tick) override;
-        protected:
-            const std::size_t _nbInputs;
-            const std::size_t _nbOutputs;
+
     };
 };
 
