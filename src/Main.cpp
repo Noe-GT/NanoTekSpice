@@ -6,8 +6,12 @@
 */
 
 #include "../include/AComponent.hpp"
+#include "../include/Parsing.hpp"
 
 int main()
 {
+    nts::Parsing p("test.nts");
+
+    p.printFile(2);
     return 0;
 }
