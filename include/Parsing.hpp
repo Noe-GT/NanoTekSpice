@@ -55,7 +55,7 @@ namespace nts {
             void printFile(std::size_t n) const;
             std::string &cleanStr(std::string &str);
             std::string &delComment(std::string &line);
-            std::size_t getStringStreamLength(std::stringstream &ss) const;
+            std::size_t getStringStreamLength(std::stringstream &&ss) const;
             std::size_t getCharOcc(const std::string &str, char c) const;
             bool isStrAlnum(const std::string &str) const;
             bool isStrNum(const std::string &str) const;

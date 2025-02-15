@@ -82,7 +82,7 @@ std::string &nts::Parsing::delComment(std::string &line)
     return line;
 }
 
-std::size_t nts::Parsing::getStringStreamLength(std::stringstream &ss) const
+std::size_t nts::Parsing::getStringStreamLength(std::stringstream &&ss) const
 {
     std::size_t len = 0;
     std::string tmp;
@@ -123,7 +123,7 @@ bool nts::Parsing::isChipset(const std::string &line) const
     std::stringstream ss(line);
     std::string tmp;
 
-    if (this->getStringStreamLength(ss) != 2)
+    if (this->getStringStreamLength(std::stringstream(line)) != 2)
         return false;
     for (int i = 0; i < 2; i++) {
         ss >> tmp;
@@ -140,7 +140,7 @@ bool nts::Parsing::isLink(const std::string &line) const
     std::string name;
     std::string pinId;
 
-    if (this->getStringStreamLength(ss) != 2)
+    if (this->getStringStreamLength(std::stringstream(line)) != 2)
         return false;
     for (int i = 0; i < 2; i++) {
         ss >> tmp;
@@ -148,8 +148,8 @@ bool nts::Parsing::isLink(const std::string &line) const
             return false;
         name = tmp.substr(0, tmp.find(':'));
         pinId = tmp.substr(tmp.find(':') + 1);
-        if (name.empty() || this->isStrAlnum(name) || pinId.empty() ||
-        this->isStrNum(pinId))
+        if (name.empty() || !this->isStrAlnum(name) || pinId.empty() ||
+        !this->isStrNum(pinId))
             return false;
     }
     return true;
