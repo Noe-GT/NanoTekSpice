@@ -9,10 +9,11 @@ CC	=	g++
 
 SRC	=	src/Main.cpp					\
 		src/Exception.cpp				\
-		src/Connection.cpp				\
 		src/AComponent.cpp				\
-		src/AndGate.cpp					\
-		src/OrGate.cpp
+		src/Pin.cpp						\
+		src/Connection.cpp						\
+		# src/AndGate.cpp					\
+		# src/OrGate.cpp
 
 TEST_SRC =	tests/TestBasicGates.c
 
