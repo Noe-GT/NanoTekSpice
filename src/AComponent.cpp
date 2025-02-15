@@ -112,3 +112,9 @@ std::size_t nts::AComponent::getNbOutputs() const
 {
     return this->_nbOutputs;
 }
+
+void nts::AComponent::setPin(std::size_t pin, nts::Tristate value)
+{
+    if (pin <= (this->_nbInputs + this->_nbOutputs) && pin > 0)
+        this->_pins[pin - 1].setVal(value);
+}

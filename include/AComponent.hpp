@@ -28,10 +28,11 @@ namespace nts {
             nts::Tristate getLink(std::size_t pin) const;
             std::size_t getNbInputs() const;
             std::size_t getNbOutputs() const;
+            void setPin(std::size_t pin, nts::Tristate value);
 
         protected:
             std::string _name;
-            std::vector<Pin> _pins;
+            std::vector<nts::Pin> _pins;
             const std::size_t _nbInputs;
             const std::size_t _nbOutputs;
         };
