@@ -7,9 +7,7 @@
 
 #include "../include/AComponent.hpp"
 
-int main(int ac, char **av)
+int main()
 {
-    (void)ac;
-    (void)av;
     return 0;
 }

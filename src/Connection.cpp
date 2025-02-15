@@ -7,37 +7,29 @@
 
 #include "../include/Connection.hpp"
 
-nts::Connection::Connection(std::size_t pin, nts::IComponent &other,
-    std::size_t otherPin, nts::Tristate val): _pin(pin), _other(other),
-    _otherPin(otherPin), _val(val)
+nts::Connection::Connection(IComponent &link, size_t pin): _link(link)
 {
+    this->_pins.push_back(pin);
 }
 
 nts::Connection::~Connection()
 {
 }
 
-std::size_t nts::Connection::getPin() const
+nts::IComponent &nts::Connection::getLink() const
 {
-    return this->_pin;
+    return this->_link;
 }
 
-nts::IComponent &nts::Connection::getComponent() const
+std::vector<size_t> nts::Connection::getPins() const
 {
-    return this->_other;
+    return this->_pins;
 }
 
-std::size_t nts::Connection::getOtherPin() const
+bool nts::Connection::find(size_t pinId) const
 {
-    return this->_otherPin;
-}
-
-nts::Tristate nts::Connection::getVal() const
-{
-    return this->_val;
-}
-
-void nts::Connection::setVal(nts::Tristate val)
-{
-    this->_val = val;
+    for (size_t i = 0; i < this->_pins.size(); i++)
+        if (this->_pins[i] == pinId)
+            return true;
+    return false;
 }

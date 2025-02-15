@@ -3,3 +3,4 @@ bin/
 *.o
 nanotekspice
 a.out
+unit_tests*
