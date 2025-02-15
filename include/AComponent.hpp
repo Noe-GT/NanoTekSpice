@@ -26,6 +26,8 @@ namespace nts {
             bool isInputPin(std::size_t pin) const;
             bool isOutputPin(std::size_t pin) const;
             nts::Tristate getLink(std::size_t pin) const;
+            std::size_t getNbInputs() const;
+            std::size_t getNbOutputs() const;
 
         protected:
             std::string _name;

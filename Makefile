@@ -7,8 +7,7 @@
 
 CC	=	g++
 
-SRC	=	src/Main.cpp \
-		src/Exception.cpp \
+SRC	=	src/Exception.cpp \
 		src/Parsing.cpp \
 		src/AComponent.cpp \
 		src/Pin.cpp	\
@@ -23,7 +22,8 @@ SRC	=	src/Main.cpp \
 		src/SCFalse.cpp \
 		# src/SCOutput.cpp \
 
-TEST_SRC =	tests/TestBasicGates.c
+TEST_SRC =	tests/TestBasicGates.cpp \
+			tests/TestSC.cpp
 
 OBJ	=	$(SRC:src/%.cpp=bin/%.o)
 
@@ -38,8 +38,8 @@ all:	$(EXEC)
 $(EXEC):	$(OBJ)
 	$(CC) -o $(EXEC) -I include $(OBJ)
 
-tests_run:	all
-	$(CC) -o unit_tests $(TEST_SRC) $(CRITERION)
+tests_run:	$(OBJ) $(TEST_SRC)
+	$(CC) -o unit_tests $(OBJ) $(TEST_SRC) $(CRITERION)
 	./unit_tests
 
 bin/%.o:	src/%.cpp

@@ -1,0 +1,51 @@
+/*
+** EPITECH PROJECT, 2025
+** nanoTekSpice
+** File description:
+** TestBasicGates
+*/
+
+#include "../include/tests.hpp"
+
+Test (AndGate, pins)
+{
+    component::AndGate comp;
+
+    cr_assert(comp.getNbInputs() == 2 &&
+        comp.getNbOutputs() == 1 &&
+        comp.isInputPin(1) &&
+        comp.isInputPin(2) &&
+        comp.isOutputPin(3));
+}
+
+Test (OrGate, pins)
+{
+    component::OrGate comp;
+
+    cr_assert(comp.getNbInputs() == 2 &&
+        comp.getNbOutputs() == 1 &&
+        comp.isInputPin(1) &&
+        comp.isInputPin(2) &&
+        comp.isOutputPin(3));
+}
+
+Test (XorGate, pins)
+{
+    component::XorGate comp;
+
+    cr_assert(comp.getNbInputs() == 2 &&
+        comp.getNbOutputs() == 1 &&
+        comp.isInputPin(1) &&
+        comp.isInputPin(2) &&
+        comp.isOutputPin(3));
+}
+
+Test (NotGate, pins)
+{
+    component::NotGate comp;
+
+    cr_assert(comp.getNbInputs() == 1 &&
+        comp.getNbOutputs() == 1 &&
+        comp.isInputPin(1) &&
+        comp.isOutputPin(2));
+}

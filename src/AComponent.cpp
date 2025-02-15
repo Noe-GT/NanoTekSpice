@@ -102,3 +102,13 @@ nts::Tristate nts::AComponent::compute(std::size_t pin)
         return nts::Tristate::Undefined;
     return this->_pins[pin - 1].getVal();
 }
+
+std::size_t nts::AComponent::getNbInputs() const
+{
+    return this->_nbInputs;
+}
+
+std::size_t nts::AComponent::getNbOutputs() const
+{
+    return this->_nbOutputs;
+}
