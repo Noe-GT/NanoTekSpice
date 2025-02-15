@@ -9,16 +9,17 @@
 #define ANDGATE_HPP_
 #include "AComponent.hpp"
 
-namespace nts {
+// in_1  -1-+---|
+//          | &  |-3- out
+// in_2  -2-+---|
+
+namespace component {
     class AndGate : public nts::AComponent
     {
         public:
             AndGate();
             ~AndGate();
             void simulate(std::size_t tick) override;
-        protected:
-            const std::size_t _nbInputs;
-            const std::size_t _nbOutputs;
     };
 };
 

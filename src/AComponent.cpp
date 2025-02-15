@@ -129,3 +129,8 @@ nts::Tristate nts::AComponent::getLink(std::size_t pin) const
         throw Exception("Connection does not exist");
     return connection->getComponent().compute(connection->getOtherPin());
 }
+
+nts::Tristate nts::AComponent::compute(std::size_t pin)
+{
+    return nts::Tristate::False;
+}

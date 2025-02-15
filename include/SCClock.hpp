@@ -1,0 +1,24 @@
+/*
+** EPITECH PROJECT, 2025
+** nanoTekSpice
+** File description:
+** SCClock
+*/
+
+#ifndef SCCLOCK_HPP_
+#define SCCLOCK_HPP_
+#include "AComponent.hpp"
+
+namespace component {
+    class SCClock : public nts::AComponent
+    {
+        public:
+            SCClock();
+            ~SCClock();
+            void simulate(std::size_t tick) final;
+        private:
+            nts::Tristate _clockValue;
+    };
+};
+
+#endif /* !SCCLOCK_HPP_ */

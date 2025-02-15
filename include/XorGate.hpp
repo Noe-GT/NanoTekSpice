@@ -9,16 +9,17 @@
 #define XORGATE_HPP_
 #include "AComponent.hpp"
 
-namespace nts {
+//  in_1  -1-+---|
+//           |xor |-3- out
+//  in_2  -2-+---/
+
+namespace component {
     class XorGate : public nts::AComponent
     {
         public:
             XorGate();
             ~XorGate();
             void simulate(std::size_t tick) override;
-        protected:
-            const std::size_t _nbInputs;
-            const std::size_t _nbOutputs;
     };
 };
 

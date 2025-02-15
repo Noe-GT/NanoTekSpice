@@ -1,0 +1,26 @@
+/*
+** EPITECH PROJECT, 2025
+** nanoTekSpice
+** File description:
+** CD4030
+*/
+
+#ifndef CD4030_HPP_
+#define CD4030_HPP_
+
+#include "XorGate.hpp"
+#include <list>
+
+namespace component {
+    class CD4030 : public nts::AComponent
+    {
+        public:
+            CD4030();
+            ~CD4030();
+            void simulate(std::size_t tick) override;
+        private:
+            std::list<component::XorGate &> _xorGates;
+    };
+};
+
+#endif /* !CD4030_HPP_ */
