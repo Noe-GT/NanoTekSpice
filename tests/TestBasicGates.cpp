@@ -52,6 +52,29 @@ Test(OrGate, pins)
         comp.isOutputPin(3));
 }
 
+Test(OrGate, simulate)
+{
+    component::OrGate comp;
+
+    comp.setPin(1, nts::Tristate::True);
+    comp.setPin(2, nts::Tristate::True);
+    comp.simulate(1);
+    if (comp.compute(3) != nts::Tristate::True)
+        cr_assert(false);
+
+    comp.setPin(1, nts::Tristate::True);
+    comp.setPin(2, nts::Tristate::False);
+    comp.simulate(1);
+    if (comp.compute(3) != nts::Tristate::True)
+        cr_assert(false);
+
+    comp.setPin(1, nts::Tristate::False);
+    comp.setPin(2, nts::Tristate::False);
+    comp.simulate(1);
+    if (comp.compute(3) != nts::Tristate::False)
+        cr_assert(false);
+}
+
 Test(XorGate, pins)
 {
     component::XorGate comp;
@@ -63,6 +86,29 @@ Test(XorGate, pins)
         comp.isOutputPin(3));
 }
 
+Test(XorGate, simulate)
+{
+    component::XorGate comp;
+
+    comp.setPin(1, nts::Tristate::True);
+    comp.setPin(2, nts::Tristate::True);
+    comp.simulate(1);
+    if (comp.compute(3) != nts::Tristate::False)
+        cr_assert(false);
+
+    comp.setPin(1, nts::Tristate::True);
+    comp.setPin(2, nts::Tristate::False);
+    comp.simulate(1);
+    if (comp.compute(3) != nts::Tristate::True)
+        cr_assert(false);
+
+    comp.setPin(1, nts::Tristate::False);
+    comp.setPin(2, nts::Tristate::False);
+    comp.simulate(1);
+    if (comp.compute(3) != nts::Tristate::False)
+        cr_assert(false);
+}
+
 Test(NotGate, pins)
 {
     component::NotGate comp;
@@ -71,4 +117,19 @@ Test(NotGate, pins)
         comp.getNbOutputs() == 1 &&
         comp.isInputPin(1) &&
         comp.isOutputPin(2));
+}
+
+Test(NotGate, simulate)
+{
+    component::NotGate comp;
+
+    comp.setPin(1, nts::Tristate::True);
+    comp.simulate(1);
+    if (comp.compute(2) != nts::Tristate::False)
+        cr_assert(false);
+
+    comp.setPin(1, nts::Tristate::False);
+    comp.simulate(1);
+    if (comp.compute(2) != nts::Tristate::True)
+        cr_assert(false);
 }
