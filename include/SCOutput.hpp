@@ -7,13 +7,16 @@
 
 #ifndef SCOUTPUT_HPP_
 #define SCOUTPUT_HPP_
-
-class SCOutput {
-    public:
-        SCOutput();
-        ~SCOutput();
-    protected:
-    private:
+#include "AComponent.hpp"
+namespace component {
+    class SCOutput : public nts::AComponent
+    {
+        public:
+            SCOutput();
+            ~SCOutput();
+        protected:
+        private:
+    };
 };
 
 #endif /* !SCOUTPUT_HPP_ */

@@ -9,9 +9,11 @@
 
 component::NotGate::NotGate() : nts::AComponent(1, 1)
 {
-    size_t nbPins;
+    nts::Pin p1(nts::PinType::INPUT, 1);
+    nts::Pin p2(nts::PinType::OUTPUT, 2);
 
-    nbPins = this->_nbInputs + this->_nbOutputs;
+    this->_pins.push_back(p1);
+    this->_pins.push_back(p2);
 }
 
 component::NotGate::~NotGate()
@@ -25,9 +27,9 @@ void component::NotGate::simulate(std::size_t tick)
 
     if (tick <= 0)
         return;
-    in1 = this->_pins[0]->getVal();
+    in1 = this->_pins[0].getVal();
     if (in1 == nts::Tristate::True)
-        this->_pins[1]->setVal(nts::Tristate::False);
+        this->_pins[1].setVal(nts::Tristate::False);
     else
-        this->_pins[1]->setVal(nts::Tristate::True);
+        this->_pins[1].setVal(nts::Tristate::True);
 }

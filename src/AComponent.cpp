@@ -7,9 +7,13 @@
 
 #include "../include/AComponent.hpp"
 
-nts::AComponent::AComponent(size_t nbInputs, size_t nbOutputs): _name("None"),
-    _nbInputs(nbInputs), _nbOutputs(nbOutputs)
+nts::AComponent::AComponent(size_t nbInputs, size_t nbOutputs):
+_name("None"),
+_pins(),
+_nbInputs(nbInputs),
+_nbOutputs(nbOutputs)
 {
+    // this->_pins.resize(nbInputs + nbOutputs);
 }
 
 nts::AComponent::~AComponent()
@@ -94,5 +98,7 @@ nts::Tristate nts::AComponent::getLink(std::size_t pin) const
 
 nts::Tristate nts::AComponent::compute(std::size_t pin)
 {
-    return nts::Tristate::False;
+    if (this->_pins.size() > pin || pin == 0)
+        return nts::Tristate::Undefined;
+    return this->_pins[pin - 1].getVal();
 }

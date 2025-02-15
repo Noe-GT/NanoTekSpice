@@ -18,11 +18,11 @@ namespace nts {
 
     class Pin {
         public:
-            Pin(PinType pinType, std::size_t id, nts::IComponent &component);
+            Pin(PinType pinType, std::size_t id);
             ~Pin();
             PinType getPinType() const;
             std::size_t getId() const;
-            nts::IComponent &getComponent() const;
+            // nts::IComponent &getComponent() const;
             std::vector<Connection> getConnections() const;
             nts::Tristate getVal() const;
             void setVal(nts::Tristate val);
@@ -30,7 +30,7 @@ namespace nts {
         private:
             PinType _pinType;
             std::size_t _id;
-            nts::IComponent &_component;
+            // nts::IComponent &_component;
             std::vector<Connection> _connections;
             nts::Tristate _val;
     };

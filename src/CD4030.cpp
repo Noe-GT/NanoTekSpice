@@ -7,7 +7,7 @@
 
 #include "../include/CD4030.hpp"
 
-component::CD4030::CD4030() : _xorGates()
+component::CD4030::CD4030() : nts::AComponent(8, 4), _xorGates()
 {
     component::XorGate g1;
     component::XorGate g2;
@@ -20,9 +20,6 @@ component::CD4030::CD4030() : _xorGates()
     this->_xorGates.push_back(g4);
 
     // ADD component linking
-
-    this->_nbInputs = 8;
-    this->_nbOutputs = 4;
 }
 
 component::CD4030::~CD4030()

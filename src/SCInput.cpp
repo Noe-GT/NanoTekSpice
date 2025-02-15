@@ -7,13 +7,12 @@
 
 #include "../include/SCInput.hpp"
 
-component::SCInput::SCInput() : nts::AComponent(1, 1)
+component::SCInput::SCInput() : nts::AComponent(0, 1)
 {
-    size_t nbPins;
+    nts::Pin p1(nts::PinType::OUTPUT, 1);
 
-    nbPins = this->_nbInputs + this->_nbOutputs;
-    this->_pins.resize(nbPins);
-    this->_inputValue = nts::Tristate::Undefined;
+    p1.setVal(nts::Tristate::Undefined);
+    this->_pins.push_back(p1);
 }
 
 component::SCInput::~SCInput()
@@ -29,6 +28,6 @@ void component::SCInput::simulate(std::size_t tick)
 {
     if (tick <= 0)
         return;
-    this->_pins[0]->setVal(this->_inputValue);
+    this->_pins[0].setVal(this->_inputValue);
     return;
 }

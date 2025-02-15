@@ -16,6 +16,7 @@ namespace component {
             SCClock();
             ~SCClock();
             void simulate(std::size_t tick) final;
+            void setInput(nts::Tristate inputValue);
         private:
             nts::Tristate _clockValue;
     };

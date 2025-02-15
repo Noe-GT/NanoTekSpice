@@ -7,13 +7,12 @@
 
 #include "SCClock.hpp"
 
-component::SCClock::SCClock()
+component::SCClock::SCClock() : nts::AComponent(0, 1)
 {
-    size_t nbPins;
+    nts::Pin p1(nts::PinType::OUTPUT, 1);
 
-    nbPins = this->_nbInputs + this->_nbOutputs;
-    this->_pins.resize(nbPins);
-    this->_pins[0]->setValue(nts::Tristate::False);
+    p1.setVal(nts::Tristate::False);
+    this->_pins.push_back(p1);
 }
 
 component::SCClock::~SCClock()
@@ -22,7 +21,7 @@ component::SCClock::~SCClock()
 
 void component::SCClock::setInput(nts::Tristate inputValue)
 {
-    this->_inputValue = inputValue;
+    this->_clockValue = inputValue;
 }
 
 void component::SCClock::simulate(std::size_t tick)
@@ -30,8 +29,8 @@ void component::SCClock::simulate(std::size_t tick)
     if (tick <= 0)
         return;
     if (this->_clockValue == nts::Tristate::True)
-        this->_clokValue =  nts::Tristate::False;
+        this->_clockValue =  nts::Tristate::False;
     else if (this->_clockValue == nts::Tristate::False)
-        this->_clokValue =  nts::Tristate::True;
-    this->_pins[0].setValue(this->_clockValue);
+        this->_clockValue =  nts::Tristate::True;
+    this->_pins[0].setVal(this->_clockValue);
 }

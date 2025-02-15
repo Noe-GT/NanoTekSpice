@@ -7,8 +7,8 @@
 
 #include "../include/Pin.hpp"
 
-nts::Pin::Pin(PinType pinType, std::size_t id, nts::IComponent &component):
-    _pinType(pinType), _id(id), _component(component), _val(Undefined)
+nts::Pin::Pin(PinType pinType, std::size_t id):
+    _pinType(pinType), _id(id), _val(Undefined)
 {
 }
 
@@ -26,10 +26,10 @@ std::size_t nts::Pin::getId() const
     return this->_id;
 }
 
-nts::IComponent &nts::Pin::getComponent() const
-{
-    return this->_component;
-}
+// nts::IComponent &nts::Pin::getComponent() const
+// {
+//     return this->_component;
+// }
 
 std::vector<nts::Connection> nts::Pin::getConnections() const
 {
