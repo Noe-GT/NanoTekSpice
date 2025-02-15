@@ -7,13 +7,13 @@
 
 #include "../include/Parsing.hpp"
 
-nts::Parsing::Parsing()
+nts::Parsing::Parsing(): _parsingType(NONE)
 {
 }
 
-nts::Parsing::Parsing(const std::string &filePath): _filePath(filePath)
+nts::Parsing::Parsing(const std::string &filePath): _parsingType(NONE)
 {
-    this->getFile();
+    this->setFilePath(filePath);
 }
 
 nts::Parsing::~Parsing()
@@ -23,6 +23,7 @@ nts::Parsing::~Parsing()
 void nts::Parsing::setFilePath(const std::string &filePath)
 {
     this->_filePath = filePath;
+    this->getFile();
 }
 
 void nts::Parsing::getFile()
@@ -42,19 +43,15 @@ void nts::Parsing::getFile()
 
 void nts::Parsing::printFile() const
 {
-    if (this->_data.empty())
-        throw Exception("No file to print");
     std::cout << this->_data;
 }
 
 void nts::Parsing::printFile(std::size_t n) const
 {
     std::string line;
-    std::istringstream iss(this->_data);
+    std::stringstream ss(this->_data);
 
-    if (this->_data.empty())
-        throw Exception("No file to print");
-    while (std::getline(iss, line) && n > 0) {
+    while (std::getline(ss, line) && n > 0) {
         std::cout << line << std::endl;
         n--;
     }
@@ -72,21 +69,20 @@ std::string &nts::Parsing::cleanStr(std::string &str)
         ans.resize(ans.length() - 1);
     if (ans == "")
         ans.clear();
-    return ans;
+    str = ans;
+    return str;
 }
 
-std::string &nts::Parsing::delComments(std::string &line)
+std::string &nts::Parsing::delComment(std::string &line)
 {
     std::size_t ind = line.find('#');
 
-    if (ind == std::string::npos)
-        line.clear();
-    else
+    if (ind != std::string::npos)
         line.resize(ind);
     return line;
 }
 
-std::size_t nts::Parsing::getStringStreamLength(std::stringstream &ss)
+std::size_t nts::Parsing::getStringStreamLength(std::stringstream &ss) const
 {
     std::size_t len = 0;
     std::string tmp;
@@ -96,17 +92,17 @@ std::size_t nts::Parsing::getStringStreamLength(std::stringstream &ss)
     return len;
 }
 
-std::size_t nts::Parsing::getCharOcc(std::string &str, char c)
+std::size_t nts::Parsing::getCharOcc(const std::string &str, char c) const
 {
     std::size_t n = 0;
 
-    for (int i = 0; i < str.length(); i++)
+    for (size_t i = 0; i < str.length(); i++)
         if (str[i] == c)
             n++;
     return n;
 }
 
-bool nts::Parsing::isStrAlnum(std::string &str)
+bool nts::Parsing::isStrAlnum(const std::string &str) const
 {
     for (std::size_t i = 0; i < str.length(); i++)
         if (!std::isalnum(str[i]))
@@ -114,7 +110,7 @@ bool nts::Parsing::isStrAlnum(std::string &str)
     return true;
 }
 
-bool nts::Parsing::isStrNum(std::string &str)
+bool nts::Parsing::isStrNum(const std::string &str) const
 {
     for (std::size_t i = 0; i < str.length(); i++)
         if (!std::isdigit(str[i]))
@@ -122,7 +118,7 @@ bool nts::Parsing::isStrNum(std::string &str)
     return true;
 }
 
-bool nts::Parsing::isChipset(std::string &line)
+bool nts::Parsing::isChipset(const std::string &line) const
 {
     std::stringstream ss(line);
     std::string tmp;
@@ -137,7 +133,7 @@ bool nts::Parsing::isChipset(std::string &line)
     return true;
 }
 
-bool nts::Parsing::isLink(std::string &line)
+bool nts::Parsing::isLink(const std::string &line) const
 {
     std::stringstream ss(line);
     std::string tmp;
@@ -159,6 +155,54 @@ bool nts::Parsing::isLink(std::string &line)
     return true;
 }
 
+void nts::Parsing::extractLine(const std::string &line)
+{
+    if (line == ".chipsets:") {
+        this->_parsingType = CHIPSET;
+        return;
+    } else if (line == ".links:") {
+        this->_parsingType = LINK;
+        return;
+    }
+    if (this->_parsingType == CHIPSET) {
+        if (this->isChipset(line))
+            this->_chipsets.push_back(Chipset(line));
+        else
+            throw Exception("Unknown chipset given");
+    } else if (this->_parsingType == LINK) {
+        if (this->isLink(line))
+            this->_links.push_back(Link(line));
+        else
+            throw Exception("Unknown link given");
+    }
+    if (this->_parsingType == NONE)
+        throw Exception("Unknown line given");
+}
+
+void nts::Parsing::parseFile()
+{
+    std::stringstream ss;
+    std::string line;
+
+    if (this->_filePath.empty())
+        throw Exception("No file path given");
+    ss << this->_data;
+    while (std::getline(ss, line)) {
+        line = this->cleanStr(this->delComment(line));
+        if (line.empty())
+            continue;
+        this->extractLine(line);
+    }
+}
+
+nts::Chipset::Chipset(const std::string &line)
+{
+    std::stringstream ss(line);
+
+    ss >> this->_type;
+    ss >> this->_name;
+}
+
 nts::Chipset::Chipset(const std::string &type, const std::string &name):
     _type(type), _name(name)
 {
@@ -166,6 +210,24 @@ nts::Chipset::Chipset(const std::string &type, const std::string &name):
 
 nts::Chipset::~Chipset()
 {
+}
+
+nts::Link::Link(const std::string &line)
+{
+    std::stringstream ss(line);
+    std::string str;
+    std::stringstream tmp;
+    size_t pinId;
+
+    for (int i = 0; i < 2; i++) {
+        ss >> str;
+        tmp << str.substr(str.find(':') + 1);
+        tmp >> pinId;
+        if (i == 0)
+            this->_component1 = std::pair(str.substr(0, str.find(':')), pinId);
+        else
+            this->_component2 = std::pair(str.substr(0, str.find(':')), pinId);
+    }
 }
 
 nts::Link::Link(const std::string &c1, std::size_t pin1, const std::string &c2,

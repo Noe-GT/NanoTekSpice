@@ -10,8 +10,9 @@
 
 int main()
 {
-    nts::Parsing p("test.nts");
+    nts::Parsing p("or_gate.nts");
 
-    p.printFile(2);
+    // p.printFile();
+    p.parseFile();
     return 0;
 }
