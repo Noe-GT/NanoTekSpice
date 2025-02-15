@@ -4,3 +4,4 @@ bin/
 nanotekspice
 a.out
 unit_tests*
+*.nts
