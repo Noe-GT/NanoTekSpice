@@ -23,7 +23,6 @@ component::NotGate::~NotGate()
 void component::NotGate::simulate(std::size_t tick)
 {
     nts::Tristate in1;
-    nts::Tristate in2;
 
     if (tick <= 0)
         return;

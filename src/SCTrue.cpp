@@ -21,4 +21,6 @@ component::SCTrue::~SCTrue()
 
 void component::SCTrue::simulate(std::size_t tick)
 {
+    if (tick <= 0)
+        return;
 }
