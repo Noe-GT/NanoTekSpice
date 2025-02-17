@@ -20,7 +20,7 @@ nts::component::SCTrue::~SCTrue()
 {
 }
 
-void nts::component::SCTrue::simulate(std::size_t tick)
+void nts::component::SCTrue::simulate(size_t tick)
 {
     if (tick <= 0)
         return;

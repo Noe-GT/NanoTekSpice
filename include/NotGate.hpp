@@ -19,7 +19,7 @@ namespace nts
             public:
                 NotGate(const std::string &name="Name");
                 ~NotGate();
-                void simulate(std::size_t tick) override;
+                void simulate(size_t tick) override;
         };
     };
 }

@@ -25,7 +25,7 @@ void nts::component::SCClock::setInput(nts::Tristate inputValue)
     this->_clockValue = inputValue;
 }
 
-void nts::component::SCClock::simulate(std::size_t tick)
+void nts::component::SCClock::simulate(size_t tick)
 {
     if (tick <= 0)
         return;

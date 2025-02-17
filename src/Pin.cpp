@@ -7,7 +7,7 @@
 
 #include "../include/Pin.hpp"
 
-nts::Pin::Pin(PinType pinType, std::size_t id):
+nts::Pin::Pin(PinType pinType, size_t id):
     _pinType(pinType), _id(id), _val(Undefined)
 {
 }
@@ -21,7 +21,7 @@ nts::PinType nts::Pin::getPinType() const
     return this->_pinType;
 }
 
-std::size_t nts::Pin::getId() const
+size_t nts::Pin::getId() const
 {
     return this->_id;
 }

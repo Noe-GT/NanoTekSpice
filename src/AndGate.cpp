@@ -23,7 +23,7 @@ nts::component::AndGate::~AndGate()
 {
 }
 
-void nts::component::AndGate::simulate(std::size_t tick)
+void nts::component::AndGate::simulate(size_t tick)
 {
     nts::Tristate in1;
     nts::Tristate in2;

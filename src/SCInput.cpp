@@ -25,7 +25,7 @@ void nts::component::SCInput::setInput(nts::Tristate inputValue)
     this->_inputValue = inputValue;
 }
 
-void nts::component::SCInput::simulate(std::size_t tick)
+void nts::component::SCInput::simulate(size_t tick)
 {
     if (tick <= 0)
         return;

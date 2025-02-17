@@ -46,7 +46,7 @@ void nts::Parsing::printFile() const
     std::cout << this->_data;
 }
 
-void nts::Parsing::printFile(std::size_t n) const
+void nts::Parsing::printFile(size_t n) const
 {
     std::string line;
     std::stringstream ss(this->_data);
@@ -75,16 +75,16 @@ std::string &nts::Parsing::cleanStr(std::string &str)
 
 std::string &nts::Parsing::delComment(std::string &line)
 {
-    std::size_t ind = line.find('#');
+    size_t ind = line.find('#');
 
     if (ind != std::string::npos)
         line.resize(ind);
     return line;
 }
 
-std::size_t nts::Parsing::getStringStreamLength(std::stringstream &&ss) const
+size_t nts::Parsing::getStringStreamLength(std::stringstream &&ss) const
 {
-    std::size_t len = 0;
+    size_t len = 0;
     std::string tmp;
 
     while (ss >> tmp)
@@ -92,9 +92,9 @@ std::size_t nts::Parsing::getStringStreamLength(std::stringstream &&ss) const
     return len;
 }
 
-std::size_t nts::Parsing::getCharOcc(const std::string &str, char c) const
+size_t nts::Parsing::getCharOcc(const std::string &str, char c) const
 {
-    std::size_t n = 0;
+    size_t n = 0;
 
     for (size_t i = 0; i < str.length(); i++)
         if (str[i] == c)
@@ -104,7 +104,7 @@ std::size_t nts::Parsing::getCharOcc(const std::string &str, char c) const
 
 bool nts::Parsing::isStrAlnum(const std::string &str) const
 {
-    for (std::size_t i = 0; i < str.length(); i++)
+    for (size_t i = 0; i < str.length(); i++)
         if (!std::isalnum(str[i]))
             return false;
     return true;
@@ -112,7 +112,7 @@ bool nts::Parsing::isStrAlnum(const std::string &str) const
 
 bool nts::Parsing::isStrNum(const std::string &str) const
 {
-    for (std::size_t i = 0; i < str.length(); i++)
+    for (size_t i = 0; i < str.length(); i++)
         if (!std::isdigit(str[i]))
             return false;
     return true;
@@ -155,20 +155,29 @@ bool nts::Parsing::isLink(const std::string &line) const
     return true;
 }
 
-void nts::Parsing::checkChipset(const std::string &line)
+void nts::Parsing::checkChipset(const Chipset &&chipset)
 {
-    std::stringstream ss(line);
-    std::string str;
-
-    ss >> str;
-    if (str == "input")
+    if (chipset.getType() == "input")
         this->_isInput = true;
-    else if (str == "output")
+    else if (chipset.getType() == "output")
         this->_isOutput = true;
-    ss >> str;
+    if (this->isExistingChipset(chipset.getName()))
+        throw Exception("Chipset name already used");
+}
+
+void nts::Parsing::checkLink(const Link &&link)
+{
+    if (this->isExistingChipset(link.getComponent1().first) ||
+    this->isExistingChipset(link.getComponent2().first))
+        throw Exception("Unknown chipset given");
+}
+
+bool nts::Parsing::isExistingChipset(const std::string &name) const
+{
     for (size_t i = 0; i < this->_chipsets.size(); i++)
-        if (this->_chipsets[i].getName() == str)
-            throw Exception("Chipset name already used");
+        if (this->_chipsets[i].getName() == name)
+            return true;
+    return false;
 }
 
 void nts::Parsing::extractLine(const std::string &line)
@@ -182,14 +191,15 @@ void nts::Parsing::extractLine(const std::string &line)
     }
     if (this->_parsingType == CHIPSET) {
         if (this->isChipset(line)) {
-            this->checkChipset(line);
+            this->checkChipset(Chipset(line));
             this->_chipsets.push_back(Chipset(line));
         } else
             throw Exception("Unknown chipset given");
     } else if (this->_parsingType == LINK) {
-        if (this->isLink(line))
+        if (this->isLink(line)) {
+            this->checkLink(Link(line));
             this->_links.push_back(Link(line));
-        else
+        } else
             throw Exception("Unknown link given");
     }
     if (this->_parsingType == NONE)
@@ -214,6 +224,15 @@ void nts::Parsing::parseFile()
         throw Exception("No input chipset given");
     if (!this->_isOutput)
         throw Exception("No output chipset given");
+}
+
+std::vector<nts::Chipset> nts::Parsing::getChipsets() const
+{
+    return this->_chipsets;
+}
+std::vector<nts::Link> nts::Parsing::getLinks() const
+{
+    return this->_links;
 }
 
 nts::Chipset::Chipset(const std::string &line)
@@ -260,8 +279,8 @@ nts::Link::Link(const std::string &line)
     }
 }
 
-nts::Link::Link(const std::string &c1, std::size_t pin1, const std::string &c2,
-    std::size_t pin2): _component1(c1, pin1), _component2(c2, pin2)
+nts::Link::Link(const std::string &c1, size_t pin1, const std::string &c2,
+    size_t pin2): _component1(c1, pin1), _component2(c2, pin2)
 {
 }
 
@@ -269,11 +288,11 @@ nts::Link::~Link()
 {
 }
 
-std::pair<std::string, std::size_t> nts::Link::getComponent1() const
+std::pair<std::string, size_t> nts::Link::getComponent1() const
 {
     return this->_component1;
 }
-std::pair<std::string, std::size_t> nts::Link::getComponent2() const
+std::pair<std::string, size_t> nts::Link::getComponent2() const
 {
     return this->_component2;
 }

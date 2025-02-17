@@ -19,7 +19,7 @@ namespace nts
             public:
                 SCClock(const std::string &name="None");
                 ~SCClock();
-                void simulate(std::size_t tick) final;
+                void simulate(size_t tick) final;
                 void setInput(nts::Tristate inputValue);
             private:
                 nts::Tristate _clockValue;

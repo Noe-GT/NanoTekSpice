@@ -21,35 +21,42 @@ nts::AComponent::~AComponent()
 {
 }
 
-void nts::AComponent::simulate(std::size_t tick)
+std::string nts::AComponent::getName() const
+{
+    return this->_name;
+}
+
+void nts::AComponent::simulate(size_t tick)
 {
     (void)tick;
 }
 
-bool nts::AComponent::isPinInRange(std::size_t pin) const
+bool nts::AComponent::isPinInRange(size_t pin) const
 {
     return pin > 0 && pin <= this->_nbInputs + this->_nbOutputs;
 }
 
-bool nts::AComponent::isInputPin(std::size_t pin) const
+bool nts::AComponent::isInputPin(size_t pin) const
 {
     if (!this->isPinInRange(pin))
         throw Exception("Incalid pin number");
     return this->_pins[pin - 1].getPinType() == INPUT;
 }
 
-bool nts::AComponent::isOutputPin(std::size_t pin) const
+bool nts::AComponent::isOutputPin(size_t pin) const
 {
     if (!this->isPinInRange(pin))
         throw Exception("Incalid pin number");
     return this->_pins[pin - 1].getPinType() == OUTPUT;
 }
 
-void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other,
-    std::size_t otherPin)
+void nts::AComponent::setLink(size_t pin, nts::IComponent &other,
+    size_t otherPin)
 {
     std::vector<Connection> connectionsList;
 
+    if (this == &other)
+        throw Exception("Can't link a component to itself");
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
     if (this->isInputPin(pin) && this->isConnected(pin))
@@ -67,8 +74,8 @@ void nts::AComponent::setLink(std::size_t pin, nts::IComponent &other,
     other.setLink(otherPin, *this, pin);
 }
 
-bool nts::AComponent::isConnected(std::size_t pin,
-    nts::IComponent &other, std::size_t otherPin) const
+bool nts::AComponent::isConnected(size_t pin,
+    nts::IComponent &other, size_t otherPin) const
 {
     std::vector<Connection> connectionsList;
     Connection tmp(other, otherPin);
@@ -83,38 +90,38 @@ bool nts::AComponent::isConnected(std::size_t pin,
     return false;
 }
 
-bool nts::AComponent::isConnected(std::size_t pin) const
+bool nts::AComponent::isConnected(size_t pin) const
 {
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
     return !this->_pins[pin - 1].getConnections().empty();
 }
 
-nts::Tristate nts::AComponent::getLink(std::size_t pin) const
+nts::Tristate nts::AComponent::getLink(size_t pin) const
 {
     // appelle compute sur les composants liés aux pins d'input
     (void)pin;
     return Undefined;
 }
 
-nts::Tristate nts::AComponent::compute(std::size_t pin)
+nts::Tristate nts::AComponent::compute(size_t pin)
 {
     if (this->_pins.size() > pin || pin == 0)
         return nts::Tristate::Undefined;
     return this->_pins[pin - 1].getVal();
 }
 
-std::size_t nts::AComponent::getNbInputs() const
+size_t nts::AComponent::getNbInputs() const
 {
     return this->_nbInputs;
 }
 
-std::size_t nts::AComponent::getNbOutputs() const
+size_t nts::AComponent::getNbOutputs() const
 {
     return this->_nbOutputs;
 }
 
-void nts::AComponent::setPin(std::size_t pin, nts::Tristate value)
+void nts::AComponent::setPin(size_t pin, nts::Tristate value)
 {
     if (pin <= (this->_nbInputs + this->_nbOutputs) && pin > 0)
         this->_pins[pin - 1].setVal(value);

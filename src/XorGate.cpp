@@ -23,7 +23,7 @@ nts::component::XorGate::~XorGate()
 {
 }
 
-void nts::component::XorGate::simulate(std::size_t tick)
+void nts::component::XorGate::simulate(size_t tick)
 {
     nts::Tristate in1;
     nts::Tristate in2;

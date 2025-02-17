@@ -23,7 +23,7 @@ namespace nts
             public:
                 OrGate(const std::string &name="Name");
                 ~OrGate();
-                void simulate(std::size_t tick) override;
+                void simulate(size_t tick) override;
 
         };
     };

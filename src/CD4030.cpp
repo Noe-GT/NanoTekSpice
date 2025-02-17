@@ -27,7 +27,7 @@ nts::component::CD4030::~CD4030()
 {
 }
 
-void nts::component::CD4030::simulate(std::size_t tick)
+void nts::component::CD4030::simulate(size_t tick)
 {
     nts::Tristate in1;
     nts::Tristate in2;

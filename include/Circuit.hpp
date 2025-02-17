@@ -8,7 +8,10 @@
 #ifndef CIRCUIT_HPP_
 #define CIRCUIT_HPP_
 
+#include <memory>
+
 #include "IComponent.hpp"
+#include "Parsing.hpp"
 
 #include "AndGate.hpp"
 #include "OrGate.hpp"
@@ -28,11 +31,13 @@ namespace nts
     class Circuit : public IComponent
     {
         public:
-            Circuit();
+            Circuit(Parsing &parsing);
             ~Circuit();
-            IComponent &createComponent(std::string type, std::string name);
-            void addComponent(IComponent &component);
-            // void simulate(std::size_t tick) override;
+            IComponent &getComponent(const std::string name);
+            IComponent &&createComponent(nts::Chipset &chipset);
+            void setComponentsLinks(std::vector<Link> links);
+            void setComponentsList(Parsing &parsing);
+            // void simulate(size_t tick) override;
             // void display() const;
 
         private:

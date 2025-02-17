@@ -7,7 +7,7 @@
 
 #include "../include/tests.hpp"
 
-void test_pins(nts::IComponent &comp, std::size_t in, std::size_t out)
+void test_pins(nts::IComponent &comp, size_t in, size_t out)
 {
     return;
 }

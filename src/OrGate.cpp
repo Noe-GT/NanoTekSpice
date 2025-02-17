@@ -23,7 +23,7 @@ nts::component::OrGate::~OrGate()
 {
 }
 
-void nts::component::OrGate::simulate(std::size_t tick)
+void nts::component::OrGate::simulate(size_t tick)
 {
     nts::Tristate in1;
     nts::Tristate in2;

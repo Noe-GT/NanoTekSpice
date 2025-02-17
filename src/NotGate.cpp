@@ -21,7 +21,7 @@ nts::component::NotGate::~NotGate()
 {
 }
 
-void nts::component::NotGate::simulate(std::size_t tick)
+void nts::component::NotGate::simulate(size_t tick)
 {
     nts::Tristate in1;
 

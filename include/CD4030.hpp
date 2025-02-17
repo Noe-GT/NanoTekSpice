@@ -20,7 +20,7 @@ namespace nts
             public:
                 CD4030(const std::string &name="None");
                 ~CD4030();
-                void simulate(std::size_t tick) override;
+                void simulate(size_t tick) override;
             private:
                 std::list<nts::component::XorGate &> _xorGates;
         };

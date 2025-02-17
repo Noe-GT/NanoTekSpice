@@ -34,15 +34,15 @@ namespace nts
     class Link {
         public:
             Link(const std::string &line);
-            Link(const std::string &c1, std::size_t pin1,
-            const std::string &c2, std::size_t pin2);
+            Link(const std::string &c1, size_t pin1,
+            const std::string &c2, size_t pin2);
             ~Link();
-            std::pair<std::string, std::size_t> getComponent1() const;
-            std::pair<std::string, std::size_t> getComponent2() const;
+            std::pair<std::string, size_t> getComponent1() const;
+            std::pair<std::string, size_t> getComponent2() const;
 
         private:
-            std::pair<std::string, std::size_t> _component1;
-            std::pair<std::string, std::size_t> _component2;
+            std::pair<std::string, size_t> _component1;
+            std::pair<std::string, size_t> _component2;
     };
 
     class Parsing
@@ -61,17 +61,21 @@ namespace nts
             void setFilePath(const std::string &filePath);
             void getFile();
             void printFile() const;
-            void printFile(std::size_t n) const;
+            void printFile(size_t n) const;
             std::string &cleanStr(std::string &str);
             std::string &delComment(std::string &line);
-            std::size_t getStringStreamLength(std::stringstream &&ss) const;
-            std::size_t getCharOcc(const std::string &str, char c) const;
+            size_t getStringStreamLength(std::stringstream &&ss) const;
+            size_t getCharOcc(const std::string &str, char c) const;
             bool isStrAlnum(const std::string &str) const;
             bool isStrNum(const std::string &str) const;
             bool isChipset(const std::string &line) const;
             bool isLink(const std::string &line) const;
-            void checkChipset(const std::string &line);
+            void checkChipset(const Chipset &&chipset);
+            void checkLink(const Link &&link);
+            bool isExistingChipset(const std::string &name) const;
             void parseFile();
+            std::vector<Chipset> getChipsets() const;
+            std::vector<Link> getLinks() const;
 
         private:
             void extractLine(const std::string &line);
