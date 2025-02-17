@@ -7,7 +7,7 @@
 
 #include "../include/SCInput.hpp"
 
-component::SCInput::SCInput() : nts::AComponent(0, 1)
+nts::component::SCInput::SCInput() : nts::AComponent(0, 1)
 {
     nts::Pin p1(nts::PinType::OUTPUT, 1);
 
@@ -15,16 +15,16 @@ component::SCInput::SCInput() : nts::AComponent(0, 1)
     this->_pins.push_back(p1);
 }
 
-component::SCInput::~SCInput()
+nts::component::SCInput::~SCInput()
 {
 }
 
-void component::SCInput::setInput(nts::Tristate inputValue)
+void nts::component::SCInput::setInput(nts::Tristate inputValue)
 {
     this->_inputValue = inputValue;
 }
 
-void component::SCInput::simulate(std::size_t tick)
+void nts::component::SCInput::simulate(std::size_t tick)
 {
     if (tick <= 0)
         return;

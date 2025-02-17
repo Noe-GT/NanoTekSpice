@@ -13,14 +13,16 @@
 //          | &  |-3- out
 // in_2  -2-+---|
 
-namespace component {
-    class AndGate : public nts::AComponent
-    {
-        public:
-            AndGate();
-            ~AndGate();
-            void simulate(std::size_t tick) override;
+namespace nts {
+    namespace component {
+        class AndGate : public nts::AComponent
+        {
+            public:
+                AndGate();
+                ~AndGate();
+                void simulate(std::size_t tick) override;
+        };
     };
-};
+}
 
 #endif /* !ANDGATE_HPP_ */

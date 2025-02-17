@@ -7,7 +7,7 @@
 
 #include "../include/OrGate.hpp"
 
-component::OrGate::OrGate() : nts::AComponent(2, 1)
+nts::component::OrGate::OrGate() : nts::AComponent(2, 1)
 {
     nts::Pin p1(nts::PinType::INPUT, 1);
     nts::Pin p2(nts::PinType::INPUT, 2);
@@ -18,11 +18,11 @@ component::OrGate::OrGate() : nts::AComponent(2, 1)
     this->_pins.push_back(p3);
 }
 
-component::OrGate::~OrGate()
+nts::component::OrGate::~OrGate()
 {
 }
 
-void component::OrGate::simulate(std::size_t tick)
+void nts::component::OrGate::simulate(std::size_t tick)
 {
     nts::Tristate in1;
     nts::Tristate in2;

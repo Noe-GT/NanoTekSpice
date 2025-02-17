@@ -13,14 +13,16 @@
 //           |xor |-3- out
 //  in_2  -2-+---/
 
-namespace component {
-    class XorGate : public nts::AComponent
-    {
-        public:
-            XorGate();
-            ~XorGate();
-            void simulate(std::size_t tick) override;
+namespace nts {
+    namespace component {
+        class XorGate : public nts::AComponent
+        {
+            public:
+                XorGate();
+                ~XorGate();
+                void simulate(std::size_t tick) override;
+        };
     };
-};
+}
 
 #endif /* !XORGATE_HPP_ */

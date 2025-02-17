@@ -7,7 +7,7 @@
 
 #include "../include/SCFalse.hpp"
 
-component::SCFalse::SCFalse() : nts::AComponent(0, 1)
+nts::component::SCFalse::SCFalse() : nts::AComponent(0, 1)
 {
     nts::Pin p1(nts::PinType::OUTPUT, 1);
 
@@ -15,11 +15,11 @@ component::SCFalse::SCFalse() : nts::AComponent(0, 1)
     this->_pins.push_back(p1);
 }
 
-component::SCFalse::~SCFalse()
+nts::component::SCFalse::~SCFalse()
 {
 }
 
-void component::SCFalse::simulate(std::size_t tick)
+void nts::component::SCFalse::simulate(std::size_t tick)
 {
     if (tick <= 0)
         return;

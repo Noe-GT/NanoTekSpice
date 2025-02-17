@@ -9,7 +9,7 @@
 
 Test (SCTrue, pins)
 {
-    component::SCTrue comp;
+    nts::component::SCTrue comp;
 
     cr_assert(comp.getNbInputs() == 0 &&
         comp.getNbOutputs() == 1 &&
@@ -18,7 +18,7 @@ Test (SCTrue, pins)
 
 Test (SCFalse, pins)
 {
-    component::SCFalse comp;
+    nts::component::SCFalse comp;
 
     cr_assert(comp.getNbInputs() == 0 &&
         comp.getNbOutputs() == 1 &&
@@ -27,7 +27,7 @@ Test (SCFalse, pins)
 
 Test (SCInput, pins)
 {
-    component::SCInput comp;
+    nts::component::SCInput comp;
 
     cr_assert(comp.getNbInputs() == 0 &&
         comp.getNbOutputs() == 1 &&
@@ -36,7 +36,7 @@ Test (SCInput, pins)
 
 // Test (SCOutput, pins)
 // {
-//     component::SCOutput comp;
+//     nts::component::SCOutput comp;
 
 //     cr_assert(comp.getNbInputs() == 0 &&
 //         comp.getNbOutputs() == 1 &&

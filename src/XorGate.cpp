@@ -7,7 +7,7 @@
 
 #include "../include/XorGate.hpp"
 
-component::XorGate::XorGate() : nts::AComponent(2, 1)
+nts::component::XorGate::XorGate() : nts::AComponent(2, 1)
 {
     nts::Pin p1(nts::PinType::INPUT, 1);
     nts::Pin p2(nts::PinType::INPUT, 2);
@@ -18,11 +18,11 @@ component::XorGate::XorGate() : nts::AComponent(2, 1)
     this->_pins.push_back(p3);
 }
 
-component::XorGate::~XorGate()
+nts::component::XorGate::~XorGate()
 {
 }
 
-void component::XorGate::simulate(std::size_t tick)
+void nts::component::XorGate::simulate(std::size_t tick)
 {
     nts::Tristate in1;
     nts::Tristate in2;

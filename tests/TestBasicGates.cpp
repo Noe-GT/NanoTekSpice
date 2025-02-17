@@ -9,7 +9,7 @@
 
 Test(AndGate, pins)
 {
-    component::AndGate comp;
+    nts::component::AndGate comp;
 
     cr_assert(comp.getNbInputs() == 2 &&
         comp.getNbOutputs() == 1 &&
@@ -20,7 +20,7 @@ Test(AndGate, pins)
 
 Test(AndGate, simulate)
 {
-    component::AndGate comp;
+    nts::component::AndGate comp;
 
     comp.setPin(1, nts::Tristate::True);
     comp.setPin(2, nts::Tristate::True);
@@ -43,7 +43,7 @@ Test(AndGate, simulate)
 
 Test(OrGate, pins)
 {
-    component::OrGate comp;
+    nts::component::OrGate comp;
 
     cr_assert(comp.getNbInputs() == 2 &&
         comp.getNbOutputs() == 1 &&
@@ -54,7 +54,7 @@ Test(OrGate, pins)
 
 Test(OrGate, simulate)
 {
-    component::OrGate comp;
+    nts::component::OrGate comp;
 
     comp.setPin(1, nts::Tristate::True);
     comp.setPin(2, nts::Tristate::True);
@@ -77,7 +77,7 @@ Test(OrGate, simulate)
 
 Test(XorGate, pins)
 {
-    component::XorGate comp;
+    nts::component::XorGate comp;
 
     cr_assert(comp.getNbInputs() == 2 &&
         comp.getNbOutputs() == 1 &&
@@ -88,7 +88,7 @@ Test(XorGate, pins)
 
 Test(XorGate, simulate)
 {
-    component::XorGate comp;
+    nts::component::XorGate comp;
 
     comp.setPin(1, nts::Tristate::True);
     comp.setPin(2, nts::Tristate::True);
@@ -111,7 +111,7 @@ Test(XorGate, simulate)
 
 Test(NotGate, pins)
 {
-    component::NotGate comp;
+    nts::component::NotGate comp;
 
     cr_assert(comp.getNbInputs() == 1 &&
         comp.getNbOutputs() == 1 &&
@@ -121,7 +121,7 @@ Test(NotGate, pins)
 
 Test(NotGate, simulate)
 {
-    component::NotGate comp;
+    nts::component::NotGate comp;
 
     comp.setPin(1, nts::Tristate::True);
     comp.simulate(1);

@@ -13,15 +13,17 @@
         //   | or |-3- out
 //  in_2  -2-+---/
 
-namespace component {
-    class OrGate : public nts::AComponent
-    {
-        public:
-            OrGate();
-            ~OrGate();
-            void simulate(std::size_t tick) override;
+namespace nts {
+    namespace component {
+        class OrGate : public nts::AComponent
+        {
+            public:
+                OrGate();
+                ~OrGate();
+                void simulate(std::size_t tick) override;
 
+        };
     };
-};
+}
 
 #endif /* !ORGATE_HPP_ */

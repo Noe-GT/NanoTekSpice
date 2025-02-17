@@ -7,7 +7,7 @@
 
 #include "../include/NotGate.hpp"
 
-component::NotGate::NotGate() : nts::AComponent(1, 1)
+nts::component::NotGate::NotGate() : nts::AComponent(1, 1)
 {
     nts::Pin p1(nts::PinType::INPUT, 1);
     nts::Pin p2(nts::PinType::OUTPUT, 2);
@@ -16,11 +16,11 @@ component::NotGate::NotGate() : nts::AComponent(1, 1)
     this->_pins.push_back(p2);
 }
 
-component::NotGate::~NotGate()
+nts::component::NotGate::~NotGate()
 {
 }
 
-void component::NotGate::simulate(std::size_t tick)
+void nts::component::NotGate::simulate(std::size_t tick)
 {
     nts::Tristate in1;
 

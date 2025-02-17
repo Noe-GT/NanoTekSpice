@@ -9,14 +9,16 @@
 #define NOTGATE_HPP_
 #include "AComponent.hpp"
 
-namespace component {
-    class NotGate : public nts::AComponent
-    {
-        public:
-            NotGate();
-            ~NotGate();
-            void simulate(std::size_t tick) override;
+namespace nts {
+    namespace component {
+        class NotGate : public nts::AComponent
+        {
+            public:
+                NotGate();
+                ~NotGate();
+                void simulate(std::size_t tick) override;
+        };
     };
-};
+}
 
 #endif /* !NOTGATE_HPP_ */

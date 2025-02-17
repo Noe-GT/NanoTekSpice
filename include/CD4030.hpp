@@ -11,16 +11,18 @@
 #include "XorGate.hpp"
 #include <list>
 
-namespace component {
-    class CD4030 : public nts::AComponent
-    {
-        public:
-            CD4030();
-            ~CD4030();
-            void simulate(std::size_t tick) override;
-        private:
-            std::list<component::XorGate &> _xorGates;
+namespace nts {
+    namespace component {
+        class CD4030 : public nts::AComponent
+        {
+            public:
+                CD4030();
+                ~CD4030();
+                void simulate(std::size_t tick) override;
+            private:
+                std::list<nts::component::XorGate &> _xorGates;
+        };
     };
-};
+}
 
 #endif /* !CD4030_HPP_ */

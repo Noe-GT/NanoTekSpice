@@ -7,7 +7,7 @@
 
 #include "../include/SCTrue.hpp"
 
-component::SCTrue::SCTrue() : nts::AComponent(0, 1)
+nts::component::SCTrue::SCTrue() : nts::AComponent(0, 1)
 {
     nts::Pin p1(nts::PinType::OUTPUT, 1);
 
@@ -15,11 +15,11 @@ component::SCTrue::SCTrue() : nts::AComponent(0, 1)
     this->_pins.push_back(p1);
 }
 
-component::SCTrue::~SCTrue()
+nts::component::SCTrue::~SCTrue()
 {
 }
 
-void component::SCTrue::simulate(std::size_t tick)
+void nts::component::SCTrue::simulate(std::size_t tick)
 {
     if (tick <= 0)
         return;

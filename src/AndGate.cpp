@@ -7,7 +7,7 @@
 
 #include "../include/AndGate.hpp"
 
-component::AndGate::AndGate() : nts::AComponent(2, 1)
+nts::component::AndGate::AndGate() : nts::AComponent(2, 1)
 {
     nts::Pin p1(nts::PinType::INPUT, 1);
     nts::Pin p2(nts::PinType::INPUT, 2);
@@ -18,11 +18,11 @@ component::AndGate::AndGate() : nts::AComponent(2, 1)
     this->_pins.push_back(p3);
 }
 
-component::AndGate::~AndGate()
+nts::component::AndGate::~AndGate()
 {
 }
 
-void component::AndGate::simulate(std::size_t tick)
+void nts::component::AndGate::simulate(std::size_t tick)
 {
     nts::Tristate in1;
     nts::Tristate in2;

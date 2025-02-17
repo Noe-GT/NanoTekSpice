@@ -9,17 +9,19 @@
 #define SCCLOCK_HPP_
 #include "AComponent.hpp"
 
-namespace component {
-    class SCClock : public nts::AComponent
-    {
-        public:
-            SCClock();
-            ~SCClock();
-            void simulate(std::size_t tick) final;
-            void setInput(nts::Tristate inputValue);
-        private:
-            nts::Tristate _clockValue;
+namespace nts {
+    namespace component {
+        class SCClock : public nts::AComponent
+        {
+            public:
+                SCClock();
+                ~SCClock();
+                void simulate(std::size_t tick) final;
+                void setInput(nts::Tristate inputValue);
+            private:
+                nts::Tristate _clockValue;
+        };
     };
-};
+}
 
 #endif /* !SCCLOCK_HPP_ */

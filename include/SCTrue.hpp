@@ -9,14 +9,16 @@
 #define SCTRUE_HPP_
 #include "AComponent.hpp"
 
-namespace component {
-    class SCTrue : public nts::AComponent
-    {
-        public:
-            SCTrue();
-            ~SCTrue();
-            void simulate(std::size_t tick) final;
+namespace nts {
+    namespace component {
+        class SCTrue : public nts::AComponent
+        {
+            public:
+                SCTrue();
+                ~SCTrue();
+                void simulate(std::size_t tick) final;
+        };
     };
-};
+}
 
 #endif /* !SCTRUE_HPP_ */

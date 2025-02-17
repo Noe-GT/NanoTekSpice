@@ -7,7 +7,7 @@
 
 #include "../include/SCClock.hpp"
 
-component::SCClock::SCClock() : nts::AComponent(0, 1)
+nts::component::SCClock::SCClock() : nts::AComponent(0, 1)
 {
     nts::Pin p1(nts::PinType::OUTPUT, 1);
 
@@ -15,16 +15,16 @@ component::SCClock::SCClock() : nts::AComponent(0, 1)
     this->_pins.push_back(p1);
 }
 
-component::SCClock::~SCClock()
+nts::component::SCClock::~SCClock()
 {
 }
 
-void component::SCClock::setInput(nts::Tristate inputValue)
+void nts::component::SCClock::setInput(nts::Tristate inputValue)
 {
     this->_clockValue = inputValue;
 }
 
-void component::SCClock::simulate(std::size_t tick)
+void nts::component::SCClock::simulate(std::size_t tick)
 {
     if (tick <= 0)
         return;
