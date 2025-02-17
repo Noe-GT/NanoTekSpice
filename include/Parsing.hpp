@@ -61,6 +61,7 @@ namespace nts {
             bool isStrNum(const std::string &str) const;
             bool isChipset(const std::string &line) const;
             bool isLink(const std::string &line) const;
+            void checkChipset(const std::string &line);
             void parseFile();
 
         private:
@@ -71,6 +72,9 @@ namespace nts {
             std::string _data;
             std::vector<Chipset> _chipsets;
             std::vector<Link> _links;
+
+            bool _isInput;
+            bool _isOutput;
     };
 }
 

@@ -155,6 +155,18 @@ bool nts::Parsing::isLink(const std::string &line) const
     return true;
 }
 
+void nts::Parsing::checkChipset(const std::string &line)
+{
+    std::stringstream ss(line);
+    std::string tmp;
+
+    ss >> tmp;
+    if (tmp == "input")
+        this->_isInput = true;
+    else if (tmp == "output")
+        this->_isOutput = true;
+}
+
 void nts::Parsing::extractLine(const std::string &line)
 {
     if (line == ".chipsets:") {
@@ -165,9 +177,10 @@ void nts::Parsing::extractLine(const std::string &line)
         return;
     }
     if (this->_parsingType == CHIPSET) {
-        if (this->isChipset(line))
+        if (this->isChipset(line)) {
+            this->checkChipset(line);
             this->_chipsets.push_back(Chipset(line));
-        else
+        } else
             throw Exception("Unknown chipset given");
     } else if (this->_parsingType == LINK) {
         if (this->isLink(line))
@@ -193,6 +206,10 @@ void nts::Parsing::parseFile()
             continue;
         this->extractLine(line);
     }
+    if (!this->_isInput)
+        throw Exception("No input chipset given");
+    if (!this->_isOutput)
+        throw Exception("No output chipset given");
 }
 
 nts::Chipset::Chipset(const std::string &line)
