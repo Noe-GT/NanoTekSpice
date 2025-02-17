@@ -8,8 +8,6 @@
 #ifndef CIRCUIT_HPP_
 #define CIRCUIT_HPP_
 
-#include <memory>
-
 #include "IComponent.hpp"
 #include "Parsing.hpp"
 
@@ -28,7 +26,7 @@
 
 namespace nts
 {
-    class Circuit : public IComponent
+    class Circuit
     {
         public:
             Circuit(Parsing &parsing);

@@ -9,6 +9,7 @@ CC	=	g++
 
 SRC	=   src/Exception.cpp \
 		src/Parsing.cpp \
+		src/Circuit.cpp \
 		src/AComponent.cpp \
 		src/Pin.cpp	\
 		src/Connection.cpp \

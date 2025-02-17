@@ -7,6 +7,7 @@
 
 #ifndef ICOMPONENT_HPP_
 #define ICOMPONENT_HPP_
+
 #include "Exception.hpp"
 #include "External.hpp"
 
