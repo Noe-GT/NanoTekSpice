@@ -35,10 +35,10 @@ EXEC	=	nanotekspice
 
 all:	$(EXEC)
 
-$(EXEC):	$(OBJ)
+$(EXEC):
 	$(CC) -o $(EXEC) -I include $(SRC) src/Main.cpp
 
-tests_run:	$(SRC) $(TEST_SRC)
+tests_run:
 	$(CC) -o unit_tests $(SRC) $(TEST_SRC) $(CRITERION)
 	./unit_tests
 
