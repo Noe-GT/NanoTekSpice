@@ -76,6 +76,7 @@ namespace nts
             void parseFile();
             std::vector<Chipset> getChipsets() const;
             std::vector<Link> getLinks() const;
+            void debug() const;
 
         private:
             void extractLine(const std::string &line);

@@ -235,6 +235,36 @@ std::vector<nts::Link> nts::Parsing::getLinks() const
     return this->_links;
 }
 
+void nts::Parsing::debug() const
+{
+    if (this->_filePath.empty())
+        throw Exception("Can't debug");
+
+    std::cout <<
+    "File path :" << std::endl <<  this->_filePath
+    << std::endl << std::endl;
+
+    std::cout <<
+    "Data :" << std::endl << this->_data
+    << std::endl;
+
+    std::cout << "Chipsets list :" << std::endl;
+    for (size_t i = 0; i < this->_chipsets.size(); i++)
+        std::cout <<
+        "Chipset : " << this->_chipsets[i].getName() << " -> " <<
+        this->_chipsets[i].getType()
+        << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "Links list :" << std::endl;
+    for (size_t i = 0; i < this->_links.size(); i++)
+        std::cout << "Link : " << this->_links[i].getComponent1().first << ":"
+        << this->_links[i].getComponent1().second << " -> " <<
+        this->_links[i].getComponent2().first << ":" <<
+        this->_links[i].getComponent2().second << std::endl;
+    std::cout << std::endl;
+}
+
 nts::Chipset::Chipset(const std::string &line)
 {
     std::stringstream ss(line);

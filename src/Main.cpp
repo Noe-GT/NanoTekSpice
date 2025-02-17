@@ -11,8 +11,12 @@
 
 int main()
 {
-    nts::CLI cli;
+    // nts::CLI cli;
 
-    cli.Run();
+    // cli.Run();
+
+    nts::Parsing p("or_gate.nts");
+    p.debug();
+    nts::Circuit c(p);
     return 0;
 }
