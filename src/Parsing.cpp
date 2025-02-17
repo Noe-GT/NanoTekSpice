@@ -167,8 +167,8 @@ void nts::Parsing::checkChipset(const Chipset &&chipset)
 
 void nts::Parsing::checkLink(const Link &&link)
 {
-    if (this->isExistingChipset(link.getComponent1().first) ||
-    this->isExistingChipset(link.getComponent2().first))
+    if (!this->isExistingChipset(link.getComponent1().first) ||
+    !this->isExistingChipset(link.getComponent2().first))
         throw Exception("Unknown chipset given");
 }
 
