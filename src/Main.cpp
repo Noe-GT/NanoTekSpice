@@ -7,12 +7,12 @@
 
 #include "../include/AComponent.hpp"
 #include "../include/Parsing.hpp"
+#include "../include/CLI.hpp"
 
 int main()
 {
-    nts::Parsing p("or_gate.nts");
+    nts::CLI cli;
 
-    // p.printFile();
-    p.parseFile();
+    cli.Run();
     return 0;
 }

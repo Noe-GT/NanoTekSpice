@@ -20,6 +20,7 @@ SRC	=   src/Exception.cpp \
 		src/SCInput.cpp \
 		src/SCTrue.cpp \
 		src/SCFalse.cpp \
+		src/CLI.cpp \
 		# src/SCOutput.cpp \
 
 TEST_SRC =	tests/TestBasicGates.cpp \
