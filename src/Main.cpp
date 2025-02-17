@@ -6,7 +6,7 @@
 */
 
 #include "../include/AComponent.hpp"
-#include "../include/Parsing.hpp"
+#include "../include/Circuit.hpp"
 #include "../include/CLI.hpp"
 
 int main()

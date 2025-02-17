@@ -17,25 +17,27 @@ nts::Circuit::~Circuit()
 {
 }
 
-nts::IComponent &nts::Circuit::getComponent(const std::string name)
+std::shared_ptr<nts::IComponent> nts::Circuit::getComponent(
+    const std::string name) const
 {
     for (size_t i = 0; i < this->_allComponents.size(); i++)
-        if (this->_allComponents[i].getName() == name)
+        if (this->_allComponents[i]->getName() == name)
             return this->_allComponents[i];
     throw Exception("Component not found");
 }
 
-nts::IComponent &&nts::Circuit::createComponent(nts::Chipset &chipset)
+std::shared_ptr<nts::IComponent> nts::Circuit::createComponent(
+    nts::Chipset &chipset)
 {
     std::string name(chipset.getName());
     std::string type(chipset.getType());
 
     if (type == "input")
-        return nts::component::SCInput(name);
+        return std::shared_ptr<IComponent>(new nts::component::SCInput(name));
     if (type == "output")
-        return nts::component::SCOutput(name);
+        return std::shared_ptr<IComponent>(new nts::component::SCOutput(name));
     if (type == "and")
-        return nts::component::AndGate(name);
+        return std::shared_ptr<IComponent>(new nts::component::AndGate(name));
     throw Exception("Unknown component given");
 }
 
@@ -44,25 +46,28 @@ void nts::Circuit::setComponentsLinks(std::vector<Link> links)
     std::string name;
     std::pair<std::string, size_t> p1;
     std::pair<std::string, size_t> p2;
+    std::shared_ptr<IComponent> tmp;
 
     for (size_t i = 0; i < this->_allComponents.size(); i++) {
-        IComponent &tmp = this->_allComponents[i];
-        name = tmp.getName();
+        tmp = this->_allComponents[i];
+        name = tmp->getName();
         for (size_t j = 0; j < links.size(); j++) {
             p1 = links[j].getComponent1();
             p2 = links[j].getComponent2();
             if (p1.first != name && p2.first != name)
                 continue;
-            this->getComponent(p1.first).setLink(p1.second,
-            this->getComponent(p2.first), p2.second);
+            this->getComponent(p1.first)->setLink(p1.second,
+            *this->getComponent(p2.first), p2.second);
         }
     }
 }
 
 void nts::Circuit::setComponentsList(nts::Parsing &parsing)
 {
+    std::shared_ptr<IComponent> tmp;
+
     for (size_t i = 0; i < parsing.getChipsets().size(); i++) {
-        IComponent &&tmp = this->createComponent(parsing.getChipsets()[i]);
+        tmp = this->createComponent(parsing.getChipsets()[i]);
         this->_allComponents.push_back(tmp);
         if (parsing.getChipsets()[i].getType() == "output")
             this->_outputs.push_back(tmp);

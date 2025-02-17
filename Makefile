@@ -7,22 +7,22 @@
 
 CC	=	g++
 
-SRC	=   src/Exception.cpp \
-		src/Parsing.cpp \
-		src/Circuit.cpp \
-		src/AComponent.cpp \
-		src/Pin.cpp	\
-		src/Connection.cpp \
-		src/AndGate.cpp \
-		src/OrGate.cpp \
-		src/XorGate.cpp \
-		src/NotGate.cpp \
-		src/SCClock.cpp \
-		src/SCInput.cpp \
-		src/SCTrue.cpp \
-		src/SCFalse.cpp \
-		src/CLI.cpp \
-		# src/SCOutput.cpp \
+SRC	=   src/Exception.cpp 	\
+		src/Parsing.cpp		\
+		src/Circuit.cpp		\
+		src/AComponent.cpp	\
+		src/Pin.cpp			\
+		src/Connection.cpp	\
+		src/AndGate.cpp		\
+		src/OrGate.cpp		\
+		src/XorGate.cpp		\
+		src/NotGate.cpp		\
+		src/SCClock.cpp		\
+		src/SCInput.cpp		\
+		src/SCTrue.cpp		\
+		src/SCFalse.cpp		\
+		src/CLI.cpp			\
+		src/SCOutput.cpp	\
 
 TEST_SRC =	tests/TestBasicGates.cpp \
 			tests/TestSC.cpp

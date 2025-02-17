@@ -8,6 +8,8 @@
 #ifndef CIRCUIT_HPP_
 #define CIRCUIT_HPP_
 
+#include <memory>
+
 #include "IComponent.hpp"
 #include "Parsing.hpp"
 
@@ -16,7 +18,7 @@
 #include "XorGate.hpp"
 #include "NotGate.hpp"
 
-#include "CD4030.hpp"
+// #include "CD4030.hpp"
 
 #include "SCInput.hpp"
 #include "SCOutput.hpp"
@@ -31,16 +33,18 @@ namespace nts
         public:
             Circuit(Parsing &parsing);
             ~Circuit();
-            IComponent &getComponent(const std::string name);
-            IComponent &&createComponent(nts::Chipset &chipset);
+            std::shared_ptr<IComponent> getComponent(const std::string name)
+            const;
+            std::shared_ptr<IComponent> createComponent(nts::Chipset &chipset);
             void setComponentsLinks(std::vector<Link> links);
             void setComponentsList(Parsing &parsing);
+
             // void simulate(size_t tick) override;
             // void display() const;
 
         private:
-            std::vector<IComponent &> _allComponents;
-            std::vector<IComponent &> _outputs;
+            std::vector<std::shared_ptr<IComponent>> _allComponents;
+            std::vector<std::shared_ptr<IComponent>> _outputs;
     };
 }
 
