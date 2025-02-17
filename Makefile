@@ -7,8 +7,7 @@
 
 CC	=	g++
 
-SRC	=	src/Main.cpp \
-		src/Exception.cpp \
+SRC	=   src/Exception.cpp \
 		src/Parsing.cpp \
 		src/AComponent.cpp \
 		src/Pin.cpp	\
@@ -37,10 +36,10 @@ EXEC	=	nanotekspice
 all:	$(EXEC)
 
 $(EXEC):	$(OBJ)
-	$(CC) -o $(EXEC) -I include $(OBJ)
+	$(CC) -o $(EXEC) -I include $(SRC) src/Main.cpp
 
-tests_run:	$(OBJ) $(TEST_SRC)
-	$(CC) -o unit_tests $(OBJ) $(TEST_SRC) $(CRITERION)
+tests_run:	$(SRC) $(TEST_SRC)
+	$(CC) -o unit_tests $(SRC) $(TEST_SRC) $(CRITERION)
 	./unit_tests
 
 bin/%.o:	src/%.cpp
