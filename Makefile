@@ -7,7 +7,8 @@
 
 CC	=	g++
 
-SRC	=	src/Exception.cpp \
+SRC	=	src/Main.cpp \
+		src/Exception.cpp \
 		src/Parsing.cpp \
 		src/AComponent.cpp \
 		src/Pin.cpp	\
