@@ -35,7 +35,7 @@ namespace nts {
             std::vector<nts::Pin> _pins;
             const std::size_t _nbInputs;
             const std::size_t _nbOutputs;
-        };
+    };
 }
 
 #endif /* !ACOMPONENT_HPP_ */

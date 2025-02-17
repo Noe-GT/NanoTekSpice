@@ -8,10 +8,10 @@
 #include "../include/AComponent.hpp"
 
 nts::AComponent::AComponent(size_t nbInputs, size_t nbOutputs):
-_name("None"),
-_pins(),
-_nbInputs(nbInputs),
-_nbOutputs(nbOutputs)
+    _name("None"),
+    _pins(),
+    _nbInputs(nbInputs),
+    _nbOutputs(nbOutputs)
 {
     // this->_pins.resize(nbInputs + nbOutputs);
 }
