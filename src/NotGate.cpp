@@ -7,7 +7,8 @@
 
 #include "../include/NotGate.hpp"
 
-nts::component::NotGate::NotGate() : nts::AComponent(1, 1)
+nts::component::NotGate::NotGate(const std::string &name):
+    nts::AComponent(1, 1, name)
 {
     nts::Pin p1(nts::PinType::INPUT, 1);
     nts::Pin p2(nts::PinType::OUTPUT, 2);

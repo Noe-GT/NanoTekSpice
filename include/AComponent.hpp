@@ -7,13 +7,17 @@
 
 #ifndef ACOMPONENT_HPP_
 #define ACOMPONENT_HPP_
+
 #include "IComponent.hpp"
 #include "Pin.hpp"
 
-namespace nts {
-    class AComponent : public IComponent {
+namespace nts
+{
+    class AComponent : public IComponent
+    {
         public:
-            AComponent(size_t nbInputs, size_t nbOutputs);
+            AComponent(size_t nbInputs, size_t nbOutputs,
+            const std::string &name);
             ~AComponent();
             virtual void simulate(std::size_t tick) override;
             nts::Tristate compute(std::size_t pin) override;
@@ -31,8 +35,8 @@ namespace nts {
             void setPin(std::size_t pin, nts::Tristate value);
 
         protected:
-            std::string _name;
             std::vector<nts::Pin> _pins;
+            const std::string _name;
             const std::size_t _nbInputs;
             const std::size_t _nbOutputs;
     };

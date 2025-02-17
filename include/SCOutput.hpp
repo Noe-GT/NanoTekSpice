@@ -7,14 +7,17 @@
 
 #ifndef SCOUTPUT_HPP_
 #define SCOUTPUT_HPP_
+
 #include "AComponent.hpp"
 
-namespace nts {
-    namespace component {
+namespace nts
+{
+    namespace component
+    {
         class SCOutput : public nts::AComponent
         {
             public:
-                SCOutput();
+                SCOutput(const std::string &name="None");
                 ~SCOutput();
             protected:
             private:

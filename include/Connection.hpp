@@ -7,10 +7,13 @@
 
 #ifndef CONNECTION_HPP_
 #define CONNECTION_HPP_
+
 #include "IComponent.hpp"
 
-namespace nts {
-    class Connection {
+namespace nts
+{
+    class Connection
+    {
         public:
             Connection(IComponent &link, size_t pin);
             ~Connection();

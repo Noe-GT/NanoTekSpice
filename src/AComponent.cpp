@@ -7,9 +7,10 @@
 
 #include "../include/AComponent.hpp"
 
-nts::AComponent::AComponent(size_t nbInputs, size_t nbOutputs):
-    _name("None"),
+nts::AComponent::AComponent(size_t nbInputs, size_t nbOutputs,
+    const std::string &name):
     _pins(),
+    _name(name),
     _nbInputs(nbInputs),
     _nbOutputs(nbOutputs)
 {

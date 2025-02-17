@@ -7,14 +7,17 @@
 
 #ifndef SCINPUT_HPP_
 #define SCINPUT_HPP_
+
 #include "AComponent.hpp"
 
-namespace nts {
-    namespace component {
+namespace nts
+{
+    namespace component
+    {
         class SCInput : public nts::AComponent
         {
             public:
-                SCInput();
+                SCInput(const std::string &name="None");
                 ~SCInput();
                 void simulate(std::size_t tick) final;
                 void setInput(nts::Tristate inputValue);

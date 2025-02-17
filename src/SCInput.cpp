@@ -7,7 +7,8 @@
 
 #include "../include/SCInput.hpp"
 
-nts::component::SCInput::SCInput() : nts::AComponent(0, 1)
+nts::component::SCInput::SCInput(const std::string &name):
+    nts::AComponent(0, 1, name)
 {
     nts::Pin p1(nts::PinType::OUTPUT, 1);
 

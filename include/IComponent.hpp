@@ -7,18 +7,22 @@
 
 #ifndef ICOMPONENT_HPP_
 #define ICOMPONENT_HPP_
+
 #include <string>
 #include <vector>
 #include "Exception.hpp"
 
-namespace nts {
-    enum Tristate {
+namespace nts
+{
+    enum Tristate
+    {
         Undefined = (-true),
         True = true,
         False = false
     };
 
-    class IComponent {
+    class IComponent
+    {
         public:
             ~IComponent() = default;
 

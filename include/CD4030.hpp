@@ -11,12 +11,14 @@
 #include "XorGate.hpp"
 #include <list>
 
-namespace nts {
-    namespace component {
+namespace nts
+{
+    namespace component
+    {
         class CD4030 : public nts::AComponent
         {
             public:
-                CD4030();
+                CD4030(const std::string &name="None");
                 ~CD4030();
                 void simulate(std::size_t tick) override;
             private:

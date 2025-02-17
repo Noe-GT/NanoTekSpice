@@ -7,7 +7,8 @@
 
 #include "../include/OrGate.hpp"
 
-nts::component::OrGate::OrGate() : nts::AComponent(2, 1)
+nts::component::OrGate::OrGate(const std::string &name):
+    nts::AComponent(2, 1, name)
 {
     nts::Pin p1(nts::PinType::INPUT, 1);
     nts::Pin p2(nts::PinType::INPUT, 2);

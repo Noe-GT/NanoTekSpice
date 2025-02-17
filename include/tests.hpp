@@ -26,4 +26,5 @@
     #include "SCClock.hpp"
 
     void test_pins(nts::IComponent *comp, std::size_t in, std::size_t out);
+
 #endif /* !TESTS_H */

@@ -7,16 +7,20 @@
 
 #ifndef PIN_HPP_
 #define PIN_HPP_
+
 #include "IComponent.hpp"
 #include "Connection.hpp"
 
-namespace nts {
-    enum PinType {
+namespace nts
+{
+    enum PinType
+    {
         INPUT,
         OUTPUT
     };
 
-    class Pin {
+    class Pin
+    {
         public:
             Pin(PinType pinType, std::size_t id);
             ~Pin();

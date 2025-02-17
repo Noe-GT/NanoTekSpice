@@ -7,14 +7,17 @@
 
 #ifndef SCTRUE_HPP_
 #define SCTRUE_HPP_
+
 #include "AComponent.hpp"
 
-namespace nts {
-    namespace component {
+namespace nts
+{
+    namespace component
+    {
         class SCTrue : public nts::AComponent
         {
             public:
-                SCTrue();
+                SCTrue(const std::string &name="None");
                 ~SCTrue();
                 void simulate(std::size_t tick) final;
         };

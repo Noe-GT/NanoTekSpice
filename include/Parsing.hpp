@@ -7,6 +7,7 @@
 
 #ifndef PARSING_HPP_
 #define PARSING_HPP_
+
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -14,8 +15,10 @@
 #include <vector>
 #include "Exception.hpp"
 
-namespace nts {
-    class Chipset {
+namespace nts
+{
+    class Chipset
+    {
         public:
             Chipset(const std::string &line);
             Chipset(const std::string &type, const std::string &name);
@@ -42,9 +45,11 @@ namespace nts {
             std::pair<std::string, std::size_t> _component2;
     };
 
-    class Parsing {
+    class Parsing
+    {
         public:
-            enum ParsingType {
+            enum ParsingType
+            {
                 NONE,
                 CHIPSET,
                 LINK

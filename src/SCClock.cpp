@@ -7,7 +7,8 @@
 
 #include "../include/SCClock.hpp"
 
-nts::component::SCClock::SCClock() : nts::AComponent(0, 1)
+nts::component::SCClock::SCClock(const std::string &name):
+    nts::AComponent(0, 1, name)
 {
     nts::Pin p1(nts::PinType::OUTPUT, 1);
 

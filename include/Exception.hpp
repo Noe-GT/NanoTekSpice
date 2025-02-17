@@ -7,10 +7,12 @@
 
 #ifndef EXCEPTION_HPP_
 #define EXCEPTION_HPP_
+
 #include <exception>
 #include <string>
 
-class Exception : public std::exception {
+class Exception : public std::exception
+{
     public:
         Exception(const std::string &exception) noexcept;
         ~Exception() noexcept;

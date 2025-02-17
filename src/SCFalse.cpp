@@ -7,7 +7,8 @@
 
 #include "../include/SCFalse.hpp"
 
-nts::component::SCFalse::SCFalse() : nts::AComponent(0, 1)
+nts::component::SCFalse::SCFalse(const std::string &name):
+    nts::AComponent(0, 1, name)
 {
     nts::Pin p1(nts::PinType::OUTPUT, 1);
 
