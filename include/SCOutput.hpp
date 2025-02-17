@@ -19,8 +19,11 @@ namespace nts
             public:
                 SCOutput(const std::string &name="None");
                 ~SCOutput();
+                void simulate(std::size_t tick) final;
+                nts::Tristate getOutput() const;
             protected:
             private:
+                nts::Tristate _outputValue;
         };
     };
 }
