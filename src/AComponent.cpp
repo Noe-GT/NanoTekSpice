@@ -40,14 +40,14 @@ bool nts::AComponent::isInputPin(size_t pin) const
 {
     if (!this->isPinInRange(pin))
         throw Exception("Incalid pin number");
-    return this->_pins[pin - 1].getPinType() == INPUT;
+    return this->_pins[pin - 1]->getPinType() == INPUT;
 }
 
 bool nts::AComponent::isOutputPin(size_t pin) const
 {
     if (!this->isPinInRange(pin))
         throw Exception("Incalid pin number");
-    return this->_pins[pin - 1].getPinType() == OUTPUT;
+    return this->_pins[pin - 1]->getPinType() == OUTPUT;
 }
 
 void nts::AComponent::setLink(size_t pin, nts::IComponent &other,
@@ -63,7 +63,7 @@ void nts::AComponent::setLink(size_t pin, nts::IComponent &other,
         throw Exception("Pin already used");
     if (this->isConnected(pin, other, otherPin))
         return;
-    connectionsList = this->_pins[pin - 1].getConnections();
+    connectionsList = this->_pins[pin - 1]->getConnections();
     for (size_t i = 0; i < connectionsList.size(); i++) {
         if (&connectionsList[i].getLink() == &other) {
             connectionsList[i].getPins().push_back(otherPin);
@@ -82,7 +82,7 @@ bool nts::AComponent::isConnected(size_t pin,
 
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
-    connectionsList = this->_pins[pin - 1].getConnections();
+    connectionsList = this->_pins[pin - 1]->getConnections();
     for (size_t i = 0; i < connectionsList.size(); i++)
         if (&connectionsList[i].getLink() == &other &&
         connectionsList[i].find(otherPin))
@@ -94,7 +94,7 @@ bool nts::AComponent::isConnected(size_t pin) const
 {
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
-    return !this->_pins[pin - 1].getConnections().empty();
+    return !this->_pins[pin - 1]->getConnections().empty();
 }
 
 nts::Tristate nts::AComponent::getLink(size_t pin) const
@@ -108,7 +108,7 @@ nts::Tristate nts::AComponent::compute(size_t pin)
 {
     if (this->_pins.size() > pin || pin == 0)
         return nts::Tristate::Undefined;
-    return this->_pins[pin - 1].getVal();
+    return this->_pins[pin - 1]->getVal();
 }
 
 size_t nts::AComponent::getNbInputs() const
@@ -124,5 +124,5 @@ size_t nts::AComponent::getNbOutputs() const
 void nts::AComponent::setPin(size_t pin, nts::Tristate value)
 {
     if (pin <= (this->_nbInputs + this->_nbOutputs) && pin > 0)
-        this->_pins[pin - 1].setVal(value);
+        this->_pins[pin - 1]->setVal(value);
 }

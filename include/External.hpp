@@ -11,5 +11,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <functional>
+#include <memory>
 
 #endif /* !EXTERNAL_HPP_ */

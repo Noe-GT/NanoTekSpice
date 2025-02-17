@@ -35,9 +35,9 @@ namespace nts
             PinType _pinType;
             size_t _id;
             // nts::IComponent &_component;
-            std::vector<Connection> _connections;
             nts::Tristate _val;
+            std::vector<Connection> _connections;
     };
-}
+};
 
 #endif /* !PIN_HPP_ */

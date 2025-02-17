@@ -36,11 +36,11 @@ namespace nts
             void setPin(size_t pin, nts::Tristate value);
 
         protected:
-            std::vector<nts::Pin> _pins;
+            std::vector<std::shared_ptr<nts::Pin>> _pins;
             const std::string _name;
             const size_t _nbInputs;
             const size_t _nbOutputs;
     };
-}
+};
 
 #endif /* !ACOMPONENT_HPP_ */
