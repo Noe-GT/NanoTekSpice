@@ -5,7 +5,7 @@
 ** Circuit
 */
 
-#include "Circuit.hpp"
+#include "../include/Circuit.hpp"
 
 nts::Circuit::Circuit(nts::Parsing &parsing)
 {
