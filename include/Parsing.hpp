@@ -20,6 +20,8 @@ namespace nts {
             Chipset(const std::string &line);
             Chipset(const std::string &type, const std::string &name);
             ~Chipset();
+            std::string getType() const;
+            std::string getName() const;
 
         private:
             std::string _type;
@@ -32,6 +34,8 @@ namespace nts {
             Link(const std::string &c1, std::size_t pin1,
             const std::string &c2, std::size_t pin2);
             ~Link();
+            std::pair<std::string, std::size_t> getComponent1() const;
+            std::pair<std::string, std::size_t> getComponent2() const;
 
         private:
             std::pair<std::string, std::size_t> _component1;
@@ -61,6 +65,7 @@ namespace nts {
             bool isStrNum(const std::string &str) const;
             bool isChipset(const std::string &line) const;
             bool isLink(const std::string &line) const;
+            void checkChipset(const std::string &line);
             void parseFile();
 
         private:
@@ -71,6 +76,9 @@ namespace nts {
             std::string _data;
             std::vector<Chipset> _chipsets;
             std::vector<Link> _links;
+
+            bool _isInput;
+            bool _isOutput;
     };
 }
 

@@ -155,6 +155,22 @@ bool nts::Parsing::isLink(const std::string &line) const
     return true;
 }
 
+void nts::Parsing::checkChipset(const std::string &line)
+{
+    std::stringstream ss(line);
+    std::string str;
+
+    ss >> str;
+    if (str == "input")
+        this->_isInput = true;
+    else if (str == "output")
+        this->_isOutput = true;
+    ss >> str;
+    for (size_t i = 0; i < this->_chipsets.size(); i++)
+        if (this->_chipsets[i].getName() == str)
+            throw Exception("Chipset name already used");
+}
+
 void nts::Parsing::extractLine(const std::string &line)
 {
     if (line == ".chipsets:") {
@@ -165,9 +181,10 @@ void nts::Parsing::extractLine(const std::string &line)
         return;
     }
     if (this->_parsingType == CHIPSET) {
-        if (this->isChipset(line))
+        if (this->isChipset(line)) {
+            this->checkChipset(line);
             this->_chipsets.push_back(Chipset(line));
-        else
+        } else
             throw Exception("Unknown chipset given");
     } else if (this->_parsingType == LINK) {
         if (this->isLink(line))
@@ -193,6 +210,10 @@ void nts::Parsing::parseFile()
             continue;
         this->extractLine(line);
     }
+    if (!this->_isInput)
+        throw Exception("No input chipset given");
+    if (!this->_isOutput)
+        throw Exception("No output chipset given");
 }
 
 nts::Chipset::Chipset(const std::string &line)
@@ -210,6 +231,15 @@ nts::Chipset::Chipset(const std::string &type, const std::string &name):
 
 nts::Chipset::~Chipset()
 {
+}
+
+std::string nts::Chipset::getType() const
+{
+    return this->_type;
+}
+std::string nts::Chipset::getName() const
+{
+    return this->_name;
 }
 
 nts::Link::Link(const std::string &line)
@@ -237,4 +267,13 @@ nts::Link::Link(const std::string &c1, std::size_t pin1, const std::string &c2,
 
 nts::Link::~Link()
 {
+}
+
+std::pair<std::string, std::size_t> nts::Link::getComponent1() const
+{
+    return this->_component1;
+}
+std::pair<std::string, std::size_t> nts::Link::getComponent2() const
+{
+    return this->_component2;
 }
