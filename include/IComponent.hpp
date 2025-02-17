@@ -7,10 +7,8 @@
 
 #ifndef ICOMPONENT_HPP_
 #define ICOMPONENT_HPP_
-
-#include <string>
-#include <vector>
 #include "Exception.hpp"
+#include "External.hpp"
 
 namespace nts
 {
