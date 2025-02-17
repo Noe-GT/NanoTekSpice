@@ -10,10 +10,8 @@
 nts::component::SCTrue::SCTrue(const std::string &name):
     nts::AComponent(0, 1, name)
 {
-    nts::Pin p1(nts::PinType::OUTPUT, 1);
-
-    p1.setVal(nts::Tristate::True);
-    this->_pins.push_back(p1);
+    this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 1));
+    this->_pins[0]->setVal(nts::Tristate::True);
 }
 
 nts::component::SCTrue::~SCTrue()

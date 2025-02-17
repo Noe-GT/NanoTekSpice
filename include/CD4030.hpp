@@ -22,7 +22,7 @@ namespace nts
                 ~CD4030();
                 void simulate(std::size_t tick) override;
             private:
-                std::list<nts::component::XorGate &> _xorGates;
+                std::vector<nts::component::XorGate &> _xorGates;
         };
     };
 }
