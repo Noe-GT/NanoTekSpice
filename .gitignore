@@ -5,3 +5,4 @@ nanotekspice
 a.out
 unit_tests*
 *.nts
+vgcore*
