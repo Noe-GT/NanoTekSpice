@@ -31,8 +31,10 @@ namespace nts
     class Circuit
     {
         public:
+            Circuit();
             Circuit(Parsing &parsing);
             ~Circuit();
+            void constructCircuit(Parsing &parsing);
             std::shared_ptr<IComponent> getComponent(const std::string name)
             const;
             std::shared_ptr<IComponent> createComponent(nts::Chipset &chipset);

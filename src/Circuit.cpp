@@ -7,6 +7,10 @@
 
 #include "../include/Circuit.hpp"
 
+nts::Circuit::Circuit()
+{
+}
+
 nts::Circuit::Circuit(nts::Parsing &parsing)
 {
     this->setComponentsList(parsing);
@@ -15,6 +19,12 @@ nts::Circuit::Circuit(nts::Parsing &parsing)
 
 nts::Circuit::~Circuit()
 {
+}
+
+void nts::Circuit::constructCircuit(Parsing &parsing)
+{
+    this->setComponentsList(parsing);
+    this->setComponentsLinks(parsing.getLinks());
 }
 
 std::shared_ptr<nts::IComponent> nts::Circuit::getComponent(
