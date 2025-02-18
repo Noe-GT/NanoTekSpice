@@ -18,7 +18,7 @@ nts::CLI::~CLI()
 
 void nts::CLI::exit() const
 {
-    exit();
+    std::exit(0);
 }
 
 void nts::CLI::display() const
@@ -26,7 +26,7 @@ void nts::CLI::display() const
     std::cout << "tick: " << this->_tick << std::endl;
     std::cout << "input(s):" << std::endl;
     std::cout << "outputs(s):" << std::endl;
-    std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit.getOutputs();
+    // std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit.getOutputs();
 
     // for (std::shared_ptr<nts::IComponent> out : outputs)
     //     out->get_output();
