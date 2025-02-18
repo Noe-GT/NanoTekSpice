@@ -18,8 +18,7 @@ nts::component::SCTrue::~SCTrue()
 {
 }
 
-void nts::component::SCTrue::simulate(size_t tick)
+void nts::component::SCTrue::run()
 {
-    if (tick <= 0)
-        return;
+    return;
 }

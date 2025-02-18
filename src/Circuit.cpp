@@ -84,3 +84,8 @@ void nts::Circuit::debug() const
         << std::endl;
     }
 }
+
+std::vector<std::shared_ptr<nts::IComponent>> &nts::Circuit::getOutputs()
+{
+    return this->_outputs;
+}

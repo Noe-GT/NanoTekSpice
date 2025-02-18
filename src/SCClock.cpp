@@ -23,10 +23,8 @@ void nts::component::SCClock::setInput(nts::Tristate inputValue)
     this->_clockValue = inputValue;
 }
 
-void nts::component::SCClock::simulate(size_t tick)
+void nts::component::SCClock::run()
 {
-    if (tick <= 0)
-        return;
     if (this->_clockValue == nts::Tristate::True)
         this->_clockValue =  nts::Tristate::False;
     else if (this->_clockValue == nts::Tristate::False)

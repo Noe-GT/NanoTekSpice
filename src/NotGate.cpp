@@ -18,12 +18,10 @@ nts::component::NotGate::~NotGate()
 {
 }
 
-void nts::component::NotGate::simulate(size_t tick)
+void nts::component::NotGate::run()
 {
     nts::Tristate in1;
 
-    if (tick <= 0)
-        return;
     in1 = this->_pins[0]->getVal();
     if (in1 == nts::Tristate::True)
         this->_pins[1]->setVal(nts::Tristate::False);

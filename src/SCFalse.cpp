@@ -18,8 +18,6 @@ nts::component::SCFalse::~SCFalse()
 {
 }
 
-void nts::component::SCFalse::simulate(size_t tick)
+void nts::component::SCFalse::run()
 {
-    if (tick <= 0)
-        return;
 }

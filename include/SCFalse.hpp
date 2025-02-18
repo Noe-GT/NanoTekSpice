@@ -19,7 +19,7 @@ namespace nts
             public:
                 SCFalse(const std::string &name="None");
                 ~SCFalse();
-                void simulate(size_t tick) final;
+                void run(void) final;
         };
     };
 }

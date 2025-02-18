@@ -39,6 +39,7 @@ namespace nts
             void setComponentsLinks(std::vector<Link> links);
             void setComponentsList(Parsing &parsing);
             void debug() const;
+            std::vector<std::shared_ptr<IComponent>> &getOutputs();
 
         private:
             std::vector<std::shared_ptr<IComponent>> _allComponents;

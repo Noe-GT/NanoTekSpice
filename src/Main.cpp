@@ -9,15 +9,19 @@
 #include "../include/Circuit.hpp"
 #include "../include/CLI.hpp"
 
-int main()
+static int run(char *fname)
 {
-    // nts::CLI cli;
-
-    // cli.Run();
-
-    nts::Parsing p("or_gate.nts");
-    // p.debug();
+    nts::Parsing p(fname);
     nts::Circuit c(p);
-    // c.debug();
+    nts::CLI cli;
+    cli.run();
+    return 0;
+}
+
+int main(int ac, char **av)
+{
+    if (ac != 2)
+        return 84;
+    run(av[1]);
     return 0;
 }

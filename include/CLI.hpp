@@ -8,7 +8,7 @@
 #ifndef CLI_HPP_
 #define CLI_HPP_
 
-// #include "../include/Circuit.hpp"
+#include "../include/Circuit.hpp"
 #include "External.hpp"
 
 namespace nts
@@ -16,16 +16,15 @@ namespace nts
     class CLI
     {
         public:
-            CLI();
-            // CLI(nts::Circuit &circuit);
+            CLI(nts::Circuit &circuit);
             ~CLI();
-            void Exit() const;
-            void Display() const;
-            void Simulate();
-            void Loop();
-            void Run();
+            void exit() const;
+            void display() const;
+            void simulate();
+            void loop();
+            void run();
         private:
-            // nts::Circuit &_circuit;
+            nts::Circuit &_circuit;
             int _tick;
     };
 };
