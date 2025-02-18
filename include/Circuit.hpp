@@ -38,6 +38,7 @@ namespace nts
             std::shared_ptr<IComponent> createComponent(nts::Chipset &chipset);
             void setComponentsLinks(std::vector<Link> links);
             void setComponentsList(Parsing &parsing);
+            void debug() const;
 
             // void simulate(size_t tick) override;
             // void display() const;

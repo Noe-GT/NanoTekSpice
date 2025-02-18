@@ -38,6 +38,8 @@ std::shared_ptr<nts::IComponent> nts::Circuit::createComponent(
         return std::shared_ptr<IComponent>(new nts::component::SCOutput(name));
     if (type == "and")
         return std::shared_ptr<IComponent>(new nts::component::AndGate(name));
+    if (type == "or")
+        return std::shared_ptr<IComponent>(new nts::component::OrGate(name));
     throw Exception("Unknown component given");
 }
 
@@ -71,6 +73,15 @@ void nts::Circuit::setComponentsList(nts::Parsing &parsing)
         this->_allComponents.push_back(tmp);
         if (parsing.getChipsets()[i].getType() == "output")
             this->_outputs.push_back(tmp);
+    }
+}
+
+void nts::Circuit::debug() const
+{
+    for (size_t i = 0; i < this->_allComponents.size(); i++) {
+        std::cout <<
+        "IComponent : " << this->_allComponents[i]->getName()
+        << std::endl;
     }
 }
 

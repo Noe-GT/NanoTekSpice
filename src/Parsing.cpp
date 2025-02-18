@@ -296,18 +296,14 @@ nts::Link::Link(const std::string &line)
 {
     std::stringstream ss(line);
     std::string str;
-    std::stringstream tmp;
     size_t pinId;
 
-    for (int i = 0; i < 2; i++) {
-        ss >> str;
-        tmp << str.substr(str.find(':') + 1);
-        tmp >> pinId;
-        if (i == 0)
-            this->_component1 = std::pair(str.substr(0, str.find(':')), pinId);
-        else
-            this->_component2 = std::pair(str.substr(0, str.find(':')), pinId);
-    }
+    ss >> str;
+    pinId = std::stol(str.substr(str.find(':') + 1));
+    this->_component1 = std::pair(str.substr(0, str.find(':')), pinId);
+    ss >> str;
+    pinId = std::stol(str.substr(str.find(':') + 1));
+    this->_component2 = std::pair(str.substr(0, str.find(':')), pinId);
 }
 
 nts::Link::Link(const std::string &c1, size_t pin1, const std::string &c2,

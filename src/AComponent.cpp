@@ -56,13 +56,13 @@ void nts::AComponent::setLink(size_t pin, nts::IComponent &other,
         throw Exception("Can't link a component to itself");
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
-    if (this->isInputPin(pin) && this->isConnected(pin))
-        throw Exception("Pin already used");
     if (this->getPin(pin)->getPinType() == other.getPin(
     otherPin)->getPinType())
         throw Exception("Can't link 2 pins with the same type");
     if (this->isConnected(pin, other, otherPin))
         return;
+    if (this->isInputPin(pin) && this->isConnected(pin))
+        throw Exception("Pin already used");
     for (size_t i = 0; i < this->getPin(pin)->getConnections().size(); i++) {
         if (this->getPin(pin)->getConnections()[i].getLink().getName() ==
         other.getName()) {
