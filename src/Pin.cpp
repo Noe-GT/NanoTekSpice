@@ -26,12 +26,7 @@ size_t nts::Pin::getId() const
     return this->_id;
 }
 
-// nts::IComponent &nts::Pin::getComponent() const
-// {
-//     return this->_component;
-// }
-
-std::vector<nts::Connection> nts::Pin::getConnections() const
+std::vector<nts::Connection> &nts::Pin::getConnections()
 {
     return this->_connections;
 }

@@ -25,15 +25,15 @@ namespace nts
             void setLink(size_t pin, nts::IComponent &other,
             size_t otherPin) final;
             bool isConnected(size_t pin, nts::IComponent &other,
-            size_t otherPin) const;
-            bool isConnected(size_t pin) const;
+            size_t otherPin);
+            bool isConnected(size_t pin);
             bool isPinInRange(size_t pin) const;
-            bool isInputPin(size_t pin) const;
-            bool isOutputPin(size_t pin) const;
-            nts::Tristate getLink(size_t pin) const;
+            bool isInputPin(size_t pin);
+            bool isOutputPin(size_t pin);
             size_t getNbInputs() const;
             size_t getNbOutputs() const;
             void setPin(size_t pin, nts::Tristate value);
+            std::shared_ptr<nts::Pin> &getPin(size_t pin) final;
 
         protected:
             std::vector<std::shared_ptr<nts::Pin>> _pins;
