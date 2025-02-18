@@ -116,12 +116,10 @@ size_t nts::AComponent::getNbOutputs() const
 void nts::AComponent::setPin(size_t pin, nts::Tristate value)
 {
     if (pin <= (this->_nbInputs + this->_nbOutputs) && pin > 0)
-        this->getPin(pin)->setVal(value);
+        this->_pins[pin - 1]->setVal(value);
 }
 
-std::shared_ptr<nts::Pin> &nts::AComponent::getPin(size_t pin)
+std::shared_ptr<nts::Pin> nts::AComponent::getPinPtr(std::size_t pin)
 {
-    if (!this->isPinInRange(pin))
-        throw Exception("Invalid pin number");
-    return this->_pins[pin - 1];
+    return this->_pins[pin];
 }
