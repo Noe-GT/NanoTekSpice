@@ -40,6 +40,16 @@ std::shared_ptr<nts::IComponent> nts::Circuit::createComponent(
         return std::shared_ptr<IComponent>(new nts::component::AndGate(name));
     if (type == "or")
         return std::shared_ptr<IComponent>(new nts::component::OrGate(name));
+    if (type == "not")
+        return std::shared_ptr<IComponent>(new nts::component::NotGate(name));
+    if (type == "xor")
+        return std::shared_ptr<IComponent>(new nts::component::XorGate(name));
+    if (type == "clock")
+        return std::shared_ptr<IComponent>(new nts::component::SCClock(name));
+    if (type == "false")
+        return std::shared_ptr<IComponent>(new nts::component::SCFalse(name));
+    if (type == "true")
+        return std::shared_ptr<IComponent>(new nts::component::SCTrue(name));
     throw Exception("Unknown component given");
 }
 
