@@ -34,7 +34,7 @@ namespace nts
             size_t getNbInputs() const;
             size_t getNbOutputs() const;
             void setPin(size_t pin, nts::Tristate value);
-            Pin &getPin(size_t pin) final;
+            nts::Pin &getPin(size_t pin) final;
 
         protected:
             std::vector<nts::Pin> _pins;
