@@ -61,6 +61,8 @@ void nts::AComponent::setLink(size_t pin, nts::IComponent &other,
         throw Exception("Invalid pin number");
     if (this->isInputPin(pin) && this->isConnected(pin))
         throw Exception("Pin already used");
+    if (this->_pins[pin - 1].getPinType() == other.getPin(pin).getPinType())
+        throw Exception("Can't link 2 pins with the same type");
     if (this->isConnected(pin, other, otherPin))
         return;
     connectionsList = this->_pins[pin - 1].getConnections();
@@ -125,4 +127,11 @@ void nts::AComponent::setPin(size_t pin, nts::Tristate value)
 {
     if (pin <= (this->_nbInputs + this->_nbOutputs) && pin > 0)
         this->_pins[pin - 1].setVal(value);
+}
+
+nts::Pin &nts::AComponent::getPin(size_t pin)
+{
+    if (!this->isPinInRange(pin))
+        throw Exception("Invalid pin number");
+    return this->_pins[pin - 1];
 }
