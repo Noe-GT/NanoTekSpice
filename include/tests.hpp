@@ -24,6 +24,7 @@
     #include "SCInput.hpp"
     #include "SCOutput.hpp"
     #include "SCClock.hpp"
+    // #include "CD4030.hpp"
 
     void test_pins(nts::IComponent *comp, size_t in, size_t out);
 

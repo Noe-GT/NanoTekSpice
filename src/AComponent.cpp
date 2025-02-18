@@ -126,3 +126,8 @@ void nts::AComponent::setPin(size_t pin, nts::Tristate value)
     if (pin <= (this->_nbInputs + this->_nbOutputs) && pin > 0)
         this->_pins[pin - 1]->setVal(value);
 }
+
+std::shared_ptr<nts::Pin> nts::AComponent::getPinPtr(std::size_t pin)
+{
+    return this->_pins[pin];
+}

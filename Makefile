@@ -23,6 +23,7 @@ SRC	=   src/Exception.cpp 	\
 		src/SCFalse.cpp		\
 		src/CLI.cpp			\
 		src/SCOutput.cpp	\
+		# src/CD4030.cpp		\
 
 TEST_SRC =	tests/TestBasicGates.cpp \
 			tests/TestSC.cpp
