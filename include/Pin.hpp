@@ -26,15 +26,13 @@ namespace nts
             ~Pin();
             PinType getPinType() const;
             size_t getId() const;
-            // nts::IComponent &getComponent() const;
-            std::vector<Connection> getConnections() const;
+            std::vector<Connection> &getConnections();
             nts::Tristate getVal() const;
             void setVal(nts::Tristate val);
 
         private:
             PinType _pinType;
             size_t _id;
-            // nts::IComponent &_component;
             std::vector<Connection> _connections;
             nts::Tristate _val;
     };
