@@ -7,7 +7,9 @@
 
 CC	=	g++
 
-SRC	=   src/Exception.cpp 	\
+MAIN	=	src/Main.cpp	\
+
+SRC	=	src/Exception.cpp 	\
 		src/Parsing.cpp		\
 		src/Circuit.cpp		\
 		src/AComponent.cpp	\
@@ -25,10 +27,14 @@ SRC	=   src/Exception.cpp 	\
 		src/SCOutput.cpp	\
 		# src/CD4030.cpp		\
 
-TEST_SRC =	tests/TestBasicGates.cpp \
-			tests/TestSC.cpp
+TEST	=	tests/TestBasicGates.cpp	\
+			tests/TestSC.cpp			\
+
+MAIN_OBJ	=	$(MAIN:src/%.cpp=bin/%.o)
 
 OBJ	=	$(SRC:src/%.cpp=bin/%.o)
+
+TEST_OBJ	=	$(TEST:tests/%.cpp=bin/%.o)
 
 CPPFLAGS	=	-std=c++20 -Wall -Wextra -Werror -g3
 
@@ -36,17 +42,22 @@ CRITERION	=	--coverage -lcriterion
 
 EXEC	=	nanotekspice
 
+TEST_EXEC	=	unit_tests
+
 all:	$(EXEC)
 
-$(EXEC):
-	$(CC) -o $(EXEC) -I include $(SRC) src/Main.cpp
+$(EXEC):	$(MAIN_OBJ) $(OBJ)
+	$(CC) -o $(EXEC) $(MAIN_OBJ) $(OBJ) -I include
 
-tests_run:
-	$(CC) -o unit_tests $(SRC) $(TEST_SRC) $(CRITERION)
-	./unit_tests
+tests_run:	$(OBJ) $(TEST_OBJ)
+	$(CC) -o $(TEST_EXEC) $(OBJ) $(TEST_OBJ) $(CRITERION) -I include
+	./$(TEST_EXEC)
 
 bin/%.o:	src/%.cpp
 	@mkdir -p bin
+	$(CC) -c $< -o $@ $(CPPFLAGS)
+
+bin/%.o:	tests/%.cpp
 	$(CC) -c $< -o $@ $(CPPFLAGS)
 
 clean:
@@ -60,4 +71,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re tests_run
