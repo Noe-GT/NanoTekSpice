@@ -45,13 +45,11 @@ nts::component::CD4030::~CD4030()
 {
 }
 
-void nts::component::CD4030::simulate(size_t tick)
+void nts::component::CD4030::run()
 {
     nts::Tristate in1;
     nts::Tristate in2;
 
-    if (tick <= 0)
-        return;
     // lauch simulate on all internal components connected to main component inputs
     return;
 }

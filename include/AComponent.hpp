@@ -20,7 +20,8 @@ namespace nts
             const std::string &name);
             ~AComponent();
             std::string getName() const final;
-            virtual void simulate(size_t tick) override;
+            virtual void simulate(size_t tick) final;
+            virtual void run(void) override;
             nts::Tristate compute(size_t pin) override;
             void setLink(size_t pin, nts::IComponent &other,
             size_t otherPin) final;
@@ -34,6 +35,7 @@ namespace nts
             size_t getNbOutputs() const;
             void setPin(size_t pin, nts::Tristate value);
             std::shared_ptr<nts::Pin> &getPin(size_t pin) final;
+            void refreshInputs();
 
         protected:
             std::vector<std::shared_ptr<nts::Pin>> _pins;

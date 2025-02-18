@@ -19,13 +19,11 @@ nts::component::OrGate::~OrGate()
 {
 }
 
-void nts::component::OrGate::simulate(size_t tick)
+void nts::component::OrGate::run()
 {
     nts::Tristate in1;
     nts::Tristate in2;
 
-    if (tick <= 0)
-        return;
     in1 = this->_pins[0]->getVal();
     in2 = this->_pins[1]->getVal();
 

@@ -7,13 +7,7 @@
 
 #include "../include/CLI.hpp"
 
-// nts::CLI::CLI(nts::Circuit &circuit):
-// _circuit(circuit)
-// {
-//     this->_tick = 0;
-// }
-
-nts::CLI::CLI()
+nts::CLI::CLI(nts::Circuit &circuit): _circuit(circuit)
 {
     this->_tick = 0;
 }
@@ -22,32 +16,40 @@ nts::CLI::~CLI()
 {
 }
 
-void nts::CLI::Exit() const
+void nts::CLI::exit() const
 {
-    exit(0);
+    exit();
 }
 
-void nts::CLI::Display() const
+void nts::CLI::display() const
 {
     std::cout << "tick: " << this->_tick << std::endl;
     std::cout << "input(s):" << std::endl;
     std::cout << "outputs(s):" << std::endl;
+    std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit.getOutputs();
+
+    // for (std::shared_ptr<nts::IComponent> out : outputs)
+    //     out->get_output();
 }
 
-void nts::CLI::Simulate()
+void nts::CLI::simulate()
 {
+    std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit.getOutputs();
+
+    for (std::shared_ptr<nts::IComponent> out : outputs)
+        out->simulate(1);
     this->_tick++;
 }
 
-void nts::CLI::Loop()
+void nts::CLI::loop()
 {
     while (1) {
-        this->Simulate();
-        this->Display();
+        this->simulate();
+        this->display();
     }
 }
 
-void nts::CLI::Run()
+void nts::CLI::run()
 {
     std::string buff;
 
@@ -55,12 +57,12 @@ void nts::CLI::Run()
         std::cout << "> ";
         std::getline(std::cin, buff);
         if (buff == "display")
-            this->Display();
+            this->display();
         if (buff == "exit")
-            this->Exit();
+            this->exit();
         if (buff == "loop")
-            this->Loop();
+            this->loop();
         if (buff == "simulate")
-            this->Simulate();
+            this->simulate();
     }
 }

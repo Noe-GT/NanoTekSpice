@@ -23,7 +23,7 @@ namespace nts
             public:
                 XorGate(const std::string &name="Name");
                 ~XorGate();
-                void simulate(size_t tick) override;
+                void run(void) final;
         };
     };
 }

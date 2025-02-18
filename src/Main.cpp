@@ -13,7 +13,7 @@ int main(int ac, char **av)
 {
     nts::Parsing parsing;
     nts::Circuit circuit;
-    nts::CLI cli;
+    // nts::CLI cli;
 
     if (ac != 2) {
         std::cerr << "Incorrect number of arguments" << std::endl;

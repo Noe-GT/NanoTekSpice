@@ -19,13 +19,16 @@ nts::component::AndGate::~AndGate()
 {
 }
 
-void nts::component::AndGate::simulate(size_t tick)
+void nts::component::AndGate::run()
 {
     nts::Tristate in1;
     nts::Tristate in2;
 
-    if (tick <= 0)
-        return;
+    // size_t pinn1 = this->_pins[0]->getConnections()[0].getPins()[0];
+    // size_t pinn2 = this->_pins[1]->getConnections()[0].getPins()[0];
+    // this->_pins[0]->setVal(this->_pins[0]->getConnections()[0].getLink().compute(pinn1));
+    // this->_pins[1]->setVal(this->_pins[1]->getConnections()[0].getLink().compute(pinn2));
+
     in1 = this->_pins[0]->getVal();
     in2 = this->_pins[1]->getVal();
 

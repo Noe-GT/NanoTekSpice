@@ -18,10 +18,8 @@ nts::component::SCOutput::~SCOutput()
 {
 }
 
-void nts::component::SCOutput::simulate(std::size_t tick)
+void nts::component::SCOutput::run()
 {
-    if (tick <= 0)
-        return;
     this->_outputValue = this->_pins[0]->getVal();
     return;
 }

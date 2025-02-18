@@ -25,10 +25,7 @@ std::string nts::AComponent::getName() const
     return this->_name;
 }
 
-void nts::AComponent::simulate(size_t tick)
-{
-    (void)tick;
-}
+void nts::AComponent::run() {}
 
 bool nts::AComponent::isPinInRange(size_t pin) const
 {
@@ -124,4 +121,27 @@ std::shared_ptr<nts::Pin> &nts::AComponent::getPin(std::size_t pin)
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
     return this->_pins[pin - 1];
+}
+
+void nts::AComponent::simulate(size_t tick)
+{
+    std::vector<std::shared_ptr<nts::Pin>> pins = this->_pins;
+    for (std::shared_ptr<nts::Pin> pin : this->_pins) {
+        if (pin->getPinType() == nts::PinType::INPUT && pin->getConnections().size() > 0)
+            pin->getConnections()[0].getLink().simulate(tick);
+    }
+    this->refreshInputs();
+    this->run();
+}
+
+void nts::AComponent::refreshInputs()
+{
+    size_t pinNb;
+
+    for (std::shared_ptr<nts::Pin> pin : this->_pins) {
+        if (pin->getPinType() == nts::PinType::INPUT && pin->getConnections().size() > 0) {
+            pinNb = pin->getConnections()[0].getPins()[0];
+            pin->setVal(pin->getConnections()[0].getLink().compute(pinNb));
+        }
+    }
 }
