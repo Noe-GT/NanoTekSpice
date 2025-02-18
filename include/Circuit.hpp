@@ -40,9 +40,6 @@ namespace nts
             void setComponentsList(Parsing &parsing);
             void debug() const;
 
-            // void simulate(size_t tick) override;
-            // void display() const;
-
         private:
             std::vector<std::shared_ptr<IComponent>> _allComponents;
             std::vector<std::shared_ptr<IComponent>> _outputs;

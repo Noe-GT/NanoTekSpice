@@ -84,11 +84,3 @@ void nts::Circuit::debug() const
         << std::endl;
     }
 }
-
-// void nts::Circuit::simulate(size_t tick)
-// {
-// }
-
-// void nts::Circuit::display() const
-// {
-// }
