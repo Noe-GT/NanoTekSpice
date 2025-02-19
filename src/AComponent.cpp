@@ -148,7 +148,6 @@ nts::Tristate nts::AComponent::compute(size_t pin)
 {
     nts::Tristate precedValue = nts::Tristate::Undefined;
 
-    std::vector<std::shared_ptr<nts::Pin>> pins = this->_pins;
     for (std::shared_ptr<nts::Pin> in_pin : this->_pins) {
         if (in_pin->getPinType() == nts::PinType::INPUT && in_pin->getConnections().size() > 0) {
             precedValue = in_pin->getConnections()[0].getLink().compute(in_pin->getConnections()[0].getPins()[0]);
@@ -165,5 +164,9 @@ nts::Tristate nts::AComponent::run() {
 
 void nts::AComponent::simulate(size_t tick)
 {
-    (void)tick;
+    for (std::shared_ptr<nts::Pin> in_pin : this->_pins) {
+        if (in_pin->getPinType() == nts::PinType::INPUT && in_pin->getConnections().size() > 0) {
+            in_pin->getConnections()[0].getLink().simulate(tick);
+        }
+    }
 }

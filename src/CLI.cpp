@@ -33,20 +33,24 @@ void nts::CLI::exit() const
 
 void nts::CLI::display() const
 {
+    nts::Tristate val;
+
     std::cout << "tick: " << this->_tick << std::endl;
     std::cout << "input(s):" << std::endl;
     std::cout << "outputs(s):" << std::endl;
-    // std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit->getOutputs();
-
-    // for (std::shared_ptr<nts::IComponent> out : outputs)
-    //     out->();
+    for (std::shared_ptr<nts::IComponent> out : this->_circuit->getOutputs()) {
+        val = out->compute(1);
+        std::cout << "  " << out->getName() << ": ";
+        if (val == -1)
+            std::cout << "U" << std::endl;
+        else
+            std::cout << val << std::endl;
+    }
 }
 
 void nts::CLI::simulate()
 {
-    std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit->getOutputs();
-
-    for (std::shared_ptr<nts::IComponent> out : outputs)
+    for (std::shared_ptr<nts::IComponent> out : this->_circuit->getOutputs())
         out->simulate(1);
     this->_tick++;
 }
