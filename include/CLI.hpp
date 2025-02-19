@@ -25,6 +25,7 @@ namespace nts
             void simulate();
             void loop();
             void run();
+            void setInput(std::string buff);
         private:
             std::shared_ptr<nts::Circuit> _circuit;
             int _tick;

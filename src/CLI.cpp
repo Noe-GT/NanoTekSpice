@@ -63,6 +63,13 @@ void nts::CLI::loop()
     }
 }
 
+void nts::CLI::setInput(std::string buff)
+{
+    // std::vector<std::string> vect;
+    // std::split(v, buff, '=');
+    (void)buff;
+}
+
 void nts::CLI::run()
 {
     std::string buff;
@@ -78,5 +85,7 @@ void nts::CLI::run()
             this->loop();
         if (buff == "simulate")
             this->simulate();
+        if (buff.find('=') != buff.length())
+            this->setInput(buff);
     }
 }
