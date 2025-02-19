@@ -10,8 +10,8 @@
 nts::component::NotGate::NotGate(const std::string &name):
     nts::AComponent(1, 1, name)
 {
-    this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 1));
-    this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 2));
+    this->_pins.push_back(nts::Pin(nts::PinType::INPUT, 1));
+    this->_pins.push_back(nts::Pin(nts::PinType::OUTPUT, 2));
 }
 
 nts::component::NotGate::~NotGate()
@@ -22,10 +22,10 @@ nts::Tristate nts::component::NotGate::run()
 {
     nts::Tristate in1;
 
-    in1 = this->_pins[0]->getVal();
+    in1 = this->_pins[0].getVal();
     if (in1 == nts::Tristate::True)
-        this->_pins[1]->setVal(nts::Tristate::False);
+        this->_pins[1].setVal(nts::Tristate::False);
     else
-        this->_pins[1]->setVal(nts::Tristate::True);
-    return this->_pins[1]->getVal();
+        this->_pins[1].setVal(nts::Tristate::True);
+    return this->_pins[1].getVal();
 }

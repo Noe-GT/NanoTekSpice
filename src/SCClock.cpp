@@ -10,8 +10,8 @@
 nts::component::SCClock::SCClock(const std::string &name):
     nts::AComponent(0, 1, name)
 {
-    this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 1));
-    this->_pins[0]->setVal(nts::Tristate::False);
+    this->_pins.push_back(nts::Pin(nts::PinType::OUTPUT, 1));
+    this->_pins[0].setVal(nts::Tristate::False);
 }
 
 nts::component::SCClock::~SCClock()
@@ -25,8 +25,8 @@ void nts::component::SCClock::setInput(nts::Tristate inputValue)
 
 nts::Tristate nts::component::SCClock::run()
 {
-    this->_pins[0]->setVal(this->_clockValue);
-    return this->_pins[0]->getVal();
+    this->_pins[0].setVal(this->_clockValue);
+    return this->_pins[0].getVal();
 }
 
 void nts::component::SCClock::simulate(size_t tick)

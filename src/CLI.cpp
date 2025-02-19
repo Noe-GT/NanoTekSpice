@@ -12,7 +12,7 @@ nts::CLI::CLI()
     this->_tick = 0;
 }
 
-nts::CLI::CLI(std::shared_ptr<nts::Circuit> circuit): _circuit(circuit)
+nts::CLI::CLI(nts::Circuit &circuit): _circuit(circuit)
 {
     this->_tick = 0;
 }
@@ -21,7 +21,7 @@ nts::CLI::~CLI()
 {
 }
 
-void nts::CLI::setCircuit(std::shared_ptr<nts::Circuit> circuit)
+void nts::CLI::setCircuit(nts::Circuit &circuit)
 {
     this->_circuit = circuit;
 }
@@ -31,14 +31,14 @@ void nts::CLI::exit() const
     std::exit(0);
 }
 
-void nts::CLI::display() const
+void nts::CLI::display()
 {
     nts::Tristate val;
 
     std::cout << "tick: " << this->_tick << std::endl;
     std::cout << "input(s):" << std::endl;
     std::cout << "outputs(s):" << std::endl;
-    for (std::shared_ptr<nts::IComponent> out : this->_circuit->getOutputs()) {
+    for (std::shared_ptr<nts::IComponent> out : this->getCircuit().getOutputs()) {
         val = out->compute(1);
         std::cout << "  " << out->getName() << ": ";
         if (val == -1)
@@ -50,7 +50,7 @@ void nts::CLI::display() const
 
 void nts::CLI::simulate()
 {
-    for (std::shared_ptr<nts::IComponent> out : this->_circuit->getOutputs())
+    for (std::shared_ptr<nts::IComponent> out : this->getCircuit().getOutputs())
         out->simulate(1);
     this->_tick++;
 }
@@ -88,4 +88,9 @@ void nts::CLI::run()
         if (buff.find('=') != buff.length())
             this->setInput(buff);
     }
+}
+
+nts::Circuit &nts::CLI::getCircuit()
+{
+    return this->_circuit;
 }

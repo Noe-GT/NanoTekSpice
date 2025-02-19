@@ -24,7 +24,7 @@ int main(int ac, char **av)
         parsing.parseFile();
         // parsing.debug();
         circuit.constructCircuit(parsing);
-        cli.setCircuit(std::shared_ptr<nts::Circuit>(&circuit));
+        cli.setCircuit(circuit);
         // circuit.debug();
         cli.run();
     } catch(Exception &e) {

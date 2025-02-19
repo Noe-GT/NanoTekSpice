@@ -34,11 +34,11 @@ namespace nts
             size_t getNbInputs() const;
             size_t getNbOutputs() const;
             void setPin(size_t pin, nts::Tristate value);
-            std::shared_ptr<nts::Pin> &getPin(size_t pin) final;
+            Pin &getPin(size_t pin) final;
             void refreshInputs();
 
         protected:
-            std::vector<std::shared_ptr<nts::Pin>> _pins;
+            std::vector<Pin> _pins;
             const std::string _name;
             const size_t _nbInputs;
             const size_t _nbOutputs;

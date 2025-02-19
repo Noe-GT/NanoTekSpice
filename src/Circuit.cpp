@@ -42,24 +42,15 @@ std::shared_ptr<nts::IComponent> nts::Circuit::createComponent(
     std::string name(chipset.getName());
     std::string type(chipset.getType());
 
-    if (type == "input")
-        return std::shared_ptr<IComponent>(new nts::component::SCInput(name));
-    if (type == "output")
-        return std::shared_ptr<IComponent>(new nts::component::SCOutput(name));
-    if (type == "and")
-        return std::shared_ptr<IComponent>(new nts::component::AndGate(name));
-    if (type == "or")
-        return std::shared_ptr<IComponent>(new nts::component::OrGate(name));
-    if (type == "not")
-        return std::shared_ptr<IComponent>(new nts::component::NotGate(name));
-    if (type == "xor")
-        return std::shared_ptr<IComponent>(new nts::component::XorGate(name));
-    if (type == "clock")
-        return std::shared_ptr<IComponent>(new nts::component::SCClock(name));
-    if (type == "false")
-        return std::shared_ptr<IComponent>(new nts::component::SCFalse(name));
-    if (type == "true")
-        return std::shared_ptr<IComponent>(new nts::component::SCTrue(name));
+    if (type == "input")    return std::make_shared<nts::component::SCInput>(name);
+    if (type == "output")   return std::make_shared<nts::component::SCOutput>(name);
+    if (type == "and")      return std::make_shared<nts::component::AndGate>(name);
+    if (type == "or")       return std::make_shared<nts::component::OrGate>(name);
+    if (type == "not")      return std::make_shared<nts::component::NotGate>(name);
+    if (type == "xor")      return std::make_shared<nts::component::XorGate>(name);
+    if (type == "clock")    return std::make_shared<nts::component::SCClock>(name);
+    if (type == "false")    return std::make_shared<nts::component::SCFalse>(name);
+    if (type == "true")     return std::make_shared<nts::component::SCTrue>(name);
     throw Exception("Unknown component given");
 }
 
@@ -68,11 +59,9 @@ void nts::Circuit::setComponentsLinks(std::vector<Link> links)
     std::string name;
     std::pair<std::string, size_t> p1;
     std::pair<std::string, size_t> p2;
-    std::shared_ptr<IComponent> tmp;
 
     for (size_t i = 0; i < this->_allComponents.size(); i++) {
-        tmp = this->_allComponents[i];
-        name = tmp->getName();
+        name = this->_allComponents[i]->getName();
         for (size_t j = 0; j < links.size(); j++) {
             p1 = links[j].getComponent1();
             p2 = links[j].getComponent2();
@@ -86,13 +75,17 @@ void nts::Circuit::setComponentsLinks(std::vector<Link> links)
 
 void nts::Circuit::setComponentsList(nts::Parsing &parsing)
 {
-    std::shared_ptr<IComponent> tmp;
+    std::shared_ptr<IComponent> newComponent;
+    std::string componentType;
 
     for (size_t i = 0; i < parsing.getChipsets().size(); i++) {
-        tmp = this->createComponent(parsing.getChipsets()[i]);
-        this->_allComponents.push_back(tmp);
-        if (parsing.getChipsets()[i].getType() == "output")
-            this->_outputs.push_back(tmp);
+        newComponent = this->createComponent(parsing.getChipsets()[i]);
+        componentType = parsing.getChipsets()[i].getType();
+        this->_allComponents.push_back(newComponent);
+        if (componentType == "input" || componentType == "clock")
+            this->_inputs.push_back(newComponent);
+        else if (componentType == "output")
+            this->_outputs.push_back(newComponent);
     }
 }
 
@@ -105,12 +98,25 @@ void nts::Circuit::debug() const
         << std::endl;
     }
     std::cout << std::endl;
+    std::cout << "Input components :" << std::endl;
+    for (size_t i = 0; i < this->_inputs.size(); i++) {
+        std::cout <<
+        "IComponent : " << this->_inputs[i]->getName()
+        << std::endl;
+    }
+    std::cout << std::endl;
     std::cout << "Output components :" << std::endl;
     for (size_t i = 0; i < this->_outputs.size(); i++) {
         std::cout <<
         "IComponent : " << this->_outputs[i]->getName()
         << std::endl;
     }
+    std::cout << std::endl;
+}
+
+std::vector<std::shared_ptr<nts::IComponent>> &nts::Circuit::getInputs()
+{
+    return this->_inputs;
 }
 
 std::vector<std::shared_ptr<nts::IComponent>> &nts::Circuit::getOutputs()

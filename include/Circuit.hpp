@@ -41,10 +41,12 @@ namespace nts
             void setComponentsLinks(std::vector<Link> links);
             void setComponentsList(Parsing &parsing);
             void debug() const;
+            std::vector<std::shared_ptr<IComponent>> &getInputs();
             std::vector<std::shared_ptr<IComponent>> &getOutputs();
 
         private:
             std::vector<std::shared_ptr<IComponent>> _allComponents;
+            std::vector<std::shared_ptr<IComponent>> _inputs;
             std::vector<std::shared_ptr<IComponent>> _outputs;
     };
 }
