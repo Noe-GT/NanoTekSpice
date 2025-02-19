@@ -10,9 +10,9 @@
 nts::component::XorGate::XorGate(const std::string &name):
     nts::AComponent(2, 1, name)
 {
-    this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 1));
-    this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 2));
-    this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 3));
+    this->_pins.push_back(nts::Pin(nts::PinType::INPUT, 1));
+    this->_pins.push_back(nts::Pin(nts::PinType::INPUT, 2));
+    this->_pins.push_back(nts::Pin(nts::PinType::OUTPUT, 3));
 }
 
 nts::component::XorGate::~XorGate()
@@ -24,12 +24,12 @@ void nts::component::XorGate::run()
     nts::Tristate in1;
     nts::Tristate in2;
 
-    in1 = this->_pins[0]->getVal();
-    in2 = this->_pins[1]->getVal();
+    in1 = this->_pins[0].getVal();
+    in2 = this->_pins[1].getVal();
 
     if ((in1 == nts::Tristate::True && in2 == nts::Tristate::False) ||
         (in1 == nts::Tristate::False && in2 == nts::Tristate::True))
-        this->_pins[2]->setVal(nts::Tristate::True);
+        this->_pins[2].setVal(nts::Tristate::True);
     else
-        this->_pins[2]->setVal(nts::Tristate::False);
+        this->_pins[2].setVal(nts::Tristate::False);
 }

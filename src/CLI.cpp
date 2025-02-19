@@ -12,7 +12,7 @@ nts::CLI::CLI()
     this->_tick = 0;
 }
 
-nts::CLI::CLI(std::shared_ptr<nts::Circuit> circuit): _circuit(circuit)
+nts::CLI::CLI(nts::Circuit &circuit): _circuit(circuit)
 {
     this->_tick = 0;
 }
@@ -21,7 +21,7 @@ nts::CLI::~CLI()
 {
 }
 
-void nts::CLI::setCircuit(std::shared_ptr<nts::Circuit> circuit)
+void nts::CLI::setCircuit(nts::Circuit &circuit)
 {
     this->_circuit = circuit;
 }
@@ -44,9 +44,7 @@ void nts::CLI::display() const
 
 void nts::CLI::simulate()
 {
-    std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit->getOutputs();
-
-    for (std::shared_ptr<nts::IComponent> out : outputs)
+    for (std::shared_ptr<nts::IComponent> out : this->_circuit.getOutputs())
         out->simulate(1);
     this->_tick++;
 }

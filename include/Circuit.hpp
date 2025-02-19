@@ -45,6 +45,7 @@ namespace nts
 
         private:
             std::vector<std::shared_ptr<IComponent>> _allComponents;
+            std::vector<std::shared_ptr<IComponent>> _inputs;
             std::vector<std::shared_ptr<IComponent>> _outputs;
     };
 }

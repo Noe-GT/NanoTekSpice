@@ -17,16 +17,17 @@ namespace nts
     {
         public:
             CLI();
-            CLI(std::shared_ptr<nts::Circuit> circuit);
+            CLI(Circuit &circuit);
             ~CLI();
-            void setCircuit(std::shared_ptr<nts::Circuit> circuit);
+            void setCircuit(Circuit &circuit);
             void exit() const;
             void display() const;
             void simulate();
             void loop();
             void run();
+
         private:
-            std::shared_ptr<nts::Circuit> _circuit;
+            Circuit _circuit;
             int _tick;
     };
 };

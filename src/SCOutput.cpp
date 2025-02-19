@@ -11,7 +11,7 @@ nts::component::SCOutput::SCOutput(const std::string &name):
     nts::AComponent(0, 1, name)
 {
     this->_outputValue = nts::Tristate::Undefined;
-    this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 1));
+    this->_pins.push_back(nts::Pin(nts::PinType::INPUT, 1));
 }
 
 nts::component::SCOutput::~SCOutput()
@@ -20,7 +20,7 @@ nts::component::SCOutput::~SCOutput()
 
 void nts::component::SCOutput::run()
 {
-    this->_outputValue = this->_pins[0]->getVal();
+    this->_outputValue = this->_pins[0].getVal();
     return;
 }
 

@@ -36,14 +36,14 @@ bool nts::AComponent::isInputPin(size_t pin)
 {
     if (!this->isPinInRange(pin))
         throw Exception("Incalid pin number");
-    return this->getPin(pin)->getPinType() == INPUT;
+    return this->getPin(pin).getPinType() == INPUT;
 }
 
 bool nts::AComponent::isOutputPin(size_t pin)
 {
     if (!this->isPinInRange(pin))
         throw Exception("Incalid pin number");
-    return this->getPin(pin)->getPinType() == OUTPUT;
+    return this->getPin(pin).getPinType() == OUTPUT;
 }
 
 void nts::AComponent::setLink(size_t pin, nts::IComponent &other,
@@ -53,22 +53,22 @@ void nts::AComponent::setLink(size_t pin, nts::IComponent &other,
         throw Exception("Can't link a component to itself");
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
-    if (this->getPin(pin)->getPinType() == other.getPin(
-    otherPin)->getPinType())
+    if (this->getPin(pin).getPinType() == other.getPin(
+    otherPin).getPinType())
         throw Exception("Can't link 2 pins with the same type");
     if (this->isConnected(pin, other, otherPin))
         return;
     if (this->isInputPin(pin) && this->isConnected(pin))
         throw Exception("Pin already used");
-    for (size_t i = 0; i < this->getPin(pin)->getConnections().size(); i++) {
-        if (this->getPin(pin)->getConnections()[i].getLink().getName() ==
+    for (size_t i = 0; i < this->getPin(pin).getConnections().size(); i++) {
+        if (this->getPin(pin).getConnections()[i].getLink().getName() ==
         other.getName()) {
-            this->getPin(pin)->getConnections()[i].getPins().push_back(
+            this->getPin(pin).getConnections()[i].getPins().push_back(
             otherPin);
             return other.setLink(otherPin, *this, pin);
         }
     }
-    this->getPin(pin)->getConnections().push_back(Connection(other,
+    this->getPin(pin).getConnections().push_back(Connection(other,
     otherPin));
     other.setLink(otherPin, *this, pin);
 }
@@ -78,9 +78,9 @@ bool nts::AComponent::isConnected(size_t pin, nts::IComponent &other,
 {
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
-    for (size_t i = 0; i < this->getPin(pin)->getConnections().size(); i++)
-        if (this->getPin(pin)->getConnections()[i].getLink().getName() ==
-        other.getName() && this->getPin(pin)->getConnections()[i].find(
+    for (size_t i = 0; i < this->getPin(pin).getConnections().size(); i++)
+        if (this->getPin(pin).getConnections()[i].getLink().getName() ==
+        other.getName() && this->getPin(pin).getConnections()[i].find(
         otherPin))
             return true;
     return false;
@@ -90,14 +90,14 @@ bool nts::AComponent::isConnected(size_t pin)
 {
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
-    return !this->getPin(pin)->getConnections().empty();
+    return !this->getPin(pin).getConnections().empty();
 }
 
 nts::Tristate nts::AComponent::compute(size_t pin)
 {
-    if (this->_pins.size() > pin || pin == 0)
-        return nts::Tristate::Undefined;
-    return this->getPin(pin)->getVal();
+    if (!this->isPinInRange(pin))
+        throw Exception("Invalid pin number");
+    return this->getPin(pin).getVal();
 }
 
 size_t nts::AComponent::getNbInputs() const
@@ -112,11 +112,12 @@ size_t nts::AComponent::getNbOutputs() const
 
 void nts::AComponent::setPin(size_t pin, nts::Tristate value)
 {
-    if (pin <= (this->_nbInputs + this->_nbOutputs) && pin > 0)
-        this->_pins[pin - 1]->setVal(value);
+    if (!this->isPinInRange(pin))
+        throw Exception("Invalid pin number");
+    this->getPin(pin).setVal(value);
 }
 
-std::shared_ptr<nts::Pin> &nts::AComponent::getPin(std::size_t pin)
+nts::Pin &nts::AComponent::getPin(std::size_t pin)
 {
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
@@ -125,10 +126,9 @@ std::shared_ptr<nts::Pin> &nts::AComponent::getPin(std::size_t pin)
 
 void nts::AComponent::simulate(size_t tick)
 {
-    std::vector<std::shared_ptr<nts::Pin>> pins = this->_pins;
-    for (std::shared_ptr<nts::Pin> pin : this->_pins) {
-        if (pin->getPinType() == nts::PinType::INPUT && pin->getConnections().size() > 0)
-            pin->getConnections()[0].getLink().simulate(tick);
+    for (nts::Pin &pin : this->_pins) {
+        if (pin.getPinType() == nts::PinType::INPUT && pin.getConnections().size() > 0)
+            pin.getConnections()[0].getLink().simulate(tick);
     }
     this->refreshInputs();
     this->run();
@@ -138,10 +138,10 @@ void nts::AComponent::refreshInputs()
 {
     size_t pinNb;
 
-    for (std::shared_ptr<nts::Pin> pin : this->_pins) {
-        if (pin->getPinType() == nts::PinType::INPUT && pin->getConnections().size() > 0) {
-            pinNb = pin->getConnections()[0].getPins()[0];
-            pin->setVal(pin->getConnections()[0].getLink().compute(pinNb));
+    for (nts::Pin &pin : this->_pins) {
+        if (pin.getPinType() == nts::PinType::INPUT && pin.getConnections().size() > 0) {
+            pinNb = pin.getConnections()[0].getPins()[0];
+            pin.setVal(pin.getConnections()[0].getLink().compute(pinNb));
         }
     }
 }
