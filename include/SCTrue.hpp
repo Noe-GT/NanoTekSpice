@@ -19,7 +19,7 @@ namespace nts
             public:
                 SCTrue(const std::string &name="None");
                 ~SCTrue();
-                void simulate(size_t tick) final;
+                void run(void) final;
         };
     };
 }

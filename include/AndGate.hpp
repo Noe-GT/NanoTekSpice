@@ -23,8 +23,8 @@ namespace nts
             public:
                 AndGate(const std::string &name="None");
                 ~AndGate();
-                void simulate(size_t tick) override;
-        };
+                void run(void) final;
+            };
     };
 }
 
