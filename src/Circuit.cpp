@@ -98,9 +98,17 @@ void nts::Circuit::setComponentsList(nts::Parsing &parsing)
 
 void nts::Circuit::debug() const
 {
+    std::cout << "All components :" << std::endl;
     for (size_t i = 0; i < this->_allComponents.size(); i++) {
         std::cout <<
         "IComponent : " << this->_allComponents[i]->getName()
+        << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << "Output components :" << std::endl;
+    for (size_t i = 0; i < this->_outputs.size(); i++) {
+        std::cout <<
+        "IComponent : " << this->_outputs[i]->getName()
         << std::endl;
     }
 }
