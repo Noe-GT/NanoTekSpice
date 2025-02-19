@@ -13,7 +13,7 @@ int main(int ac, char **av)
 {
     nts::Parsing parsing;
     nts::Circuit circuit;
-    // nts::CLI cli;
+    nts::CLI cli;
 
     if (ac != 2) {
         std::cerr << "Incorrect number of arguments" << std::endl;
@@ -24,8 +24,9 @@ int main(int ac, char **av)
         parsing.parseFile();
         // parsing.debug();
         circuit.constructCircuit(parsing);
+        cli.setCircuit(std::shared_ptr<nts::Circuit>(&circuit));
         // circuit.debug();
-        // cli.Run();
+        cli.run();
     } catch(Exception &e) {
         std::cerr << e.what() << std::endl;
         return 84;
