@@ -7,13 +7,23 @@
 
 #include "../include/CLI.hpp"
 
-nts::CLI::CLI(nts::Circuit &circuit): _circuit(circuit)
+nts::CLI::CLI()
+{
+    this->_tick = 0;
+}
+
+nts::CLI::CLI(std::shared_ptr<nts::Circuit> circuit): _circuit(circuit)
 {
     this->_tick = 0;
 }
 
 nts::CLI::~CLI()
 {
+}
+
+void nts::CLI::setCircuit(std::shared_ptr<nts::Circuit> circuit)
+{
+    this->_circuit = circuit;
 }
 
 void nts::CLI::exit() const
@@ -26,15 +36,15 @@ void nts::CLI::display() const
     std::cout << "tick: " << this->_tick << std::endl;
     std::cout << "input(s):" << std::endl;
     std::cout << "outputs(s):" << std::endl;
-    // std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit.getOutputs();
+    // std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit->getOutputs();
 
     // for (std::shared_ptr<nts::IComponent> out : outputs)
-    //     out->get_output();
+    //     out->();
 }
 
 void nts::CLI::simulate()
 {
-    std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit.getOutputs();
+    std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->_circuit->getOutputs();
 
     for (std::shared_ptr<nts::IComponent> out : outputs)
         out->simulate(1);
