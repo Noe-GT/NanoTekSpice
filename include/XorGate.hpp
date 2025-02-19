@@ -23,7 +23,7 @@ namespace nts
             public:
                 XorGate(const std::string &name="Name");
                 ~XorGate();
-                void run(void) final;
+                nts::Tristate run(void) final;
         };
     };
 }

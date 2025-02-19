@@ -20,8 +20,8 @@ namespace nts
             const std::string &name);
             ~AComponent();
             std::string getName() const final;
-            virtual void simulate(size_t tick) final;
-            virtual void run(void) override;
+            virtual void simulate(size_t tick) override;
+            virtual nts::Tristate run(void) override;
             nts::Tristate compute(size_t pin) override;
             void setLink(size_t pin, nts::IComponent &other,
             size_t otherPin) final;

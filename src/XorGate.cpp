@@ -19,7 +19,7 @@ nts::component::XorGate::~XorGate()
 {
 }
 
-void nts::component::XorGate::run()
+nts::Tristate nts::component::XorGate::run()
 {
     nts::Tristate in1;
     nts::Tristate in2;
@@ -32,4 +32,5 @@ void nts::component::XorGate::run()
         this->_pins[2]->setVal(nts::Tristate::True);
     else
         this->_pins[2]->setVal(nts::Tristate::False);
+    return this->_pins[2]->getVal();
 }

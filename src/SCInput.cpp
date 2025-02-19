@@ -23,8 +23,8 @@ void nts::component::SCInput::setInput(nts::Tristate inputValue)
     this->_inputValue = inputValue;
 }
 
-void nts::component::SCInput::run()
+nts::Tristate nts::component::SCInput::run()
 {
     this->_pins[0]->setVal(this->_inputValue);
-    return;
+    return this->_pins[0]->getVal();
 }

@@ -19,7 +19,7 @@ namespace nts
             public:
                 SCTrue(const std::string &name="None");
                 ~SCTrue();
-                void run(void) final;
+                nts::Tristate run(void) final;
         };
     };
 }

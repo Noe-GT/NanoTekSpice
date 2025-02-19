@@ -19,7 +19,7 @@ nts::component::OrGate::~OrGate()
 {
 }
 
-void nts::component::OrGate::run()
+nts::Tristate nts::component::OrGate::run()
 {
     nts::Tristate in1;
     nts::Tristate in2;
@@ -31,4 +31,5 @@ void nts::component::OrGate::run()
         this->_pins[2]->setVal(nts::Tristate::True);
     else
         this->_pins[2]->setVal(nts::Tristate::False);
+    return this->_pins[2]->getVal();
 }

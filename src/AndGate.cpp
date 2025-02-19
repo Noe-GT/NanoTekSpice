@@ -19,7 +19,7 @@ nts::component::AndGate::~AndGate()
 {
 }
 
-void nts::component::AndGate::run()
+nts::Tristate nts::component::AndGate::run()
 {
     nts::Tristate in1;
     nts::Tristate in2;
@@ -36,4 +36,5 @@ void nts::component::AndGate::run()
         this->_pins[2]->setVal(nts::Tristate::True);
     else
         this->_pins[2]->setVal(nts::Tristate::False);
+    return this->_pins[2]->getVal();
 }

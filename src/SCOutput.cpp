@@ -18,10 +18,10 @@ nts::component::SCOutput::~SCOutput()
 {
 }
 
-void nts::component::SCOutput::run()
+nts::Tristate nts::component::SCOutput::run()
 {
     this->_outputValue = this->_pins[0]->getVal();
-    return;
+    return this->_pins[0]->getVal();
 }
 
 nts::Tristate nts::component::SCOutput::getOutput() const

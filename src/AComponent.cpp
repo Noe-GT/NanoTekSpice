@@ -25,8 +25,6 @@ std::string nts::AComponent::getName() const
     return this->_name;
 }
 
-void nts::AComponent::run() {}
-
 bool nts::AComponent::isPinInRange(size_t pin) const
 {
     return pin > 0 && pin <= this->_nbInputs + this->_nbOutputs;
@@ -93,13 +91,6 @@ bool nts::AComponent::isConnected(size_t pin)
     return !this->getPin(pin)->getConnections().empty();
 }
 
-nts::Tristate nts::AComponent::compute(size_t pin)
-{
-    if (this->_pins.size() > pin || pin == 0)
-        return nts::Tristate::Undefined;
-    return this->getPin(pin)->getVal();
-}
-
 size_t nts::AComponent::getNbInputs() const
 {
     return this->_nbInputs;
@@ -123,16 +114,16 @@ std::shared_ptr<nts::Pin> &nts::AComponent::getPin(std::size_t pin)
     return this->_pins[pin - 1];
 }
 
-void nts::AComponent::simulate(size_t tick)
-{
-    std::vector<std::shared_ptr<nts::Pin>> pins = this->_pins;
-    for (std::shared_ptr<nts::Pin> pin : this->_pins) {
-        if (pin->getPinType() == nts::PinType::INPUT && pin->getConnections().size() > 0)
-            pin->getConnections()[0].getLink().simulate(tick);
-    }
-    this->refreshInputs();
-    this->run();
-}
+// void nts::AComponent::simulate(size_t tick)
+// {
+//     std::vector<std::shared_ptr<nts::Pin>> pins = this->_pins;
+//     for (std::shared_ptr<nts::Pin> pin : this->_pins) {
+//         if (pin->getPinType() == nts::PinType::INPUT && pin->getConnections().size() > 0)
+//             pin->getConnections()[0].getLink().simulate(tick);
+//     }
+//     this->refreshInputs();
+//     this->run();
+// }
 
 void nts::AComponent::refreshInputs()
 {
@@ -144,4 +135,35 @@ void nts::AComponent::refreshInputs()
             pin->setVal(pin->getConnections()[0].getLink().compute(pinNb));
         }
     }
+}
+
+// nts::Tristate nts::AComponent::compute(size_t pin)
+// {
+//     if (this->_pins.size() > pin || pin == 0)
+//         return nts::Tristate::Undefined;
+//     return this->getPin(pin)->getVal();
+// }
+
+nts::Tristate nts::AComponent::compute(size_t pin)
+{
+    nts::Tristate precedValue = nts::Tristate::Undefined;
+
+    std::vector<std::shared_ptr<nts::Pin>> pins = this->_pins;
+    for (std::shared_ptr<nts::Pin> in_pin : this->_pins) {
+        if (in_pin->getPinType() == nts::PinType::INPUT && in_pin->getConnections().size() > 0) {
+            precedValue = in_pin->getConnections()[0].getLink().compute(in_pin->getConnections()[0].getPins()[0]);
+            in_pin->setVal(precedValue);
+        }
+    }
+    (void)pin;
+    return this->run();
+}
+
+nts::Tristate nts::AComponent::run() {
+    return nts::Tristate::Undefined;
+}
+
+void nts::AComponent::simulate(size_t tick)
+{
+    (void)tick;
 }

@@ -18,7 +18,7 @@ nts::component::NotGate::~NotGate()
 {
 }
 
-void nts::component::NotGate::run()
+nts::Tristate nts::component::NotGate::run()
 {
     nts::Tristate in1;
 
@@ -27,4 +27,5 @@ void nts::component::NotGate::run()
         this->_pins[1]->setVal(nts::Tristate::False);
     else
         this->_pins[1]->setVal(nts::Tristate::True);
+    return this->_pins[1]->getVal();
 }
