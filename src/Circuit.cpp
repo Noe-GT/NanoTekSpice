@@ -111,6 +111,12 @@ void nts::Circuit::debug() const
         "IComponent : " << this->_outputs[i]->getName()
         << std::endl;
     }
+    std::cout << std::endl;
+}
+
+std::vector<std::shared_ptr<nts::IComponent>> &nts::Circuit::getInputs()
+{
+    return this->_inputs;
 }
 
 std::vector<std::shared_ptr<nts::IComponent>> &nts::Circuit::getOutputs()

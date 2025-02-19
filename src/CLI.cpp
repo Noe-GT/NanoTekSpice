@@ -74,3 +74,8 @@ void nts::CLI::run()
             this->simulate();
     }
 }
+
+nts::Circuit &nts::CLI::getCircuit()
+{
+    return this->_circuit;
+}

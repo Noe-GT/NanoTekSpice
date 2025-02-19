@@ -25,6 +25,7 @@ namespace nts
             void simulate();
             void loop();
             void run();
+            Circuit &getCircuit();
 
         private:
             Circuit _circuit;
