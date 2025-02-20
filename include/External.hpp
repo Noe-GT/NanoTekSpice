@@ -13,5 +13,6 @@
 #include <iostream>
 #include <functional>
 #include <memory>
+#include <algorithm>
 
 #endif /* !EXTERNAL_HPP_ */

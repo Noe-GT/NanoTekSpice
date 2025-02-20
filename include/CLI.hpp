@@ -27,6 +27,8 @@ namespace nts
             void run();
             void setInput(std::string buff);
             Circuit &getCircuit();
+            void sortInOut();
+            void displayInOut(std::vector<std::shared_ptr<nts::IComponent>> &comps) const;
 
         private:
             Circuit _circuit;

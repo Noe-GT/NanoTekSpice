@@ -31,21 +31,41 @@ void nts::CLI::exit() const
     std::exit(0);
 }
 
-void nts::CLI::display()
+static bool comp(std::shared_ptr<nts::IComponent> a, std::shared_ptr<nts::IComponent> b) {
+    return a->getName() < b->getName();
+}
+
+void nts::CLI::sortInOut()
+{
+    std::vector<std::shared_ptr<nts::IComponent>> &inputs = this->getCircuit().getInputs();
+    std::vector<std::shared_ptr<nts::IComponent>> &outputs = this->getCircuit().getOutputs();
+
+    std::sort(inputs.begin(), inputs.end(), comp);
+    std::sort(outputs.begin(), outputs.end(), comp);
+}
+
+void nts::CLI::displayInOut(std::vector<std::shared_ptr<nts::IComponent>> &comps) const
 {
     nts::Tristate val;
 
-    std::cout << "tick: " << this->_tick << std::endl;
-    std::cout << "input(s):" << std::endl;
-    std::cout << "outputs(s):" << std::endl;
-    for (std::shared_ptr<nts::IComponent> out : this->getCircuit().getOutputs()) {
-        val = out->compute(1);
-        std::cout << "  " << out->getName() << ": ";
+    for (std::shared_ptr<nts::IComponent> comp : comps) {
+        val = comp->compute(1);
+        std::cout << "  " << comp->getName() << ": ";
         if (val == -1)
             std::cout << "U" << std::endl;
         else
             std::cout << val << std::endl;
     }
+}
+
+void nts::CLI::display()
+{
+
+    std::cout << "tick: " << this->_tick << std::endl;
+    std::cout << "input(s):" << std::endl;
+    this->displayInOut(this->getCircuit().getInputs());
+    std::cout << "outputs(s):" << std::endl;
+    this->displayInOut(this->getCircuit().getOutputs());
 }
 
 void nts::CLI::simulate()
@@ -86,6 +106,7 @@ void nts::CLI::run()
 {
     std::string buff;
 
+    this->sortInOut();
     while (1) {
         std::cout << "> ";
         std::getline(std::cin, buff);
