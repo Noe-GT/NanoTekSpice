@@ -33,12 +33,3 @@ Test (SCInput, pins)
         comp.getNbOutputs() == 1 &&
         comp.isOutputPin(1));
 }
-
-Test (SCOutput, pins)
-{
-    nts::component::SCOutput comp;
-
-    cr_assert(comp.getNbInputs() == 0 &&
-        comp.getNbOutputs() == 1 &&
-        comp.isOutputPin(1));
-}

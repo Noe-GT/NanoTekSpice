@@ -21,20 +21,14 @@ nts::component::AndGate::~AndGate()
 
 nts::Tristate nts::component::AndGate::run()
 {
-    nts::Tristate in1;
-    nts::Tristate in2;
+    nts::Tristate in1 = this->getPin(1).getVal();
+    nts::Tristate in2 = this->getPin(2).getVal();
 
-    // size_t pinn1 = this->_pins[0]->getConnections()[0].getPins()[0];
-    // size_t pinn2 = this->_pins[1]->getConnections()[0].getPins()[0];
-    // this->_pins[0]->setVal(this->_pins[0]->getConnections()[0].getLink().compute(pinn1));
-    // this->_pins[1]->setVal(this->_pins[1]->getConnections()[0].getLink().compute(pinn2));
-
-    in1 = this->_pins[0].getVal();
-    in2 = this->_pins[1].getVal();
-
-    if (in1 == nts::Tristate::True && in2 == nts::Tristate::True)
-        this->_pins[2].setVal(nts::Tristate::True);
+    if (in1 == in2)
+        this->setPin(3, in1);
+    else if (in1 == TFALSE || in2 == TFALSE)
+        this->setPin(3, TFALSE);
     else
-        this->_pins[2].setVal(nts::Tristate::False);
-    return this->_pins[2].getVal();
+        this->setPin(3, TUNDEF);
+    return this->getPin(3).getVal();
 }

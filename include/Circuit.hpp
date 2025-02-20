@@ -10,7 +10,7 @@
 
 #include <memory>
 
-#include "IComponent.hpp"
+#include "NanoTekSpice.hpp"
 #include "Parsing.hpp"
 
 #include "AndGate.hpp"

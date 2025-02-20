@@ -21,15 +21,14 @@ nts::component::OrGate::~OrGate()
 
 nts::Tristate nts::component::OrGate::run()
 {
-    nts::Tristate in1;
-    nts::Tristate in2;
+    nts::Tristate in1 = this->getPin(1).getVal();
+    nts::Tristate in2 = this->getPin(2).getVal();
 
-    in1 = this->_pins[0].getVal();
-    in2 = this->_pins[1].getVal();
-
-    if (in1 == nts::Tristate::True || in2 == nts::Tristate::True)
-        this->_pins[2].setVal(nts::Tristate::True);
+    if (in1 == TTRUE || in2 == TTRUE)
+        this->setPin(3, TTRUE);
+    else if (in1 == TUNDEF || in2 == TUNDEF)
+        this->setPin(3, TUNDEF);
     else
-        this->_pins[2].setVal(nts::Tristate::False);
-    return this->_pins[2].getVal();
+        this->setPin(3, TFALSE);
+    return this->getPin(3).getVal();
 }

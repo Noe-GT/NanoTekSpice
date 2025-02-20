@@ -20,12 +20,11 @@ nts::component::NotGate::~NotGate()
 
 nts::Tristate nts::component::NotGate::run()
 {
-    nts::Tristate in1;
+    nts::Tristate in1 = this->getPin(1).getVal();
 
-    in1 = this->_pins[0].getVal();
-    if (in1 == nts::Tristate::True)
-        this->_pins[1].setVal(nts::Tristate::False);
-    else
-        this->_pins[1].setVal(nts::Tristate::True);
-    return this->_pins[1].getVal();
+    if (in1 == TTRUE)
+        this->setPin(2, TFALSE);
+    else if (in1 == TFALSE)
+        this->setPin(2, TTRUE);
+    return this->getPin(2).getVal();
 }

@@ -8,7 +8,7 @@
 #ifndef ACOMPONENT_HPP_
 #define ACOMPONENT_HPP_
 
-#include "IComponent.hpp"
+#include "NanoTekSpice.hpp"
 #include "Pin.hpp"
 
 namespace nts
@@ -35,10 +35,10 @@ namespace nts
             size_t getNbOutputs() const;
             void setPin(size_t pin, nts::Tristate value);
             Pin &getPin(size_t pin) final;
-            void refreshInputs();
             virtual bool setValue(std::string value) override;
 
         protected:
+            void refreshInputs();
             std::vector<Pin> _pins;
             const std::string _name;
             const size_t _nbInputs;
