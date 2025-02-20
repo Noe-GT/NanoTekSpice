@@ -20,19 +20,22 @@ namespace nts
             CLI(Circuit &circuit);
             ~CLI();
             void setCircuit(Circuit &circuit);
-            void exit() const;
+            void run();
+
+        private:
+            int _tick;
+            Circuit _circuit;
+            static bool _loop;
+            bool _stopCLI;
+            void exit();
             void display();
             void simulate();
             void loop();
-            void run();
             void setInput(std::string buff);
             Circuit &getCircuit();
             void sortInOut();
             void displayInOut(std::vector<std::shared_ptr<nts::IComponent>> &comps) const;
-
-        private:
-            Circuit _circuit;
-            int _tick;
+            static void ctrlCHandler(int signum);
     };
 };
 

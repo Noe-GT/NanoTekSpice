@@ -7,18 +7,27 @@
 
 #include "../include/CLI.hpp"
 
+bool nts::CLI::_loop = true;
+
 nts::CLI::CLI()
 {
     this->_tick = 0;
+    this->_stopCLI = false;
 }
 
 nts::CLI::CLI(nts::Circuit &circuit): _circuit(circuit)
 {
     this->_tick = 0;
+    this->_stopCLI = false;
 }
 
 nts::CLI::~CLI()
 {
+}
+
+nts::Circuit &nts::CLI::getCircuit()
+{
+    return this->_circuit;
 }
 
 void nts::CLI::setCircuit(nts::Circuit &circuit)
@@ -26,9 +35,10 @@ void nts::CLI::setCircuit(nts::Circuit &circuit)
     this->_circuit = circuit;
 }
 
-void nts::CLI::exit() const
+void nts::CLI::exit()
 {
-    std::exit(0);
+    std::exit(0); // remove
+    this->_stopCLI = true;
 }
 
 static bool comp(std::shared_ptr<nts::IComponent> a, std::shared_ptr<nts::IComponent> b) {
@@ -60,7 +70,6 @@ void nts::CLI::displayInOut(std::vector<std::shared_ptr<nts::IComponent>> &comps
 
 void nts::CLI::display()
 {
-
     std::cout << "tick: " << this->_tick << std::endl;
     std::cout << "input(s):" << std::endl;
     this->displayInOut(this->getCircuit().getInputs());
@@ -75,9 +84,17 @@ void nts::CLI::simulate()
     this->_tick++;
 }
 
+void nts::CLI::ctrlCHandler(int signum)
+{
+    (void)signum;
+    nts::CLI::_loop = false;
+}
+
 void nts::CLI::loop()
 {
-    while (1) {
+    std::signal(SIGINT, ctrlCHandler);
+
+    while (nts::CLI::_loop) {
         this->simulate();
         this->display();
     }
@@ -111,9 +128,10 @@ void nts::CLI::run()
     std::string buff;
 
     this->sortInOut();
-    while (1) {
+    while (!this->_stopCLI) {
         std::cout << "> ";
-        std::getline(std::cin, buff);
+        if (!std::getline(std::cin, buff))
+            this->exit();
         if (buff == "display")
             this->display();
         if (buff == "exit")
@@ -125,9 +143,4 @@ void nts::CLI::run()
         if (buff.find('=') != buff.npos)
             this->setInput(buff);
     }
-}
-
-nts::Circuit &nts::CLI::getCircuit()
-{
-    return this->_circuit;
 }

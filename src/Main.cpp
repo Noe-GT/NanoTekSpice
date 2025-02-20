@@ -25,8 +25,8 @@ int main(int ac, char **av)
         // parsing.debug();
         circuit.constructCircuit(parsing);
         cli.setCircuit(circuit);
-        // circuit.debug();
         cli.run();
+        // circuit.debug();
     } catch(Exception &e) {
         std::cerr << e.what() << std::endl;
         return 84;

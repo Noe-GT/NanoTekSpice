@@ -14,5 +14,6 @@
 #include <functional>
 #include <memory>
 #include <algorithm>
+#include <csignal>
 
 #endif /* !EXTERNAL_HPP_ */
