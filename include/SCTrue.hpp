@@ -8,13 +8,13 @@
 #ifndef SCTRUE_HPP_
 #define SCTRUE_HPP_
 
-#include "SpecialComponent.hpp"
+#include "AComponent.hpp"
 
 namespace nts
 {
     namespace component
     {
-        class SCTrue : public nts::component::SpecialComponent
+        class SCTrue : public nts::AComponent
         {
             public:
                 SCTrue(const std::string &name="None");

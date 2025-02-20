@@ -36,6 +36,7 @@ namespace nts
             void setPin(size_t pin, nts::Tristate value);
             Pin &getPin(size_t pin) final;
             void refreshInputs();
+            virtual bool setValue(std::string value) override;
 
         protected:
             std::vector<Pin> _pins;

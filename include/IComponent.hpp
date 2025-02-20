@@ -33,6 +33,7 @@ namespace nts
             size_t otherPin) = 0;
             virtual std::string getName() const = 0;
             virtual Pin &getPin(size_t pin) = 0;
+            virtual bool setValue(std::string value) = 0;
     };
 };
 

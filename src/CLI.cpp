@@ -51,7 +51,7 @@ void nts::CLI::displayInOut(std::vector<std::shared_ptr<nts::IComponent>> &comps
     for (std::shared_ptr<nts::IComponent> comp : comps) {
         val = comp->compute(1);
         std::cout << "  " << comp->getName() << ": ";
-        if (val == -1)
+        if (val == nts::Tristate::Undefined)
             std::cout << "U" << std::endl;
         else
             std::cout << val << std::endl;
@@ -94,11 +94,15 @@ void nts::CLI::setInput(std::string buff)
         vect.push_back(token);
     }
     if (vect.size() != 2 ||
-        (vect[1] != "U" && vect[1] != "0" && vect[1] != "1"))
+        (vect[1] != "U" && vect[1] != "0" && vect[1] != "1")) {
+        std::cout << "Value assignation not valid (must be 'name=U/0/1')" << std::endl;
         return;
+    }
     for (std::shared_ptr<nts::IComponent> in : this->getCircuit().getInputs()) {
-        if (in->getName() == vect[0])
+        if (in->getName() == vect[0]) {
+            in->setValue(vect[1]);
             return;
+        }
     }
 }
 
@@ -118,7 +122,7 @@ void nts::CLI::run()
             this->loop();
         if (buff == "simulate")
             this->simulate();
-        if (buff.find('=') != buff.length())
+        if (buff.find('=') != buff.npos)
             this->setInput(buff);
     }
 }

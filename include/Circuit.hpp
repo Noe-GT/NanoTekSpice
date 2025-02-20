@@ -49,6 +49,6 @@ namespace nts
             std::vector<std::shared_ptr<IComponent>> _inputs;
             std::vector<std::shared_ptr<IComponent>> _outputs;
     };
-}
+};
 
 #endif /* !CIRCUIT_HPP_ */

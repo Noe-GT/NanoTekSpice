@@ -8,7 +8,7 @@
 #include "../include/Pin.hpp"
 
 nts::Pin::Pin(PinType pinType, size_t id):
-    _pinType(pinType), _id(id), _val(Undefined)
+    _pinType(pinType), _id(id), _val(nts::Tristate::Undefined)
 {
 }
 

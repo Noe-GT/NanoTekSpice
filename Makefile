@@ -20,7 +20,6 @@ SRC	=	src/Exception.cpp 	\
 		src/components/OrGate.cpp		\
 		src/components/XorGate.cpp		\
 		src/components/NotGate.cpp		\
-		src/components/specialComponents/SpecialComponent.cpp		\
 		src/components/specialComponents/SCClock.cpp		\
 		src/components/specialComponents/SCInput.cpp		\
 		src/components/specialComponents/SCTrue.cpp		\

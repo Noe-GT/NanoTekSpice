@@ -8,18 +8,21 @@
 #ifndef SCINPUT_HPP_
 #define SCINPUT_HPP_
 
-#include "SpecialComponent.hpp"
+#include "AComponent.hpp"
 
 namespace nts
 {
     namespace component
     {
-        class SCInput : public nts::component::SpecialComponent
+        class SCInput : public nts::AComponent
         {
             public:
                 SCInput(const std::string &name="None");
                 ~SCInput();
                 nts::Tristate run(void) final;
+                bool setValue(std::string value) final;
+            private:
+                nts::Tristate _innerValue;
         };
     };
 }

@@ -153,3 +153,8 @@ void nts::AComponent::simulate(size_t tick)
         }
     }
 }
+
+bool nts::AComponent::setValue(std::string value)
+{
+    throw Exception("Value of this component cannot be set as '" + value + "'");
+}
