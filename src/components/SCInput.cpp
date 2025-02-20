@@ -5,7 +5,7 @@
 ** SCInput
 */
 
-#include "../include/SCInput.hpp"
+#include "../../include/SCInput.hpp"
 
 nts::component::SCInput::SCInput(const std::string &name):
     nts::AComponent(0, 1, name)

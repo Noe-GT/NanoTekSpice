@@ -5,7 +5,7 @@
 ** SCTrue
 */
 
-#include "../include/SCTrue.hpp"
+#include "../../include/SCTrue.hpp"
 
 nts::component::SCTrue::SCTrue(const std::string &name):
     nts::AComponent(0, 1, name)

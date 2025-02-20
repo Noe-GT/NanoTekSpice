@@ -5,7 +5,7 @@
 ** SCClock
 */
 
-#include "../include/SCClock.hpp"
+#include "../../include/SCClock.hpp"
 
 nts::component::SCClock::SCClock(const std::string &name):
     nts::AComponent(0, 1, name)

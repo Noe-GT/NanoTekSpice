@@ -12,29 +12,29 @@ MAIN	=	src/Main.cpp	\
 SRC	=	src/Exception.cpp 	\
 		src/Parsing.cpp		\
 		src/Circuit.cpp		\
-		src/AComponent.cpp	\
 		src/Pin.cpp			\
 		src/Connection.cpp	\
-		src/AndGate.cpp		\
-		src/OrGate.cpp		\
-		src/XorGate.cpp		\
-		src/NotGate.cpp		\
-		src/SCClock.cpp		\
-		src/SCInput.cpp		\
-		src/SCTrue.cpp		\
-		src/SCFalse.cpp		\
 		src/CLI.cpp			\
-		src/SCOutput.cpp	\
+		src/components/AComponent.cpp	\
+		src/components/AndGate.cpp		\
+		src/components/OrGate.cpp		\
+		src/components/XorGate.cpp		\
+		src/components/NotGate.cpp		\
+		src/components/SCClock.cpp		\
+		src/components/SCInput.cpp		\
+		src/components/SCTrue.cpp		\
+		src/components/SCFalse.cpp		\
+		src/components/SCOutput.cpp	\
 		# src/CD4030.cpp		\
 
 TEST	=	tests/TestBasicGates.cpp	\
 			tests/TestSC.cpp			\
 
-MAIN_OBJ	=	$(MAIN:src/%.cpp=bin/%.o)
+MAIN_OBJ	=	$(MAIN:src/%cpp=bin/%o)
 
-OBJ	=	$(SRC:src/%.cpp=bin/%.o)
+OBJ	=	$(SRC:src/%cpp=bin/%o)
 
-TEST_OBJ	=	$(TEST:tests/%.cpp=bin/%.o)
+TEST_OBJ	=	$(TEST:tests:.cpp=bin:.o)
 
 CPPFLAGS	=	-std=c++20 -Wall -Wextra -Werror -g3
 
@@ -55,6 +55,7 @@ tests_run:	$(OBJ) $(TEST_OBJ)
 
 bin/%.o:	src/%.cpp
 	@mkdir -p bin
+	@mkdir -p bin/components
 	$(CC) -c $< -o $@ $(CPPFLAGS)
 
 bin/%.o:	tests/%.cpp

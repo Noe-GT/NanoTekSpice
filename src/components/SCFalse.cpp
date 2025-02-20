@@ -5,7 +5,7 @@
 ** SCFalse
 */
 
-#include "../include/SCFalse.hpp"
+#include "../../include/SCFalse.hpp"
 
 nts::component::SCFalse::SCFalse(const std::string &name):
     nts::AComponent(0, 1, name)

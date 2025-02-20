@@ -5,7 +5,7 @@
 ** CD4030
 */
 
-#include "../include/CD4030.hpp"
+#include "../../include/CD4030.hpp"
 
 nts::component::CD4030::CD4030(const std::string &name):
     nts::AComponent(8, 4, name), _xorGates()
