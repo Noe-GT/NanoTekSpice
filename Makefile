@@ -20,11 +20,12 @@ SRC	=	src/Exception.cpp 	\
 		src/components/OrGate.cpp		\
 		src/components/XorGate.cpp		\
 		src/components/NotGate.cpp		\
-		src/components/SCClock.cpp		\
-		src/components/SCInput.cpp		\
-		src/components/SCTrue.cpp		\
-		src/components/SCFalse.cpp		\
-		src/components/SCOutput.cpp	\
+		src/components/specialComponents/SpecialComponent.cpp		\
+		src/components/specialComponents/SCClock.cpp		\
+		src/components/specialComponents/SCInput.cpp		\
+		src/components/specialComponents/SCTrue.cpp		\
+		src/components/specialComponents/SCFalse.cpp		\
+		src/components/specialComponents/SCOutput.cpp	\
 		# src/CD4030.cpp		\
 
 TEST	=	tests/TestBasicGates.cpp	\
@@ -56,6 +57,7 @@ tests_run:	$(OBJ) $(TEST_OBJ)
 bin/%.o:	src/%.cpp
 	@mkdir -p bin
 	@mkdir -p bin/components
+	@mkdir -p bin/components/specialComponents
 	$(CC) -c $< -o $@ $(CPPFLAGS)
 
 bin/%.o:	tests/%.cpp

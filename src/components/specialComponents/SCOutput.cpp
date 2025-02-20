@@ -5,12 +5,11 @@
 ** SCOutput
 */
 
-#include "../../include/SCOutput.hpp"
+#include "../../../include/SCOutput.hpp"
 
 nts::component::SCOutput::SCOutput(const std::string &name):
-    nts::AComponent(0, 1, name)
+    nts::component::SpecialComponent(0, 1, name)
 {
-    this->_outputValue = nts::Tristate::Undefined;
     this->_pins.push_back(nts::Pin(nts::PinType::INPUT, 1));
 }
 
@@ -20,11 +19,6 @@ nts::component::SCOutput::~SCOutput()
 
 nts::Tristate nts::component::SCOutput::run()
 {
-    this->_outputValue = this->_pins[0].getVal();
+    this->setValue(this->_pins[0].getVal());
     return this->_pins[0].getVal();
-}
-
-nts::Tristate nts::component::SCOutput::getOutput() const
-{
-    return this->_outputValue;
 }

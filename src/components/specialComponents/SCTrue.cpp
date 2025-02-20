@@ -5,10 +5,10 @@
 ** SCTrue
 */
 
-#include "../../include/SCTrue.hpp"
+#include "../../../include/SCTrue.hpp"
 
 nts::component::SCTrue::SCTrue(const std::string &name):
-    nts::AComponent(0, 1, name)
+    nts::component::SpecialComponent(0, 1, name)
 {
     this->_pins.push_back(nts::Pin(nts::PinType::OUTPUT, 1));
     this->_pins[0].setVal(nts::Tristate::True);

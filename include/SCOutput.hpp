@@ -8,22 +8,18 @@
 #ifndef SCOUTPUT_HPP_
 #define SCOUTPUT_HPP_
 
-#include "AComponent.hpp"
+#include "SpecialComponent.hpp"
 
 namespace nts
 {
     namespace component
     {
-        class SCOutput : public nts::AComponent
+        class SCOutput : public nts::component::SpecialComponent
         {
             public:
                 SCOutput(const std::string &name="None");
                 ~SCOutput();
                 nts::Tristate run(void) final;
-                nts::Tristate getOutput() const;
-            protected:
-            private:
-                nts::Tristate _outputValue;
         };
     };
 }

@@ -65,9 +65,21 @@ void nts::CLI::loop()
 
 void nts::CLI::setInput(std::string buff)
 {
-    // std::vector<std::string> vect;
-    // std::split(v, buff, '=');
-    (void)buff;
+    std::vector<std::string> vect;
+    std::istringstream iss(buff);
+    std::string token;
+
+    while (std::getline(iss, token, '='))
+    {
+        vect.push_back(token);
+    }
+    if (vect.size() != 2 ||
+        (vect[1] != "U" && vect[1] != "0" && vect[1] != "1"))
+        return;
+    for (std::shared_ptr<nts::IComponent> in : this->getCircuit().getInputs()) {
+        if (in->getName() == vect[0])
+            return;
+    }
 }
 
 void nts::CLI::run()

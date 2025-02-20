@@ -8,13 +8,13 @@
 #ifndef SCFALSE_HPP_
 #define SCFALSE_HPP_
 
-#include "AComponent.hpp"
+#include "SpecialComponent.hpp"
 
 namespace nts
 {
     namespace component
     {
-        class SCFalse : public nts::AComponent
+        class SCFalse : public nts::component::SpecialComponent
         {
             public:
                 SCFalse(const std::string &name="None");
