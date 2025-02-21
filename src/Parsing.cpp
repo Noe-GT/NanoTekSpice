@@ -162,9 +162,7 @@ bool nts::Parsing::isLink(const std::string &line) const
 
 void nts::Parsing::checkChipset(const Chipset &&chipset)
 {
-    if (chipset.getType() == "input")
-        this->_isInput = true;
-    else if (chipset.getType() == "output")
+    if (chipset.getType() == "output")
         this->_isOutput = true;
     if (this->isExistingChipset(chipset.getName()))
         throw Exception("Chipset name already used");
@@ -225,8 +223,6 @@ void nts::Parsing::parseFile()
             continue;
         this->extractLine(line);
     }
-    if (!this->_isInput)
-        throw Exception("No input chipset given");
     if (!this->_isOutput)
         throw Exception("No output chipset given");
 }
