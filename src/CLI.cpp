@@ -37,7 +37,6 @@ void nts::CLI::setCircuit(nts::Circuit &circuit)
 
 void nts::CLI::exit()
 {
-    std::exit(0); // remove
     this->_stopCLI = true;
 }
 
@@ -131,16 +130,16 @@ void nts::CLI::run()
     while (!this->_stopCLI) {
         std::cout << "> ";
         if (!std::getline(std::cin, buff))
-            this->exit();
+            return this->exit();
         if (buff == "display")
             this->display();
-        if (buff == "exit")
+        else if (buff == "exit")
             this->exit();
-        if (buff == "loop")
+        else if (buff == "loop")
             this->loop();
-        if (buff == "simulate")
+        else if (buff == "simulate")
             this->simulate();
-        if (buff.find('=') != buff.npos)
+        else if (buff.find('=') != buff.npos)
             this->setInput(buff);
     }
 }
