@@ -106,12 +106,10 @@ void nts::CLI::setInput(std::string buff)
     std::string token;
 
     while (std::getline(iss, token, '='))
-    {
         vect.push_back(token);
-    }
     if (vect.size() != 2 ||
         (vect[1] != "U" && vect[1] != "0" && vect[1] != "1")) {
-        std::cout << "Value assignation not valid (must be 'name=U/0/1')" << std::endl;
+        std::cout << buff << ": value assignation not valid (must be 'name=U/0/1')." << std::endl;
         return;
     }
     for (std::shared_ptr<nts::IComponent> in : this->getCircuit().getInputs()) {
@@ -120,6 +118,7 @@ void nts::CLI::setInput(std::string buff)
             return;
         }
     }
+    std::cout << buff << ": invalid component name." << std::endl;
 }
 
 void nts::CLI::run()
@@ -141,5 +140,7 @@ void nts::CLI::run()
             this->simulate();
         else if (buff.find('=') != buff.npos)
             this->setInput(buff);
+        else
+            std::cout << buff << ": command not found." << std::endl;
     }
 }
