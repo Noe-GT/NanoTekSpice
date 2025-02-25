@@ -7,11 +7,12 @@
 
 #include "../include/Parsing.hpp"
 
-nts::Parsing::Parsing(): _parsingType(NONE)
+nts::Parsing::Parsing(): _parsingType(NONE), _isInput(false), _isOutput(false)
 {
 }
 
-nts::Parsing::Parsing(const std::string &filePath): _parsingType(NONE)
+nts::Parsing::Parsing(const std::string &filePath): _parsingType(NONE),
+    _isInput(false), _isOutput(false)
 {
     this->setFilePath(filePath);
     this->parseFile();
