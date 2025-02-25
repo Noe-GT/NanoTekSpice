@@ -21,11 +21,9 @@ int main(int ac, char **av)
     try {
         parsing.setFilePath(av[1]);
         parsing.parseFile();
-        // parsing.debug();
         circuit.constructCircuit(parsing);
         cli.setCircuit(circuit);
         cli.run();
-        // circuit.debug();
     } catch(Exception &e) {
         std::cerr << e.what() << std::endl;
         return 84;

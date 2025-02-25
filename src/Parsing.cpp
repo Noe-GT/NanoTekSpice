@@ -7,11 +7,12 @@
 
 #include "../include/Parsing.hpp"
 
-nts::Parsing::Parsing(): _parsingType(NONE)
+nts::Parsing::Parsing(): _parsingType(NONE), _isInput(false), _isOutput(false)
 {
 }
 
-nts::Parsing::Parsing(const std::string &filePath): _parsingType(NONE)
+nts::Parsing::Parsing(const std::string &filePath): _parsingType(NONE),
+    _isInput(false), _isOutput(false)
 {
     this->setFilePath(filePath);
     this->parseFile();
@@ -107,14 +108,6 @@ size_t nts::Parsing::getCharOcc(const std::string &str, char c) const
     return n;
 }
 
-bool nts::Parsing::isStrAlnum(const std::string &str) const
-{
-    for (size_t i = 0; i < str.length(); i++)
-        if (!std::isalnum(str[i]))
-            return false;
-    return true;
-}
-
 bool nts::Parsing::isStrNum(const std::string &str) const
 {
     for (size_t i = 0; i < str.length(); i++)
@@ -125,16 +118,8 @@ bool nts::Parsing::isStrNum(const std::string &str) const
 
 bool nts::Parsing::isChipset(const std::string &line) const
 {
-    std::stringstream ss(line);
-    std::string tmp;
-
     if (this->getStringStreamLength(std::stringstream(line)) != 2)
         return false;
-    for (int i = 0; i < 2; i++) {
-        ss >> tmp;
-        if (!this->isStrAlnum(tmp))
-            return false;
-    }
     return true;
 }
 
@@ -153,26 +138,30 @@ bool nts::Parsing::isLink(const std::string &line) const
             return false;
         name = tmp.substr(0, tmp.find(':'));
         pinId = tmp.substr(tmp.find(':') + 1);
-        if (name.empty() || !this->isStrAlnum(name) || pinId.empty() ||
-        !this->isStrNum(pinId))
+        if (name.empty() || pinId.empty() || !this->isStrNum(pinId))
             return false;
     }
     return true;
 }
 
-void nts::Parsing::checkChipset(const Chipset &&chipset)
+void nts::Parsing::addChipset(const Chipset &&chipset)
 {
-    if (chipset.getType() == "output")
-        this->_isOutput = true;
     if (this->isExistingChipset(chipset.getName()))
         throw Exception("Chipset name already used");
+    if (chipset.getType() == "input" || chipset.getType() == "clock" ||
+    chipset.getType() == "true" || chipset.getType() == "false")
+        this->_isInput = true;
+    else if (chipset.getType() == "output")
+        this->_isOutput = true;
+    this->_chipsets.push_back(chipset);
 }
 
-void nts::Parsing::checkLink(const Link &&link)
+void nts::Parsing::addLink(const Link &&link)
 {
     if (!this->isExistingChipset(link.getComponent1().first) ||
     !this->isExistingChipset(link.getComponent2().first))
         throw Exception("Unknown chipset given");
+    this->_links.push_back(link);
 }
 
 bool nts::Parsing::isExistingChipset(const std::string &name) const
@@ -193,16 +182,14 @@ void nts::Parsing::extractLine(const std::string &line)
         return;
     }
     if (this->_parsingType == CHIPSET) {
-        if (this->isChipset(line)) {
-            this->checkChipset(Chipset(line));
-            this->_chipsets.push_back(Chipset(line));
-        } else
+        if (this->isChipset(line))
+            this->addChipset(Chipset(line));
+        else
             throw Exception("Unknown chipset given");
     } else if (this->_parsingType == LINK) {
-        if (this->isLink(line)) {
-            this->checkLink(Link(line));
-            this->_links.push_back(Link(line));
-        } else
+        if (this->isLink(line))
+            this->addLink(Link(line));
+        else
             throw Exception("Unknown link given");
     }
     if (this->_parsingType == NONE)
@@ -223,6 +210,8 @@ void nts::Parsing::parseFile()
             continue;
         this->extractLine(line);
     }
+    if (!this->_isInput)
+        throw Exception("No input chipset given");
     if (!this->_isOutput)
         throw Exception("No output chipset given");
 }

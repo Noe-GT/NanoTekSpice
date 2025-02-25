@@ -61,12 +61,11 @@ namespace nts
             std::string &delComment(std::string &line);
             size_t getStringStreamLength(std::stringstream &&ss) const;
             size_t getCharOcc(const std::string &str, char c) const;
-            bool isStrAlnum(const std::string &str) const;
             bool isStrNum(const std::string &str) const;
             bool isChipset(const std::string &line) const;
             bool isLink(const std::string &line) const;
-            void checkChipset(const Chipset &&chipset);
-            void checkLink(const Link &&link);
+            void addChipset(const Chipset &&chipset);
+            void addLink(const Link &&link);
             bool isExistingChipset(const std::string &name) const;
             void parseFile();
             std::vector<Chipset> getChipsets() const;
@@ -82,6 +81,7 @@ namespace nts
             std::vector<Chipset> _chipsets;
             std::vector<Link> _links;
 
+            bool _isInput;
             bool _isOutput;
     };
 };

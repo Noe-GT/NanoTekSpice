@@ -82,7 +82,8 @@ void nts::Circuit::setComponentsList(nts::Parsing &parsing)
         newComponent = this->createComponent(parsing.getChipsets()[i]);
         componentType = parsing.getChipsets()[i].getType();
         this->_allComponents.push_back(newComponent);
-        if (componentType == "input" || componentType == "clock")
+        if (componentType == "input" || componentType == "clock" ||
+        componentType == "true" || componentType == "false")
             this->_inputs.push_back(newComponent);
         else if (componentType == "output")
             this->_outputs.push_back(newComponent);
