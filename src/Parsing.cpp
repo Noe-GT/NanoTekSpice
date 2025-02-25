@@ -148,7 +148,8 @@ void nts::Parsing::addChipset(const Chipset &&chipset)
 {
     if (this->isExistingChipset(chipset.getName()))
         throw Exception("Chipset name already used");
-    if (chipset.getType() == "input" || chipset.getType() == "clock")
+    if (chipset.getType() == "input" || chipset.getType() == "clock" ||
+    chipset.getType() == "true" || chipset.getType() == "false")
         this->_isInput = true;
     else if (chipset.getType() == "output")
         this->_isOutput = true;
@@ -209,6 +210,8 @@ void nts::Parsing::parseFile()
             continue;
         this->extractLine(line);
     }
+    if (!this->_isInput)
+        throw Exception("No input chipset given");
     if (!this->_isOutput)
         throw Exception("No output chipset given");
 }
