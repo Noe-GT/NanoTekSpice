@@ -6,14 +6,18 @@
 */
 
 #ifndef EXTERNAL_HPP_
-#define EXTERNAL_HPP_
+    #define EXTERNAL_HPP_
 
-#include <string>
-#include <vector>
-#include <iostream>
-#include <functional>
-#include <memory>
-#include <algorithm>
-#include <csignal>
+    #include <string>
+    #include <vector>
+    #include <memory>
+    #include <csignal>
+    #include <functional>
+    #include <algorithm>
+    #include <exception>
+
+    #include <iostream>
+    #include <fstream>
+    #include <sstream>
 
 #endif /* !EXTERNAL_HPP_ */

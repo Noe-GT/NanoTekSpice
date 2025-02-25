@@ -22,6 +22,6 @@ namespace nts
                 nts::Tristate run(void) final;
         };
     };
-}
+};
 
 #endif /* !NOTGATE_HPP_ */

@@ -26,6 +26,6 @@ namespace nts
                 nts::Tristate run(void) final;
             };
     };
-}
+};
 
 #endif /* !ANDGATE_HPP_ */

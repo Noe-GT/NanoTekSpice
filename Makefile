@@ -27,8 +27,8 @@ SRC	=	src/Exception.cpp 	\
 		src/components/specialComponents/SCOutput.cpp	\
 		# src/CD4030.cpp		\
 
-TEST	=	tests/TestBasicGates.cpp	\
-			tests/TestSC.cpp			\
+TEST	=	tests/src/TestBasicGates.cpp	\
+			tests/src/TestSC.cpp			\
 
 MAIN_OBJ	=	$(MAIN:src/%cpp=bin/%o)
 

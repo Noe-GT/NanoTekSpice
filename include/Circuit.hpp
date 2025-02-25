@@ -8,23 +8,8 @@
 #ifndef CIRCUIT_HPP_
 #define CIRCUIT_HPP_
 
-#include <memory>
-
 #include "NanoTekSpice.hpp"
 #include "Parsing.hpp"
-
-#include "AndGate.hpp"
-#include "OrGate.hpp"
-#include "XorGate.hpp"
-#include "NotGate.hpp"
-
-// #include "CD4030.hpp"
-
-#include "SCInput.hpp"
-#include "SCOutput.hpp"
-#include "SCFalse.hpp"
-#include "SCTrue.hpp"
-#include "SCClock.hpp"
 
 namespace nts
 {

@@ -7,7 +7,6 @@
 
 #ifndef TESTS_H
     #define TESTS_H
-
     #include <criterion/criterion.h>
     #include <strings.h>
     #include <stdlib.h>
@@ -15,18 +14,8 @@
     #include <unistd.h>
     #include <stdint.h>
     #include <stdio.h>
-    #include "AndGate.hpp"
-    #include "OrGate.hpp"
-    #include "XorGate.hpp"
-    #include "NotGate.hpp"
-    #include "SCTrue.hpp"
-    #include "SCFalse.hpp"
-    #include "SCInput.hpp"
-    #include "SCOutput.hpp"
-    #include "SCClock.hpp"
-    #include "NanoTekSpice.hpp"
-    // #include "CD4030.hpp"
+    #include "../../include/NanoTekSpice.hpp"
+    #include "../../include/Macros.hpp"
 
     void test_pins(nts::IComponent *comp, size_t in, size_t out);
-
 #endif /* !TESTS_H */

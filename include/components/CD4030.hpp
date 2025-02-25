@@ -40,6 +40,6 @@ namespace nts
                 std::vector<nts::component::XorGate &> _xorGates;
         };
     };
-}
+};
 
 #endif /* !CD4030_HPP_ */

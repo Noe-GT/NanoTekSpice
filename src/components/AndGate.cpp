@@ -5,7 +5,7 @@
 ** AndGate
 */
 
-#include "../../include/AndGate.hpp"
+#include "../../include/components/AndGate.hpp"
 
 nts::component::AndGate::AndGate(const std::string &name):
     nts::AComponent(2, 1, name)

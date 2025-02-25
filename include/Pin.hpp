@@ -8,7 +8,6 @@
 #ifndef PIN_HPP_
 #define PIN_HPP_
 
-#include "NanoTekSpice.hpp"
 #include "Connection.hpp"
 
 namespace nts

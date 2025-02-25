@@ -8,8 +8,7 @@
 #ifndef EXCEPTION_HPP_
 #define EXCEPTION_HPP_
 
-#include <exception>
-#include <string>
+#include "External.hpp"
 
 class Exception : public std::exception
 {

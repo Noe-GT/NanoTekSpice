@@ -5,7 +5,7 @@
 ** AComponent
 */
 
-#include "../../include/AComponent.hpp"
+#include "../../include/components/AComponent.hpp"
 
 nts::AComponent::AComponent(size_t nbInputs, size_t nbOutputs,
     const std::string &name):

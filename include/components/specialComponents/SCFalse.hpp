@@ -8,7 +8,7 @@
 #ifndef SCFALSE_HPP_
 #define SCFALSE_HPP_
 
-#include "AComponent.hpp"
+#include "../AComponent.hpp"
 
 namespace nts
 {
@@ -22,6 +22,6 @@ namespace nts
                 nts::Tristate run(void) final;
         };
     };
-}
+};
 
 #endif /* !SCFALSE_HPP_ */

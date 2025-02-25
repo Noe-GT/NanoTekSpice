@@ -2,31 +2,30 @@
 ** EPITECH PROJECT, 2025
 ** nanoTekSpice
 ** File description:
-** OrGate
+** XorGate
 */
 
-#ifndef ORGATE_HPP_
-#define ORGATE_HPP_
+#ifndef XORGATE_HPP_
+#define XORGATE_HPP_
 
 #include "AComponent.hpp"
 
 //  in_1  -1-+---|
-        //   | or |-3- out
+//           |xor |-3- out
 //  in_2  -2-+---/
 
 namespace nts
 {
     namespace component
     {
-        class OrGate : public nts::AComponent
+        class XorGate : public nts::AComponent
         {
             public:
-                OrGate(const std::string &name="Name");
-                ~OrGate();
+                XorGate(const std::string &name="Name");
+                ~XorGate();
                 nts::Tristate run(void) final;
-
         };
     };
-}
+};
 
-#endif /* !ORGATE_HPP_ */
+#endif /* !XORGATE_HPP_ */

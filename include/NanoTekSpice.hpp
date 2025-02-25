@@ -5,12 +5,18 @@
 ** Macros
 */
 
-#include "IComponent.hpp"
-
 #ifndef MACROS_HPP_
     #define MACROS_HPP_
-    #define TTRUE nts::Tristate::True
-    #define TFALSE nts::Tristate::False
-    #define TUNDEF nts::Tristate::Undefined
+
+    #include "External.hpp"
+    #include "components/AndGate.hpp"
+    #include "components/OrGate.hpp"
+    #include "components/XorGate.hpp"
+    #include "components/NotGate.hpp"
+    #include "components/specialComponents/SCInput.hpp"
+    #include "components/specialComponents/SCClock.hpp"
+    #include "components/specialComponents/SCTrue.hpp"
+    #include "components/specialComponents/SCFalse.hpp"
+    #include "components/specialComponents/SCOutput.hpp"
 
 #endif /* !MACROS_HPP_ */

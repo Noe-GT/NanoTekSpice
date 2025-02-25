@@ -5,7 +5,7 @@
 ** NotGate
 */
 
-#include "../../include/NotGate.hpp"
+#include "../../include/components/NotGate.hpp"
 
 nts::component::NotGate::NotGate(const std::string &name):
     nts::AComponent(1, 1, name)

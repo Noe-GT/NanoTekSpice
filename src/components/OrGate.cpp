@@ -5,7 +5,7 @@
 ** OrGate
 */
 
-#include "../../include/OrGate.hpp"
+#include "../../include/components/OrGate.hpp"
 
 nts::component::OrGate::OrGate(const std::string &name):
     nts::AComponent(2, 1, name)

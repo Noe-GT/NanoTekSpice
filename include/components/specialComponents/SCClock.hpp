@@ -8,7 +8,7 @@
 #ifndef SCCLOCK_HPP_
 #define SCCLOCK_HPP_
 
-#include "AComponent.hpp"
+#include "../AComponent.hpp"
 
 namespace nts
 {
@@ -26,6 +26,6 @@ namespace nts
                 nts::Tristate _innerValue;
         };
     };
-}
+};
 
 #endif /* !SCCLOCK_HPP_ */

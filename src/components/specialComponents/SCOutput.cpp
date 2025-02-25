@@ -5,7 +5,7 @@
 ** SCOutput
 */
 
-#include "../../../include/SCOutput.hpp"
+#include "../../../include/components/specialComponents/SCOutput.hpp"
 
 nts::component::SCOutput::SCOutput(const std::string &name):
     nts::AComponent(0, 1, name)

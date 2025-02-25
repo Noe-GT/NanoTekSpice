@@ -5,7 +5,7 @@
 ** XorGate
 */
 
-#include "../../include/XorGate.hpp"
+#include "../../include/components/XorGate.hpp"
 
 nts::component::XorGate::XorGate(const std::string &name):
     nts::AComponent(2, 1, name)

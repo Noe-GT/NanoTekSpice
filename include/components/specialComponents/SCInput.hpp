@@ -8,7 +8,7 @@
 #ifndef SCINPUT_HPP_
 #define SCINPUT_HPP_
 
-#include "AComponent.hpp"
+#include "../AComponent.hpp"
 
 namespace nts
 {
@@ -25,6 +25,6 @@ namespace nts
                 nts::Tristate _innerValue;
         };
     };
-}
+};
 
 #endif /* !SCINPUT_HPP_ */

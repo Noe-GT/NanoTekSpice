@@ -8,11 +8,6 @@
 #ifndef PARSING_HPP_
 #define PARSING_HPP_
 
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <iostream>
-#include <vector>
 #include "Exception.hpp"
 
 namespace nts
@@ -89,6 +84,6 @@ namespace nts
 
             bool _isOutput;
     };
-}
+};
 
 #endif /* !PARSING_HPP_ */

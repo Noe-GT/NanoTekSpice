@@ -8,7 +8,7 @@
 #ifndef CONNECTION_HPP_
 #define CONNECTION_HPP_
 
-#include "IComponent.hpp"
+#include "components/IComponent.hpp"
 
 namespace nts
 {
@@ -25,6 +25,6 @@ namespace nts
             IComponent &_link;
             std::vector<size_t> _pins;
     };
-}
+};
 
 #endif /* !CONNECTION_HPP_ */

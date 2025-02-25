@@ -8,8 +8,8 @@
 #ifndef ACOMPONENT_HPP_
 #define ACOMPONENT_HPP_
 
-#include "NanoTekSpice.hpp"
-#include "Pin.hpp"
+#include "IComponent.hpp"
+#include "../Pin.hpp"
 
 namespace nts
 {
