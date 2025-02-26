@@ -72,7 +72,7 @@ void nts::CLI::display()
     std::cout << "tick: " << this->_tick << std::endl;
     std::cout << "input(s):" << std::endl;
     this->displayInOut(this->getCircuit().getInputs());
-    std::cout << "outputs(s):" << std::endl;
+    std::cout << "output(s):" << std::endl;
     this->displayInOut(this->getCircuit().getOutputs());
 }
 
