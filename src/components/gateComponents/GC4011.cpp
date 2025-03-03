@@ -30,7 +30,7 @@ nts::component::GC4011::~GC4011()
 {
 }
 
-nts::Tristate nts::component::GC4011::run(size_t pin)
+nts::Tristate nts::component::GC4011::run(size_t)
 {
     nts::Tristate in1 = this->getPin(1).getVal();
     nts::Tristate in2 = this->getPin(2).getVal();

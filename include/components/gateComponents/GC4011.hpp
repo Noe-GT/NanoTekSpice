@@ -19,7 +19,7 @@ namespace nts
             public:
                 GC4011(const std::string &name="None");
                 ~GC4011();
-                nts::Tristate run(size_t pin) final;
+                nts::Tristate run(size_t) final;
         };
     };
 };
