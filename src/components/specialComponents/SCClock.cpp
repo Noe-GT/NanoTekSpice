@@ -10,9 +10,10 @@
 nts::component::SCClock::SCClock(const std::string &name):
     nts::AComponent(0, 1, name)
 {
-    this->_innerValue = TUNDEF;
     this->_pins.push_back(nts::Pin(nts::PinType::OUTPUT, 1));
     this->_pins[0].setVal(TUNDEF);
+    this->_innerValue = TUNDEF;
+    this->_change = false;
 }
 
 nts::component::SCClock::~SCClock()
@@ -24,11 +25,11 @@ nts::Tristate nts::component::SCClock::run()
     return this->_pins[0].getVal();
 }
 
-void nts::component::SCClock::simulate(size_t tick)
+void nts::component::SCClock::simulate(size_t)
 {
-    (void)tick;
-    if (this->_innerValue != this->_pins[0].getVal()) {
+    if (this->_change == true) {
         this->_pins[0].setVal(this->_innerValue);
+        this->_change = false;
         return;
     }
     if (this->_innerValue == TTRUE)
@@ -42,14 +43,17 @@ bool nts::component::SCClock::setValue(std::string value)
 {
     if (value == "U") {
         this->_innerValue = TUNDEF;
+        this->_change = true;
         return true;
     }
     if (value == "0") {
         this->_innerValue = TFALSE;
+        this->_change = true;
         return true;
     }
     if (value == "1") {
         this->_innerValue = TTRUE;
+        this->_change = true;
         return true;
     }
     return false;

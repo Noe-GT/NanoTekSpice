@@ -23,6 +23,7 @@ namespace nts
                 void simulate(size_t tick) final;
                 bool setValue(std::string value) final;
             private:
+                bool _change;
                 nts::Tristate _innerValue;
         };
     };
