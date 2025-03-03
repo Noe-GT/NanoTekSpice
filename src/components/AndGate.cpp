@@ -10,9 +10,12 @@
 nts::component::AndGate::AndGate(const std::string &name):
     nts::AComponent(2, 1, name)
 {
-    this->_pins.push_back(nts::Pin(nts::PinType::INPUT, 1));
-    this->_pins.push_back(nts::Pin(nts::PinType::INPUT, 2));
-    this->_pins.push_back(nts::Pin(nts::PinType::OUTPUT, 3));
+    // std::shared_ptr<new nts::Pin(nts::PinType::INPUT, 1)> ptr;
+    // std::shared_ptr<nts::Pin> ptr(new new nts::Pin(nts::PinType::INPUT, 1));
+
+    this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 1));
+    this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 2));
+    this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 3));
 }
 
 nts::component::AndGate::~AndGate()
@@ -21,8 +24,8 @@ nts::component::AndGate::~AndGate()
 
 nts::Tristate nts::component::AndGate::run(size_t)
 {
-    nts::Tristate in1 = this->getPin(1).getVal();
-    nts::Tristate in2 = this->getPin(2).getVal();
+    nts::Tristate in1 = this->getPin(1)->getVal();
+    nts::Tristate in2 = this->getPin(2)->getVal();
 
     if (in1 == in2)
         this->setPin(3, in1);
@@ -30,5 +33,5 @@ nts::Tristate nts::component::AndGate::run(size_t)
         this->setPin(3, TFALSE);
     else
         this->setPin(3, TUNDEF);
-    return this->getPin(3).getVal();
+    return this->getPin(3)->getVal();
 }

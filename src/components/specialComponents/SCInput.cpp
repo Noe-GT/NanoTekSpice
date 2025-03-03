@@ -11,7 +11,7 @@ nts::component::SCInput::SCInput(const std::string &name):
     nts::AComponent(0, 1, name)
 {
     this->_innerValue = nts::Tristate::Undefined;
-    this->_pins.push_back(nts::Pin(nts::PinType::OUTPUT, 1));
+    this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 1));
 }
 
 nts::component::SCInput::~SCInput()
@@ -20,7 +20,7 @@ nts::component::SCInput::~SCInput()
 
 nts::Tristate nts::component::SCInput::run(size_t)
 {
-    return this->_pins[0].getVal();
+    return this->_pins[0]->getVal();
 }
 
 bool nts::component::SCInput::setValue(std::string value)
@@ -43,5 +43,5 @@ bool nts::component::SCInput::setValue(std::string value)
 
 void nts::component::SCInput::simulate(size_t)
 {
-    this->_pins[0].setVal(this->_innerValue);
+    this->_pins[0]->setVal(this->_innerValue);
 }
