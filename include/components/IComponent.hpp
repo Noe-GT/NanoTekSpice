@@ -33,7 +33,7 @@ namespace nts
             virtual void setLink(size_t pin, nts::IComponent &other,
             size_t otherPin) = 0;
             virtual std::string getName() const = 0;
-            virtual std::shared_ptr<nts::Pin> getPin(size_t pin) = 0;
+            virtual std::shared_ptr<nts::Pin> &getPin(size_t pin) = 0;
             virtual bool setValue(std::string value) = 0;
     };
 };

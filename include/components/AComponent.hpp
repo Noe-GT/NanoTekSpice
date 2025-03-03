@@ -35,7 +35,7 @@ namespace nts
             size_t getNbInputs() const;
             size_t getNbOutputs() const;
             void setPin(size_t pin, nts::Tristate value);
-            std::shared_ptr<nts::Pin> getPin(size_t pin) final;
+            std::shared_ptr<nts::Pin> &getPin(size_t pin) final;
             virtual bool setValue(std::string value) override;
 
         protected:
