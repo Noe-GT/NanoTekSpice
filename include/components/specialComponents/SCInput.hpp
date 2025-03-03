@@ -21,6 +21,7 @@ namespace nts
                 ~SCInput();
                 nts::Tristate run(void) final;
                 bool setValue(std::string value) final;
+                void simulate(size_t tick) final;
             private:
                 nts::Tristate _innerValue;
         };

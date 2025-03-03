@@ -20,8 +20,7 @@ nts::component::SCInput::~SCInput()
 
 nts::Tristate nts::component::SCInput::run()
 {
-    this->_pins[0].setVal(this->_innerValue);
-    return this->_innerValue;
+    return this->_pins[0].getVal();
 }
 
 bool nts::component::SCInput::setValue(std::string value)
@@ -40,4 +39,9 @@ bool nts::component::SCInput::setValue(std::string value)
     }
     return false;
 
+}
+
+void nts::component::SCInput::simulate(size_t)
+{
+    this->_pins[0].setVal(this->_innerValue);
 }
