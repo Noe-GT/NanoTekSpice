@@ -18,5 +18,6 @@
     #include "components/specialComponents/SCTrue.hpp"
     #include "components/specialComponents/SCFalse.hpp"
     #include "components/specialComponents/SCOutput.hpp"
+    #include "components/gateComponents/GC4011.hpp"
 
 #endif /* !MACROS_HPP_ */

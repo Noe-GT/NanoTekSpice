@@ -25,6 +25,7 @@ SRC	=	src/Exception.cpp 	\
 		src/components/specialComponents/SCTrue.cpp		\
 		src/components/specialComponents/SCFalse.cpp		\
 		src/components/specialComponents/SCOutput.cpp	\
+		src/components/gateComponents/GC4011.cpp	\
 		# src/CD4030.cpp		\
 
 TEST	=	tests/src/TestBasicGates.cpp	\
@@ -57,6 +58,7 @@ bin/%.o:	src/%.cpp
 	@mkdir -p bin
 	@mkdir -p bin/components
 	@mkdir -p bin/components/specialComponents
+	@mkdir -p bin/components/gateComponents
 	$(CC) -c $< -o $@ $(CPPFLAGS)
 
 bin/%.o:	tests/%.cpp
