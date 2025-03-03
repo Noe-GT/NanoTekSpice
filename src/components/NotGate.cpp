@@ -26,5 +26,7 @@ nts::Tristate nts::component::NotGate::run()
         this->setPin(2, TFALSE);
     else if (in1 == TFALSE)
         this->setPin(2, TTRUE);
+    else
+        this->setPin(2, TUNDEF);
     return this->getPin(2).getVal();
 }
