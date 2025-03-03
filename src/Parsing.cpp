@@ -7,12 +7,11 @@
 
 #include "../include/Parsing.hpp"
 
-nts::Parsing::Parsing(): _parsingType(NONE), _isInput(false), _isOutput(false)
+nts::Parsing::Parsing(): _parsingType(NONE)
 {
 }
 
-nts::Parsing::Parsing(const std::string &filePath): _parsingType(NONE),
-    _isInput(false), _isOutput(false)
+nts::Parsing::Parsing(const std::string &filePath): _parsingType(NONE)
 {
     this->setFilePath(filePath);
     this->parseFile();
@@ -148,11 +147,6 @@ void nts::Parsing::addChipset(const Chipset &&chipset)
 {
     if (this->isExistingChipset(chipset.getName()))
         throw Exception("Chipset name already used");
-    if (chipset.getType() == "input" || chipset.getType() == "clock" ||
-    chipset.getType() == "true" || chipset.getType() == "false")
-        this->_isInput = true;
-    else if (chipset.getType() == "output")
-        this->_isOutput = true;
     this->_chipsets.push_back(chipset);
 }
 
@@ -210,10 +204,6 @@ void nts::Parsing::parseFile()
             continue;
         this->extractLine(line);
     }
-    if (!this->_isInput)
-        throw Exception("No input chipset given");
-    if (!this->_isOutput)
-        throw Exception("No output chipset given");
 }
 
 std::vector<nts::Chipset> nts::Parsing::getChipsets() const

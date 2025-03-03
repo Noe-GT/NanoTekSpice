@@ -80,9 +80,6 @@ namespace nts
             std::string _data;
             std::vector<Chipset> _chipsets;
             std::vector<Link> _links;
-
-            bool _isInput;
-            bool _isOutput;
     };
 };
 
