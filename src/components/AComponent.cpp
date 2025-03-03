@@ -8,11 +8,12 @@
 #include "../../include/components/AComponent.hpp"
 
 nts::AComponent::AComponent(size_t nbInputs, size_t nbOutputs,
-    const std::string &name):
+    size_t nbIgnored, const std::string &name):
     _pins(),
     _name(name),
     _nbInputs(nbInputs),
-    _nbOutputs(nbOutputs)
+    _nbOutputs(nbOutputs),
+    _nbIgnored(nbIgnored)
 {
 }
 
@@ -27,7 +28,8 @@ std::string nts::AComponent::getName() const
 
 bool nts::AComponent::isPinInRange(size_t pin) const
 {
-    return pin > 0 && pin <= this->_nbInputs + this->_nbOutputs;
+    return pin > 0 && pin <= this->_nbInputs + this->_nbOutputs +
+        this->_nbIgnored;
 }
 
 bool nts::AComponent::isInputPin(size_t pin)

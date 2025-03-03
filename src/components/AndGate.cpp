@@ -8,7 +8,7 @@
 #include "../../include/components/AndGate.hpp"
 
 nts::component::AndGate::AndGate(const std::string &name):
-    nts::AComponent(2, 1, name)
+    nts::AComponent(2, 1, 0, name)
 {
     // std::shared_ptr<new nts::Pin(nts::PinType::INPUT, 1)> ptr;
     // std::shared_ptr<nts::Pin> ptr(new new nts::Pin(nts::PinType::INPUT, 1));

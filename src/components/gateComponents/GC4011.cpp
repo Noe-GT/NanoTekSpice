@@ -10,7 +10,7 @@
 #include "../../../include/components/NotGate.hpp"
 
 nts::component::GC4011::GC4011(const std::string &name):
-    nts::AComponent(8, 4, name)
+    nts::AComponent(8, 4, 2, name)
 {
     AndGate and1;
     NotGate not1;

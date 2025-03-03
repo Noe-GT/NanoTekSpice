@@ -16,7 +16,7 @@ namespace nts
     class AComponent : public IComponent
     {
         public:
-            AComponent(size_t nbInputs, size_t nbOutputs,
+            AComponent(size_t nbInputs, size_t nbOutputs, size_t nbIgnored,
             const std::string &name);
             ~AComponent();
             std::string getName() const final;
@@ -44,6 +44,7 @@ namespace nts
             const std::string _name;
             const size_t _nbInputs;
             const size_t _nbOutputs;
+            const size_t _nbIgnored;
     };
 };
 

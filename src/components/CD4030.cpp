@@ -8,7 +8,7 @@
 #include "../../include/components/CD4030.hpp"
 
 nts::component::CD4030::CD4030(const std::string &name):
-    nts::AComponent(8, 4, name), _xorGates()
+    nts::AComponent(8, 4, 0, name), _xorGates()
 {
     // nts::component::XorGate g1;
     // nts::component::XorGate g2;
