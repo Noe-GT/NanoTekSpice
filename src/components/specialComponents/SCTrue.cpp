@@ -18,7 +18,7 @@ nts::component::SCTrue::~SCTrue()
 {
 }
 
-nts::Tristate nts::component::SCTrue::run()
+nts::Tristate nts::component::SCTrue::run(size_t)
 {
     return this->_pins[0].getVal();
 }

@@ -45,7 +45,7 @@ nts::component::CD4030::~CD4030()
 {
 }
 
-nts::Tristate nts::component::CD4030::run()
+nts::Tristate nts::component::CD4030::run(size_t)
 {
     nts::Tristate in1;
     nts::Tristate in2;

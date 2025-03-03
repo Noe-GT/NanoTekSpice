@@ -15,7 +15,8 @@ namespace nts
     enum PinType
     {
         INPUT,
-        OUTPUT
+        OUTPUT,
+        IGNORED
     };
 
     class Pin

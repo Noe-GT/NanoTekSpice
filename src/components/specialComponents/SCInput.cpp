@@ -18,7 +18,7 @@ nts::component::SCInput::~SCInput()
 {
 }
 
-nts::Tristate nts::component::SCInput::run()
+nts::Tristate nts::component::SCInput::run(size_t)
 {
     return this->_pins[0].getVal();
 }

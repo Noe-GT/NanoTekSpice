@@ -44,6 +44,13 @@ bool nts::AComponent::isOutputPin(size_t pin)
     return this->getPin(pin).getPinType() == OUTPUT;
 }
 
+bool nts::AComponent::isIgnoredPin(size_t pin)
+{
+    if (!this->isPinInRange(pin))
+        throw Exception("Incalid pin number");
+    return this->getPin(pin).getPinType() == IGNORED;
+}
+
 void nts::AComponent::setLink(size_t pin, nts::IComponent &other,
     size_t otherPin)
 {
@@ -51,6 +58,8 @@ void nts::AComponent::setLink(size_t pin, nts::IComponent &other,
         throw Exception("Can't link a component to itself");
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
+    if (this->isIgnoredPin(pin))
+        throw Exception("Pin must be ignored");
     if (this->getPin(pin).getPinType() == other.getPin(
     otherPin).getPinType())
         throw Exception("Can't link 2 pins with the same type");
@@ -137,11 +146,10 @@ nts::Tristate nts::AComponent::compute(size_t pin)
             in_pin.setVal(precedValue);
         }
     }
-    (void)pin;
-    return this->run();
+    return this->run(pin);
 }
 
-nts::Tristate nts::AComponent::run() {
+nts::Tristate nts::AComponent::run(size_t) {
     return nts::Tristate::Undefined;
 }
 

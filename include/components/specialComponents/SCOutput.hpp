@@ -19,7 +19,7 @@ namespace nts
             public:
                 SCOutput(const std::string &name="None");
                 ~SCOutput();
-                nts::Tristate run(void) final;
+                nts::Tristate run(size_t) final;
             private:
                 nts::Tristate _innerValue;
         };

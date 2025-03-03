@@ -18,7 +18,7 @@ nts::component::SCOutput::~SCOutput()
 {
 }
 
-nts::Tristate nts::component::SCOutput::run()
+nts::Tristate nts::component::SCOutput::run(size_t)
 {
     this->_innerValue = this->_pins[0].getVal();
     return this->_innerValue;

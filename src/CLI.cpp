@@ -83,9 +83,8 @@ void nts::CLI::simulate()
     this->_tick++;
 }
 
-void nts::CLI::ctrlCHandler(int signum)
+void nts::CLI::ctrlCHandler(int)
 {
-    (void)signum;
     nts::CLI::_loop = false;
 }
 

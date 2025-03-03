@@ -19,7 +19,7 @@ nts::component::XorGate::~XorGate()
 {
 }
 
-nts::Tristate nts::component::XorGate::run()
+nts::Tristate nts::component::XorGate::run(size_t)
 {
     nts::Tristate in1 = this->getPin(1).getVal();
     nts::Tristate in2 = this->getPin(2).getVal();

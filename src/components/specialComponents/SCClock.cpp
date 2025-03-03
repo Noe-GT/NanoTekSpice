@@ -20,7 +20,7 @@ nts::component::SCClock::~SCClock()
 {
 }
 
-nts::Tristate nts::component::SCClock::run()
+nts::Tristate nts::component::SCClock::run(size_t)
 {
     return this->_pins[0].getVal();
 }

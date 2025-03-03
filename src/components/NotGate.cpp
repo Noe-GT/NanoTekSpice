@@ -18,7 +18,7 @@ nts::component::NotGate::~NotGate()
 {
 }
 
-nts::Tristate nts::component::NotGate::run()
+nts::Tristate nts::component::NotGate::run(size_t)
 {
     nts::Tristate in1 = this->getPin(1).getVal();
 

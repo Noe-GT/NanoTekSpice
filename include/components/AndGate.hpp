@@ -23,7 +23,7 @@ namespace nts
             public:
                 AndGate(const std::string &name="None");
                 ~AndGate();
-                nts::Tristate run(void) final;
+                nts::Tristate run(size_t) final;
             };
     };
 };

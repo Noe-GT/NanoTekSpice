@@ -19,7 +19,7 @@ nts::component::OrGate::~OrGate()
 {
 }
 
-nts::Tristate nts::component::OrGate::run()
+nts::Tristate nts::component::OrGate::run(size_t)
 {
     nts::Tristate in1 = this->getPin(1).getVal();
     nts::Tristate in2 = this->getPin(2).getVal();

@@ -23,7 +23,7 @@ namespace nts
             public:
                 OrGate(const std::string &name="Name");
                 ~OrGate();
-                nts::Tristate run(void) final;
+                nts::Tristate run(size_t) final;
 
         };
     };

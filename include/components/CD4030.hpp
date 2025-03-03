@@ -35,7 +35,7 @@ namespace nts
             public:
                 CD4030(const std::string &name="None");
                 ~CD4030();
-                nts::Tristate run(void) final;
+                nts::Tristate run(size_t) final;
             private:
                 std::vector<nts::component::XorGate &> _xorGates;
         };

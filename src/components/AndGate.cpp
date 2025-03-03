@@ -19,7 +19,7 @@ nts::component::AndGate::~AndGate()
 {
 }
 
-nts::Tristate nts::component::AndGate::run()
+nts::Tristate nts::component::AndGate::run(size_t)
 {
     nts::Tristate in1 = this->getPin(1).getVal();
     nts::Tristate in2 = this->getPin(2).getVal();

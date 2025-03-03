@@ -19,7 +19,7 @@ namespace nts
             public:
                 SCInput(const std::string &name="None");
                 ~SCInput();
-                nts::Tristate run(void) final;
+                nts::Tristate run(size_t) final;
                 bool setValue(std::string value) final;
                 void simulate(size_t tick) final;
             private:

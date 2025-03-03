@@ -19,7 +19,7 @@ namespace nts
             public:
                 NotGate(const std::string &name="Name");
                 ~NotGate();
-                nts::Tristate run(void) final;
+                nts::Tristate run(size_t) final;
         };
     };
 };
