@@ -24,8 +24,8 @@ namespace nts
                 nts::Tristate run(size_t) final;
 
             private:
-                std::unique_ptr<AndGate> _and;
-                std::unique_ptr<NotGate> _not;
+                AndGate _and;
+                NotGate _not;
         };
     };
 };
