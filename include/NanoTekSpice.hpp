@@ -20,5 +20,6 @@
     #include "components/specialComponents/SCOutput.hpp"
     #include "components/gateComponents/CD4030.hpp"
     #include "components/gateComponents/GC4011.hpp"
+    #include "components/extraComponents/NandGate.hpp"
 
 #endif /* !MACROS_HPP_ */
