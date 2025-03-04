@@ -34,7 +34,8 @@ namespace nts
             void setInput(std::string buff);
             Circuit &getCircuit();
             void sortInOut();
-            void displayInOut(std::vector<std::shared_ptr<nts::IComponent>> &comps) const;
+            void displayIn(std::vector<std::shared_ptr<nts::IComponent>> &comps) const;
+            void displayOut(std::vector<std::shared_ptr<nts::IComponent>> &comps) const;
             static void ctrlCHandler(int signum);
     };
 };

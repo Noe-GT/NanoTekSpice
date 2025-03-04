@@ -34,11 +34,14 @@ namespace nts
             void setPin(size_t pin, nts::Tristate value);
             std::shared_ptr<nts::Pin> &getPin(size_t pin) final;
             virtual bool setValue(std::string value) override;
+            nts::Bistate getRunState() const final;
+            void switchRunState();
 
         protected:
             void refreshInputs();
             std::vector<std::shared_ptr<nts::Pin>> _pins;
             const std::string _name;
+            nts::Bistate _runState;
     };
 };
 

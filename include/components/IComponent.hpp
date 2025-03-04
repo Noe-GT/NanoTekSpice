@@ -23,6 +23,12 @@ namespace nts
         False = false
     };
 
+    enum Bistate
+    {
+        STATE1 = 0,
+        STATE2 = 1
+    };
+
     class IComponent
     {
         public:
@@ -35,6 +41,7 @@ namespace nts
             virtual std::string getName() const = 0;
             virtual std::shared_ptr<nts::Pin> &getPin(size_t pin) = 0;
             virtual bool setValue(std::string value) = 0;
+            virtual nts::Bistate getRunState() const = 0;
     };
 };
 

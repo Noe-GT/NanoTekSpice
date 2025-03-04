@@ -9,7 +9,8 @@
 
 nts::AComponent::AComponent(const std::string &name):
     _pins(),
-    _name(name)
+    _name(name),
+    _runState(BISTATE1)
 {
 }
 
@@ -128,11 +129,13 @@ nts::Tristate nts::AComponent::compute(size_t pin)
     nts::Tristate precedValue = nts::Tristate::Undefined;
 
     for (std::shared_ptr<nts::Pin> &in_pin : this->_pins) {
-        if (in_pin->getPinType() == nts::PinType::INPUT && in_pin->getConnections().size() > 0) {
+        if (in_pin->getPinType() == nts::PinType::INPUT && in_pin->getConnections().size() > 0 &&
+            in_pin->getConnections()[0].getLink().getRunState() == this->_runState) {
             precedValue = in_pin->getConnections()[0].getLink().compute(in_pin->getConnections()[0].getPins()[0]);
             in_pin->setVal(precedValue);
         }
     }
+    this->switchRunState();
     return this->run(pin);
 }
 
@@ -152,4 +155,17 @@ void nts::AComponent::simulate(size_t tick)
 bool nts::AComponent::setValue(std::string value)
 {
     throw Exception("Value of this component cannot be set as '" + value + "'");
+}
+
+nts::Bistate nts::AComponent::getRunState() const
+{
+    return this->_runState;
+}
+
+void nts::AComponent::switchRunState()
+{
+    if (this->_runState == BISTATE1)
+        this->_runState = BISTATE2;
+    else
+        this->_runState = BISTATE1;
 }
