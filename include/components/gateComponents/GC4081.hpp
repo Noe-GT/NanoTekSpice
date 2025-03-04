@@ -8,7 +8,6 @@
 #ifndef GC4081_HPP_
 #define GC4081_HPP_
 
-#include "../AComponent.hpp"
 #include "../AndGate.hpp"
 
 namespace nts

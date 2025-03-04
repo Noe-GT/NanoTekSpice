@@ -8,7 +8,6 @@
 #ifndef GC4069_HPP_
 #define GC4069_HPP_
 
-#include "../AComponent.hpp"
 #include "../NotGate.hpp"
 
 namespace nts

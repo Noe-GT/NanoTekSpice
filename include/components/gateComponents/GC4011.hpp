@@ -8,7 +8,6 @@
 #ifndef GC4011_HPP_
 #define GC4011_HPP_
 
-#include "../AComponent.hpp"
 #include "../extraComponents/NandGate.hpp"
 
 namespace nts

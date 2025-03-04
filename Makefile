@@ -26,10 +26,14 @@ SRC	=	src/Exception.cpp 	\
 		src/components/specialComponents/SCFalse.cpp		\
 		src/components/specialComponents/SCOutput.cpp	\
 		src/components/extraComponents/NandGate.cpp	\
+		src/components/extraComponents/NorGate.cpp	\
 		src/components/gateComponents/GC4011.cpp	\
 		src/components/gateComponents/GC4030.cpp	\
 		src/components/gateComponents/GC4081.cpp	\
 		src/components/gateComponents/GC4069.cpp	\
+		src/components/gateComponents/GC4071.cpp	\
+		src/components/gateComponents/GC4001.cpp	\
+
 
 TEST	=	tests/src/TestBasicGates.cpp		\
 			tests/src/TestSC.cpp			\

@@ -10,9 +10,6 @@
 nts::component::AndGate::AndGate(const std::string &name):
     nts::AComponent(name)
 {
-    // std::shared_ptr<new nts::Pin(nts::PinType::INPUT, 1)> ptr;
-    // std::shared_ptr<nts::Pin> ptr(new new nts::Pin(nts::PinType::INPUT, 1));
-
     this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 1));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 2));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 3));

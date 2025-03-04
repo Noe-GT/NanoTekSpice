@@ -20,14 +20,14 @@ nts::component::GC4030::GC4030(const std::string &name):
     this->_pins.push_back(this->_xg2.getPin(1)); // pin 06
     this->_pins.push_back(this->_xg2.getPin(3)); // pin 04
     this->_pins.push_back(this->_xg2.getPin(2)); // pin 05
-    this->_pins.emplace_back(new nts::Pin(PinType::IGNORED, 7)); // pin 07
+    this->_pins.emplace_back(std::make_shared<nts::Pin>(PinType::IGNORED, 7)); // pin 07
     this->_pins.push_back(this->_xg3.getPin(2)); // pin 09
     this->_pins.push_back(this->_xg3.getPin(1)); // pin 08
     this->_pins.push_back(this->_xg3.getPin(3)); // pin 10
     this->_pins.push_back(this->_xg4.getPin(3)); // pin 11
     this->_pins.push_back(this->_xg4.getPin(2)); // pin 12
     this->_pins.push_back(this->_xg4.getPin(1)); // pin 13
-    this->_pins.emplace_back(new nts::Pin(PinType::IGNORED, 14)); // pin 14
+    this->_pins.emplace_back(std::make_shared<nts::Pin>(PinType::IGNORED, 14)); // pin 14
 }
 
 nts::component::GC4030::~GC4030()
