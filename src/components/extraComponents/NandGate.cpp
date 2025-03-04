@@ -25,6 +25,5 @@ nts::component::NandGate::~NandGate()
 
 nts::Tristate nts::component::NandGate::run(size_t)
 {
-    this->_not.compute(2);
-    return this->_not.run(2);
+    return this->_not.compute(2);
 }
