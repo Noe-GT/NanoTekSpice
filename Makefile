@@ -31,7 +31,7 @@ SRC	=	src/Exception.cpp 	\
 		src/components/gateComponents/GC4081.cpp	\
 		src/components/gateComponents/GC4069.cpp	\
 
-TEST	=	tests/src/TestBasicGates.cpp	\
+TEST	=	tests/src/TestBasicGates.cpp		\
 			tests/src/TestSC.cpp			\
 
 MAIN_OBJ	=	$(MAIN:src/%cpp=bin/%o)

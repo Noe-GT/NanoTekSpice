@@ -35,8 +35,12 @@ namespace nts
             public:
                 GC4030(const std::string &name="None");
                 ~GC4030();
+                nts::Tristate run(size_t pin);
             private:
-                std::vector<std::unique_ptr<nts::component::XorGate>> _xorGates;
+                nts::component::XorGate _xg1;
+                nts::component::XorGate _xg2;
+                nts::component::XorGate _xg3;
+                nts::component::XorGate _xg4;
         };
     };
 };
