@@ -7,13 +7,9 @@
 
 #include "../../include/components/AComponent.hpp"
 
-nts::AComponent::AComponent(size_t nbInputs, size_t nbOutputs,
-    size_t nbIgnored, const std::string &name):
+nts::AComponent::AComponent(const std::string &name):
     _pins(),
-    _name(name),
-    _nbInputs(nbInputs),
-    _nbOutputs(nbOutputs),
-    _nbIgnored(nbIgnored)
+    _name(name)
 {
 }
 
@@ -28,8 +24,7 @@ std::string nts::AComponent::getName() const
 
 bool nts::AComponent::isPinInRange(size_t pin) const
 {
-    return pin > 0 && pin <= this->_nbInputs + this->_nbOutputs +
-        this->_nbIgnored;
+    return pin > 0 && pin <= this->_pins.size();
 }
 
 bool nts::AComponent::isInputPin(size_t pin)
@@ -100,16 +95,6 @@ bool nts::AComponent::isConnected(size_t pin)
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
     return !this->getPin(pin)->getConnections().empty();
-}
-
-size_t nts::AComponent::getNbInputs() const
-{
-    return this->_nbInputs;
-}
-
-size_t nts::AComponent::getNbOutputs() const
-{
-    return this->_nbOutputs;
 }
 
 void nts::AComponent::setPin(size_t pin, nts::Tristate value)

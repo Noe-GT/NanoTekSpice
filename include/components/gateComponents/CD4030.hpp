@@ -8,7 +8,7 @@
 #ifndef CD4030_HPP_
 #define CD4030_HPP_
 
-#include "XorGate.hpp"
+#include "../XorGate.hpp"
 
 //           +---------4030---------+
 // in_01  -1-|>-+---\       ignored-|-14-
@@ -35,9 +35,8 @@ namespace nts
             public:
                 CD4030(const std::string &name="None");
                 ~CD4030();
-                nts::Tristate run(size_t) final;
             private:
-                std::vector<nts::component::XorGate &> _xorGates;
+                std::vector<std::unique_ptr<nts::component::XorGate>> _xorGates;
         };
     };
 };

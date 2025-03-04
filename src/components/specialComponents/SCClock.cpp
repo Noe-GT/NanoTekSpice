@@ -8,7 +8,7 @@
 #include "../../../include/components/specialComponents/SCClock.hpp"
 
 nts::component::SCClock::SCClock(const std::string &name):
-    nts::AComponent(0, 1, 0, name)
+    nts::AComponent(name)
 {
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 1));
     this->_pins[0]->setVal(TUNDEF);

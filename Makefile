@@ -26,7 +26,7 @@ SRC	=	src/Exception.cpp 	\
 		src/components/specialComponents/SCFalse.cpp		\
 		src/components/specialComponents/SCOutput.cpp	\
 		src/components/gateComponents/GC4011.cpp	\
-		# src/CD4030.cpp		\
+		src/components/CD4030.cpp		\
 
 TEST	=	tests/src/TestBasicGates.cpp	\
 			tests/src/TestSC.cpp			\
