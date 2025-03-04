@@ -9,6 +9,7 @@
 #define GC4011_HPP_
 
 #include "../AComponent.hpp"
+#include "../extraComponents/NandGate.hpp"
 
 namespace nts
 {
@@ -20,6 +21,12 @@ namespace nts
                 GC4011(const std::string &name="None");
                 ~GC4011();
                 nts::Tristate run(size_t) final;
+
+            private:
+                NandGate _ng1;
+                NandGate _ng2;
+                NandGate _ng3;
+                NandGate _ng4;
         };
     };
 };
