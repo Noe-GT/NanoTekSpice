@@ -18,7 +18,7 @@
     #include "components/specialComponents/SCTrue.hpp"
     #include "components/specialComponents/SCFalse.hpp"
     #include "components/specialComponents/SCOutput.hpp"
-    #include "components/gateComponents/CD4030.hpp"
+    #include "components/gateComponents/GC4030.hpp"
     #include "components/gateComponents/GC4011.hpp"
     #include "components/extraComponents/NandGate.hpp"
 

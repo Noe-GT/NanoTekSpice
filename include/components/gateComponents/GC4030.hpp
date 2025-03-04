@@ -2,11 +2,11 @@
 ** EPITECH PROJECT, 2025
 ** nanoTekSpice
 ** File description:
-** CD4030
+** GC4030
 */
 
-#ifndef CD4030_HPP_
-#define CD4030_HPP_
+#ifndef GC4030_HPP_
+#define GC4030_HPP_
 
 #include "../XorGate.hpp"
 
@@ -30,15 +30,15 @@ namespace nts
 {
     namespace component
     {
-        class CD4030 : public nts::AComponent
+        class GC4030 : public nts::AComponent
         {
             public:
-                CD4030(const std::string &name="None");
-                ~CD4030();
+                GC4030(const std::string &name="None");
+                ~GC4030();
             private:
                 std::vector<std::unique_ptr<nts::component::XorGate>> _xorGates;
         };
     };
 };
 
-#endif /* !CD4030_HPP_ */
+#endif /* !GC4030_HPP_ */

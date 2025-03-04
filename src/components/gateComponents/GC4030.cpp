@@ -2,12 +2,12 @@
 ** EPITECH PROJECT, 2025
 ** nanoTekSpice
 ** File description:
-** CD4030
+** GC4030
 */
 
-#include "../../include/components/gateComponents/CD4030.hpp"
+#include "../../../include/components/gateComponents/GC4030.hpp"
 
-nts::component::CD4030::CD4030(const std::string &name):
+nts::component::GC4030::GC4030(const std::string &name):
     nts::AComponent(name), _xorGates()
 {
     for (int i = 0; i < 4; i++)
@@ -34,6 +34,6 @@ nts::component::CD4030::CD4030(const std::string &name):
     this->_pins.emplace_back(new nts::Pin(PinType::IGNORED, 14)); // pin 14
 }
 
-nts::component::CD4030::~CD4030()
+nts::component::GC4030::~GC4030()
 {
 }

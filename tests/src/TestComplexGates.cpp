@@ -9,7 +9,7 @@
 
 // Test(AndGate, pins)
 // {
-//     nts::component::CD4030 comp;
+//     nts::component::GC4030 comp;
 
 //     cr_assert(comp.getNbInputs() == 8 &&
 //         comp.getNbOutputs() == 4 &&
