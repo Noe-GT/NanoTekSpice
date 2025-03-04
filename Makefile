@@ -29,6 +29,7 @@ SRC	=	src/Exception.cpp 	\
 		src/components/gateComponents/GC4011.cpp	\
 		src/components/gateComponents/GC4030.cpp	\
 		src/components/gateComponents/GC4081.cpp	\
+		src/components/gateComponents/GC4069.cpp	\
 
 TEST	=	tests/src/TestBasicGates.cpp	\
 			tests/src/TestSC.cpp			\

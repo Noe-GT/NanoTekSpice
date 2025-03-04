@@ -21,5 +21,6 @@
     #include "components/gateComponents/GC4030.hpp"
     #include "components/gateComponents/GC4011.hpp"
     #include "components/gateComponents/GC4081.hpp"
+    #include "components/gateComponents/GC4069.hpp"
 
 #endif /* !MACROS_HPP_ */
