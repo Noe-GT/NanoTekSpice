@@ -8,7 +8,7 @@
 #include "../../../include/components/specialComponents/SCInput.hpp"
 
 nts::component::SCInput::SCInput(const std::string &name):
-    nts::AComponent(0, 1, name)
+    nts::AComponent(name)
 {
     this->_innerValue = nts::Tristate::Undefined;
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 1));

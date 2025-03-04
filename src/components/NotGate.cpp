@@ -8,7 +8,7 @@
 #include "../../include/components/NotGate.hpp"
 
 nts::component::NotGate::NotGate(const std::string &name):
-    nts::AComponent(1, 1, name)
+    nts::AComponent(name)
 {
     this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 1));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 2));

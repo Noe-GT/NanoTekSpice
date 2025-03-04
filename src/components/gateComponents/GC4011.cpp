@@ -8,7 +8,7 @@
 #include "../../../include/components/gateComponents/GC4011.hpp"
 
 nts::component::GC4011::GC4011(const std::string &name):
-    nts::AComponent(8, 4, name)
+    nts::AComponent(name)
 {
     this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 1));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 2));

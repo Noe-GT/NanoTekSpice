@@ -8,7 +8,7 @@
 #include "../../include/components/XorGate.hpp"
 
 nts::component::XorGate::XorGate(const std::string &name):
-    nts::AComponent(2, 1, name)
+    nts::AComponent(name)
 {
     this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 1));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::INPUT, 2));

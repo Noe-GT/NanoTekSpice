@@ -51,6 +51,7 @@ std::shared_ptr<nts::IComponent> nts::Circuit::createComponent(
     if (type == "clock")    return std::make_shared<nts::component::SCClock>(name);
     if (type == "false")    return std::make_shared<nts::component::SCFalse>(name);
     if (type == "true")     return std::make_shared<nts::component::SCTrue>(name);
+    if (type == "4030")     return std::make_shared<nts::component::CD4030>(name);
     throw Exception("Unknown component given");
 }
 
