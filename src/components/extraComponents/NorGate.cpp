@@ -9,8 +9,8 @@
 
 nts::component::NorGate::NorGate(const std::string &name):
     nts::AComponent(name),
-    _or(),
-    _not()
+    _or("NorGate-or"),
+    _not("NorGate-not")
 {
     this->_pins.push_back(this->_or.getPin(1));
     this->_pins.push_back(this->_or.getPin(2));

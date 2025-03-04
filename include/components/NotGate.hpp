@@ -17,7 +17,7 @@ namespace nts
         class NotGate : public nts::AComponent
         {
             public:
-                NotGate(const std::string &name="Name");
+                NotGate(const std::string &name="None");
                 ~NotGate();
                 nts::Tristate run(size_t) final;
         };

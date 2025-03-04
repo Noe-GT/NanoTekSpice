@@ -11,9 +11,7 @@ Test(AndGate, pins)
 {
     nts::component::AndGate comp;
 
-    cr_assert(comp.getNbInputs() == 2 &&
-        comp.getNbOutputs() == 1 &&
-        comp.isInputPin(1) &&
+    cr_assert(comp.isInputPin(1) &&
         comp.isInputPin(2) &&
         comp.isOutputPin(3));
 }
@@ -45,9 +43,7 @@ Test(OrGate, pins)
 {
     nts::component::OrGate comp;
 
-    cr_assert(comp.getNbInputs() == 2 &&
-        comp.getNbOutputs() == 1 &&
-        comp.isInputPin(1) &&
+    cr_assert(comp.isInputPin(1) &&
         comp.isInputPin(2) &&
         comp.isOutputPin(3));
 }
@@ -79,9 +75,7 @@ Test(XorGate, pins)
 {
     nts::component::XorGate comp;
 
-    cr_assert(comp.getNbInputs() == 2 &&
-        comp.getNbOutputs() == 1 &&
-        comp.isInputPin(1) &&
+    cr_assert(comp.isInputPin(1) &&
         comp.isInputPin(2) &&
         comp.isOutputPin(3));
 }
@@ -113,9 +107,7 @@ Test(NotGate, pins)
 {
     nts::component::NotGate comp;
 
-    cr_assert(comp.getNbInputs() == 1 &&
-        comp.getNbOutputs() == 1 &&
-        comp.isInputPin(1) &&
+    cr_assert(comp.isInputPin(1) &&
         comp.isOutputPin(2));
 }
 

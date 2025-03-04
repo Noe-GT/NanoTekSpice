@@ -21,7 +21,7 @@ namespace nts
         class XorGate : public nts::AComponent
         {
             public:
-                XorGate(const std::string &name="Name");
+                XorGate(const std::string &name="None");
                 ~XorGate();
                 nts::Tristate run(size_t) final;
         };

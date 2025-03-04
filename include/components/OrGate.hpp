@@ -21,7 +21,7 @@ namespace nts
         class OrGate : public nts::AComponent
         {
             public:
-                OrGate(const std::string &name="Name");
+                OrGate(const std::string &name="None");
                 ~OrGate();
                 nts::Tristate run(size_t) final;
 
