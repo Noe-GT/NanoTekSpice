@@ -7,36 +7,37 @@
 
 CC	=	g++
 
-MAIN	=	src/Main.cpp	\
+MAIN	=	src/Main.cpp
 
-SRC	=	src/Exception.cpp 	\
-		src/Parsing.cpp		\
-		src/Circuit.cpp		\
-		src/Pin.cpp			\
-		src/Connection.cpp	\
-		src/CLI.cpp			\
-		src/components/AComponent.cpp	\
-		src/components/AndGate.cpp		\
-		src/components/OrGate.cpp		\
-		src/components/XorGate.cpp		\
-		src/components/NotGate.cpp		\
-		src/components/specialComponents/SCClock.cpp		\
-		src/components/specialComponents/SCInput.cpp		\
+SRC	=	src/Exception.cpp 								\
+		src/Parsing.cpp									\
+		src/Circuit.cpp									\
+		src/Pin.cpp										\
+		src/Connection.cpp								\
+		src/CLI.cpp										\
+		src/components/AComponent.cpp					\
+		src/components/AndGate.cpp						\
+		src/components/OrGate.cpp						\
+		src/components/XorGate.cpp						\
+		src/components/NotGate.cpp						\
+		src/components/specialComponents/SCClock.cpp	\
+		src/components/specialComponents/SCInput.cpp	\
 		src/components/specialComponents/SCTrue.cpp		\
-		src/components/specialComponents/SCFalse.cpp		\
+		src/components/specialComponents/SCFalse.cpp	\
 		src/components/specialComponents/SCOutput.cpp	\
-		src/components/extraComponents/NandGate.cpp	\
-		src/components/extraComponents/NorGate.cpp	\
-		src/components/gateComponents/GC4011.cpp	\
-		src/components/gateComponents/GC4030.cpp	\
-		src/components/gateComponents/GC4081.cpp	\
-		src/components/gateComponents/GC4069.cpp	\
-		src/components/gateComponents/GC4071.cpp	\
-		src/components/gateComponents/GC4001.cpp	\
+		src/components/extraComponents/NandGate.cpp		\
+		src/components/extraComponents/NorGate.cpp		\
+		src/components/gateComponents/GC4011.cpp		\
+		src/components/gateComponents/GC4030.cpp		\
+		src/components/gateComponents/GC4081.cpp		\
+		src/components/gateComponents/GC4069.cpp		\
+		src/components/gateComponents/GC4071.cpp		\
+		src/components/gateComponents/GC4001.cpp		\
+		src/components/advancedComponent/AC4017.cpp		\
 
 
-TEST	=	tests/src/TestBasicGates.cpp		\
-			tests/src/TestSC.cpp			\
+TEST	=	tests/src/TestBasicGates.cpp				\
+			tests/src/TestSC.cpp						\
 
 MAIN_OBJ	=	$(MAIN:src/%cpp=bin/%o)
 
