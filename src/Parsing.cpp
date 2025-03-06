@@ -23,9 +23,7 @@ nts::Parsing::~Parsing()
 
 void nts::Parsing::setFilePath(const std::string &filePath)
 {
-    size_t ind = filePath.find('.');
-
-    if (ind == std::string::npos || filePath.substr(ind) != ".nts")
+    if (filePath.size() < 4 || filePath.substr(filePath.size() - 4) != ".nts")
         throw Exception("Incorrect file name");
     this->_filePath = filePath;
     this->getFile();
