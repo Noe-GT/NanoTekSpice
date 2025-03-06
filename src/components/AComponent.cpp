@@ -52,9 +52,8 @@ bool nts::AComponent::isIgnoredPin(size_t pin)
 void nts::AComponent::setLink(size_t pin, nts::IComponent &other,
     size_t otherPin)
 {
-    if (this->getName() == other.getName()) {
+    if (this->getName() == other.getName())
         throw Exception("Can't link a component to itself");
-    }
     if (!this->isPinInRange(pin))
         throw Exception("Invalid pin number");
     if (this->isIgnoredPin(pin))

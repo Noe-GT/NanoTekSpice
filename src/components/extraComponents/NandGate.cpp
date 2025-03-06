@@ -10,7 +10,7 @@
 nts::component::NandGate::NandGate(const std::string &name):
     nts::AComponent(name),
     _and("NandGate-and"),
-    _not("NandGate-and")
+    _not("NandGate-not")
 {
     this->_pins.push_back(this->_and.getPin(1));
     this->_pins.push_back(this->_and.getPin(2));
