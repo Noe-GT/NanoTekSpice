@@ -204,6 +204,8 @@ void nts::Parsing::parseFile()
             continue;
         this->extractLine(line);
     }
+    if (this->_chipsets.size() == 0)
+        throw Exception("The circuit must contain at least 1 component");
 }
 
 std::vector<nts::Chipset> nts::Parsing::getChipsets() const
