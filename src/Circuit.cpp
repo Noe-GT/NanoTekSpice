@@ -57,6 +57,7 @@ std::shared_ptr<nts::IComponent> nts::Circuit::createComponent(
     if (type == "4069")     return std::make_shared<nts::component::GC4069>(name);
     if (type == "4071")     return std::make_shared<nts::component::GC4071>(name);
     if (type == "4001")     return std::make_shared<nts::component::GC4001>(name);
+    if (type == "4017")     return std::make_shared<nts::component::AC4017>(name);
     throw Exception("Unknown component given");
 }
 

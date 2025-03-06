@@ -24,6 +24,7 @@ nts::Tristate nts::component::AndGate::run(size_t)
     nts::Tristate in1 = this->getPin(1)->getVal();
     nts::Tristate in2 = this->getPin(2)->getVal();
 
+    // this->switchRunState();
     if (in1 == in2)
         this->setPin(3, in1);
     else if (in1 == TFALSE || in2 == TFALSE)

@@ -141,7 +141,6 @@ nts::Tristate nts::AComponent::compute(size_t pin)
             in_pin->setVal(precedValue);
         }
     }
-    this->switchRunState();
     return this->run(pin);
 }
 

@@ -143,13 +143,13 @@ void nts::CLI::run()
         std::cout << "> ";
         if (!std::getline(std::cin, buff))
             return this->exit();
-        if (buff == "display")
+        if (buff == "display" || buff == "d")
             this->display();
         else if (buff == "exit")
             this->exit();
         else if (buff == "loop")
             this->loop();
-        else if (buff == "simulate")
+        else if (buff == "simulate" || buff == "s")
             this->simulate();
         else if (buff.find('=') != buff.npos)
             this->setInput(buff);

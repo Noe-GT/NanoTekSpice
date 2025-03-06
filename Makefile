@@ -33,7 +33,7 @@ SRC	=	src/Exception.cpp 								\
 		src/components/gateComponents/GC4069.cpp		\
 		src/components/gateComponents/GC4071.cpp		\
 		src/components/gateComponents/GC4001.cpp		\
-		src/components/advancedComponent/AC4017.cpp		\
+		src/components/advancedComponents/AC4017.cpp		\
 
 
 TEST	=	tests/src/TestBasicGates.cpp				\
@@ -68,6 +68,7 @@ bin/%.o:	src/%.cpp
 	@mkdir -p bin/components/specialComponents
 	@mkdir -p bin/components/gateComponents
 	@mkdir -p bin/components/extraComponents
+	@mkdir -p bin/components/advancedComponents
 	$(CC) -c $< -o $@ $(CPPFLAGS)
 
 bin/%.o:	tests/%.cpp

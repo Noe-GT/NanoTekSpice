@@ -17,6 +17,10 @@ namespace nts {
                 AC4017(const std::string &name);
                 ~AC4017();
                 nts::Tristate run(size_t pin);
+                void counter();
+                void reset_counter(std::vector<int> &outIndexes);
+            private:
+                nts::Tristate _precVal;
         };
     }
 }

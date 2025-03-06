@@ -8,7 +8,8 @@
 #include "../../../include/components/advancedComponents/AC4017.hpp"
 
 nts::component::AC4017::AC4017(const std::string &name):
-    nts::AComponent(name)
+    nts::AComponent(name),
+    _precVal(TUNDEF)
 {
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 1));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 2));
@@ -17,7 +18,7 @@ nts::component::AC4017::AC4017(const std::string &name):
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 5));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 6));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 7));
-    this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 8));
+    this->_pins.emplace_back(new nts::Pin(nts::PinType::IGNORED, 8));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 9));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 10));
     this->_pins.emplace_back(new nts::Pin(nts::PinType::OUTPUT, 11));
@@ -31,7 +32,35 @@ nts::component::AC4017::~AC4017()
 {
 }
 
-nts::Tristate nts::component::AC4017::run(size_t)
+void nts::component::AC4017::reset_counter(std::vector<int> &outIndexes)
 {
-    return TUNDEF;
+    for (int i : outIndexes)
+        this->setPin(i, TFALSE);
+    this->setPin(12, TTRUE);
+}
+
+void nts::component::AC4017::counter()
+{
+    std::vector<int> outIndexes = {3, 2, 4, 7, 10, 1, 5, 6, 9, 11};
+
+    for (int i : outIndexes) {
+        if (this->getPin(i)->getVal() != TTRUE) {
+            if (i == 1)
+                this->setPin(12, TFALSE);
+            return this->setPin(i, TTRUE);
+        }
+    }
+    this->reset_counter(outIndexes);
+}
+
+nts::Tristate nts::component::AC4017::run(size_t pin)
+{
+    if (this->getPin(13)->getVal() != TFALSE) {
+        return this->getPin(pin)->getVal();
+    }
+    if (this->_precVal == TFALSE && this->getPin(14)->getVal() == TTRUE) {
+        counter();
+    }
+    this->_precVal = this->getPin(14)->getVal();
+    return this->getPin(pin)->getVal();
 }
